@@ -1,0 +1,38 @@
+{
+    "compilerOptions": {
+        "target": "es5",
+        "module": "es6",
+        "lib": [
+            "es6",
+            "dom"
+        ],
+        "moduleResolution": "node",
+        "declaration": true,
+        "experimentalDecorators": true,
+        "baseUrl": ".",
+        "stripInternal": true,
+        "outDir": "./dist",
+        "rootDir": "./src", 
+        "sourceMap": true,
+        "inlineSources": true,
+        "skipLibCheck": true,
+        "typeRoots": [
+            "node_modules/@types"
+        ]
+    },
+    "files": [
+        "./src/index.ts"
+    ],
+    "exclude": [
+        "node_modules",
+        "dist",
+        "demo",
+        "config",
+        "coverage",
+        "src/**/*.spec.ts"
+    ],
+    "angularCompilerOptions": {
+        "strictMetadataEmit": true,
+        "skipTemplateCodegen": true
+    }
+}
