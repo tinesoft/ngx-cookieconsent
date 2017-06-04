@@ -1,0 +1,26 @@
+{
+  "generator-ngx-library": {
+    "authorName": "Tine Kondo",
+    "authorEmail": "kondotine@gmail.com",
+    "githubUsername": "tinesoft",
+    "projectName": "ngx-cookieconsent",
+    "projectVersion": "0.0.1",
+    "projectDescription": "Cookie Consent module for Angular.",
+    "projectKeywords": [
+      "angular",
+      "ng",
+      "cookie",
+      "law",
+      "eu"
+    ],
+    "moduleName": "cookieconsent",
+    "ngVersion": "2.0.0",
+    "ngPrefix": "ngc",
+    "ngModules": [
+      "core",
+      "common"
+    ],
+    "useGreenkeeper": true,
+    "useCompodoc": true
+  }
+}

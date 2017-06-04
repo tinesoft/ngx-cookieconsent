@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+      "target": "es5",
+      "module": "es2015",
+      "moduleResolution": "node",
+      "sourceMap": true,
+      "inlineSources": true,
+      "declaration": true,
+      "experimentalDecorators": true,
+      "noImplicitAny": true,
+      "suppressImplicitAnyIndexErrors": true,
+      "rootDir": "./",
+      "baseUrl": "",
+      "skipLibCheck": true,
+      "stripInternal": true,
+      "outDir": "../tmp/lib-es5/",
+      "lib": [
+          "es2015",
+          "dom"
+      ]
+  },
+  "files": [
+      "./index.ts"
+  ],
+
+  "angularCompilerOptions": {
+      "strictMetadataEmit": true,
+      "skipTemplateCodegen": true,
+      "genDir": "../tmp/lib-gen-dir/"
+  }
+}
