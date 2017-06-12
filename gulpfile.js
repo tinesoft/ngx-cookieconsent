@@ -60,7 +60,7 @@ const config = {
   coverageDir: 'coverage/'
 };
 
-const LIBRARY_NAME = 'ng-cookieconsent';
+const LIBRARY_NAME = 'ngx-cookieconsent';
 
 //Helper functions
 

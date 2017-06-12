@@ -1,1 +1,1 @@
-export * from './ng-cookieconsent.module';
+export * from './cookieconsent.module';

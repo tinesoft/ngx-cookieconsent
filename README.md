@@ -1,64 +1,117 @@
-# ng-cookieconsent - Angular integration of cookieconsent.js: a free solution to the EU Cookie Law.
+# ngx-cookieconsent - [Cookie Consent](https://cookieconsent.insites.com/) module for Angular.
 
-[![npm version](https://badge.fury.io/js/ng-cookieconsent.svg)](https://badge.fury.io/js/ng-cookieconsent)
-[![Build Status](https://travis-ci.org/tinesoft/ng-cookieconsent.svg?branch=master)](https://travis-ci.org/tinesoft/ng-cookieconsent)
-[![Coverage Status](https://coveralls.io/repos/github/tinesoft/ng-cookieconsent/badge.svg?branch=master)](https://coveralls.io/github/tinesoft/ng-cookieconsent?branch=master)
-[![dependency Status](https://david-dm.org/tinesoft/ng-cookieconsent/status.svg)](https://david-dm.org/tinesoft/ng-cookieconsent)
-[![devDependency Status](https://david-dm.org/tinesoft/ng-cookieconsent/dev-status.svg?branch=master)](https://david-dm.org/tinesoft/ng-cookieconsent#info=devDependencies)
-[![Greenkeeper Badge](https://badges.greenkeeper.io/tinesoft/ng-cookieconsent.svg)](https://greenkeeper.io/)
+[![npm version](https://badge.fury.io/js/ngx-cookieconsent.svg)](https://badge.fury.io/js/ngx-cookieconsent)
+[![Build Status](https://travis-ci.org/tinesoft/ngx-cookieconsent.svg?branch=master)](https://travis-ci.org/tinesoft/ngx-cookieconsent)
+[![Coverage Status](https://coveralls.io/repos/github/tinesoft/ngx-cookieconsent/badge.svg?branch=master)](https://coveralls.io/github/tinesoft/ngx-cookieconsent?branch=master)
+[![dependency Status](https://david-dm.org/tinesoft/ngx-cookieconsent/status.svg)](https://david-dm.org/tinesoft/ngx-cookieconsent)
+[![devDependency Status](https://david-dm.org/tinesoft/ngx-cookieconsent/dev-status.svg?branch=master)](https://david-dm.org/tinesoft/ngx-cookieconsent#info=devDependencies)
+[![Greenkeeper Badge](https://badges.greenkeeper.io/tinesoft/ngx-cookieconsent.svg)](https://greenkeeper.io/)
 
 ## Demo
 
-View all the directives in action at https://tinesoft.github.io/ng-cookieconsent
+View the module in action at https://tinesoft.github.io/ngx-cookieconsent
 
 ## Dependencies
-* [Angular](https://angular.io) (*requires* Angular 2 or higher, tested with 2.0.0)
+* [Angular](https://angular.io) (*requires* Angular 2 or higher, tested with 2.0.0 and 4.0.0)
+* [Cookie Consent](https://cookieconsent.insites.com/) (*requires* Cookie Consent 3 or higher, tested with 3.0.4)
+
 
 ## Installation
 Install above dependencies via *npm*. 
 
-Now install `ng-cookieconsent` via:
+Now install `ngx-cookieconsent` via:
 ```shell
-npm install --save ng-cookieconsent
+npm install --save ngx-cookieconsent
 ```
 
 ---
+##### Angular-CLI
+>**Note**: If you are using `angular-cli` to build your app, make sure that `cookieconsent` is properly listed as a [global library](https://github.com/angular/angular-cli/wiki/stories-global-scripts), and as [global style](https://github.com/angular/angular-cli/wiki/stories-global-styles).
+
+To do so, edit your `.angular-cli.json` as such:
+```
+      "scripts": [
+        "../node_modules/cookieconsent/build/cookieconsent.min.js"
+      ],
+
+      "styles": [
+        "../node_modules/cookieconsent/build/cookieconsent.min.css"
+      ],
+
+```
+
 ##### SystemJS
 >**Note**:If you are using `SystemJS`, you should adjust your configuration to point to the UMD bundle.
-In your systemjs config file, `map` needs to tell the System loader where to look for `ng-cookieconsent`:
+In your systemjs config file, `map` needs to tell the System loader where to look for `ngx-cookieconsent`:
 ```js
 map: {
-  'ng-cookieconsent': 'node_modules/ng-cookieconsent/bundles/ng-cookieconsent.umd.js',
+  'ngx-cookieconsent': 'node_modules/ngx-cookieconsent/bundles/ngx-cookieconsent.umd.js',
 }
 ```
+In your systemjs config file, `meta` needs to tell the System loader how to load `cookieconsent`:
+```js
+    meta: {
+    './node_modules/cookieconsent/build/cookieconsent.min.js': {
+            format: 'amd'
+        }
+    }
+```
+In your index.html file, add script and link tags to load  `cookieconsent` globally:
+```html
+    <!-- 1. Configure SystemJS -->
+    <script src="system.config.js"></script>
+    <!-- 2. Add cookieconsent dependency-->
+    <link rel="stylesheet" type="text/css" href="node_modules/cookieconsent/build/cookieconsent.min.css"/>
+    <script src="node_modules/cookieconsent/build/cookieconsent.min.js"></script>
+```
+
 ---
 
 Once installed you need to import the main module:
-```js
-import {NgCookieconsentModule} from 'ng-cookieconsent';
+```ts
+import {NgcCookieConsentModule} from 'ngx-cookieconsent';
 ```
 The only remaining part is to list the imported module in your application module. The exact method will be slightly
-different for the root (top-level) module for which you should end up with the code similar to (notice `NgCookieconsentModule.forRoot()`):
+different for the root (top-level) module for which you should end up with the code similar to (notice `NgcCookieConsentModule.forRoot()`):
 ```js
-import {NgCookieconsentModule} from 'ng-cookieconsent';
+import {NgcCookieConsentModule, NgcCookieConsentConfig} from 'ngx-cookieconsent';
+
+const cookieConfig:NgcCookieConsentConfig = {
+  cookie: {
+    domain: 'your.domain.com' // it is recommended to set your domain, for cookies to work properly
+  },
+  palette: {
+    popup: {
+      background: '#000'
+    },
+    button: {
+      background: '#f1d600'
+    }
+  },
+  theme: 'edgeless',
+  type: 'opt-out'
+};
+
 
 @NgModule({
   declarations: [AppComponent, ...],
-  imports: [NgCookieconsentModule.forRoot(), ...],  
+  imports: [NgcCookieConsentModule.forRoot(cookieConfig), ...],  
   bootstrap: [AppComponent]
 })
 export class AppModule {
 }
 ```
 
-Other modules in your application can simply import `NgCookieconsentModule`:
+> Note: The configuration object passed to the `NgcCookieConsentModule.forRoot()` is optonal, but it is recommended to provided one, with at least the 'cookie.domain' property set to your domain.
+
+Other modules in your application can simply import `NgcCookieConsentModule`:
 
 ```js
-import {NgCookieconsentModule} from 'ng-cookieconsent';
+import {NgcCookieConsentModule} from 'ngx-cookieconsent';
 
 @NgModule({
   declarations: [OtherComponent, ...],
-  imports: [NgCookieconsentModule, ...], 
+  imports: [NgcCookieConsentModule, ...], 
 })
 export class OtherModule {
 }
@@ -66,7 +119,74 @@ export class OtherModule {
 
 ## Usage
 
+Once the module is imported, you can use the `NgcCookieContentService` in your component (i.e. `AppComponent`) to subscribe to main events fired by Cookie Consent.
 
+Here is how it works:
+
+```ts
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { NgcCookieConsentService } from 'ngx-cookieconsent';
+import { Subscription }   from 'rxjs/Subscription';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent implements OnInit, OnDestroy {
+
+  //keep refs to subscriptions to be able to unsubscribe later
+  private popupOpenSubscription: Subscription;
+  private popupCloseSubscription: Subscription;
+  private initializeSubscription: Subscription;
+  private statusChangeSubscription: Subscription;
+  private revokeChoiceSubscription: Subscription;
+
+  constructor(private cookieConsentService: NgcCookieConsentService){}
+
+  ngOnInit(){
+    // subscribe to cookieconsent observables to react to main events
+    this.popupOpenSubscription=this.ccService.popupOpen.subscribe(
+      ()=>{
+      // you can use this.ccService.getConfig() to do stuff... 
+    });
+
+    this.popupCloseSubscription=this.ccService.popupClose.subscribe(
+      ()=>{
+      // you can use this.ccService.getConfig() to do stuff... 
+    });
+
+    this.initializeSubscription=this.ccService.initialize.subscribe(
+      (event:InitializeEvent)=>{
+      // you can use this.ccService.getConfig() to do stuff... 
+    });
+
+    this.statusChangeSubscription=this.ccService.statusChange.subscribe(
+      (event:StatusChangeEvent)=>{
+      // you can use this.ccService.getConfig() to do stuff... 
+    });
+
+    this.revokeChoiceSubscription=this.ccService.revokeChoice.subscribe(
+      ()=>{
+      // you can use this.ccService.getConfig() to do stuff... 
+    });
+  }
+
+  ngOnDestroy(){
+    // unsubscribe to cookieconsent observables to prevent memory leaks
+    this.popupOpenSubscription.unsubscribe();
+    this.popupCloseSubscription.unsubscribe();
+    this.initializeSubscription.unsubscribe();
+    this.statusChangeSubscription.unsubscribe();
+    this.revokeChoiceSubscription.unsubscribe();
+  }
+
+
+}
+
+```
+
+See [Cookie Consent Documentation](https://cookieconsent.insites.com/documentation/about-cookie-consent/) to see more about how to customize or interact with user interactions.
 
 ## License
 

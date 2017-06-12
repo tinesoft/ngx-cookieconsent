@@ -1,6 +1,6 @@
 import { browser, element, by } from 'protractor';
 
-export class NgCookieconsentDemoPage {
+export class NgxCookieconsentDemoPage {
   navigateTo() {
     return browser.get('/');
   }

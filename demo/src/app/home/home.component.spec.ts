@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { HomeComponent } from './home.component';
-import { NgCookieconsentModule } from 'ng-cookieconsent';
+import { CookieconsentModule } from 'ngx-cookieconsent';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
@@ -12,7 +12,7 @@ describe('HomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [NgCookieconsentModule.forRoot()],
+      imports: [CookieconsentModule.forRoot()],
       declarations: [HomeComponent]
     })
       .compileComponents();

@@ -1,10 +1,10 @@
-import { NgCookieconsentDemoPage } from './app.po';
+import { NgxCookieconsentDemoPage } from './app.po';
 
-describe('ng-cookieconsent-demo App', () => {
-  let page: NgCookieconsentDemoPage;
+describe('ngx-cookieconsent-demo App', () => {
+  let page: NgxCookieconsentDemoPage;
 
   beforeEach(() => {
-    page = new NgCookieconsentDemoPage ();
+    page = new NgxCookieconsentDemoPage ();
   });
 
   it('should display message saying app works', () => {

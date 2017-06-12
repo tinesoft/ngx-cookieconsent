@@ -3,9 +3,9 @@
     "authorName": "Tine Kondo",
     "authorEmail": "kondotine@gmail.com",
     "githubUsername": "tinesoft",
-    "projectName": "ng-cookieconsent",
+    "projectName": "ngx-cookieconsent",
     "projectVersion": "0.0.1",
-    "projectDescription": "Angular integration of cookieconsent.js: a free solution to the EU Cookie Law.",
+    "projectDescription": "Cookie Consent module for Angular.",
     "projectKeywords": [
       "angular",
       "ng",
@@ -13,7 +13,7 @@
       "law",
       "eu"
     ],
-    "moduleName": "ng-cookieconsent",
+    "moduleName": "cookieconsent",
     "ngVersion": "2.0.0",
     "ngModules": [
       "core",

@@ -1,7 +1,7 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "project": {
-    "name": "ng-cookieconsent-demo"
+    "name": "ngx-cookieconsent-demo"
   },
   "apps": [
     {
@@ -19,9 +19,12 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.scss"
+        "styles.scss",
+         "../node_modules/cookieconsent/build/cookieconsent.min.css"
       ],
-      "scripts": [],
+      "scripts": [
+         "../node_modules/cookieconsent/build/cookieconsent.min.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

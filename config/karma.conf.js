@@ -25,6 +25,8 @@ module.exports = function (config) {
             }
         },
         files: [
+          './node_modules/cookieconsent/build/cookieconsent.min.js',
+          './node_modules/cookieconsent/build/cookieconsent.min.css',
             { pattern: './config/karma-test-shim.js', watched: false }
         ],
 

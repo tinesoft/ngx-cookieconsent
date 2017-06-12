@@ -8,15 +8,15 @@ import { HomeComponent } from './home/home.component';
 import { GettingStartedComponent } from './getting-started/getting-started.component';
 import { AppSharedModule } from './shared/shared.module';
 import { AppRoutingModule } from './app-routing';
-import { NgCookieconsentModule } from 'ng-cookieconsent';
+import { CookieconsentModule } from 'ngx-cookieconsent';
 
-describe('App: ng-cookieconsent', () => {
+describe('App: ngx-cookieconsent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
         AppSharedModule,
         AppRoutingModule,
-        NgCookieconsentModule.forRoot()],
+        CookieconsentModule.forRoot()],
       declarations: [
         AppComponent,
         GettingStartedComponent,

@@ -1,8 +1,8 @@
 {
-  "name": "ng-cookieconsent-demo",
+  "name": "ngx-cookieconsent-demo",
   "version": "0.0.0",
   "license": "MIT",
-  "description": "Demo app for ng-cookieconsent",
+  "description": "Demo app for ngx-cookieconsent",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -10,7 +10,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "postinstall": "npm link ng-cookieconsent"
+    "postinstall": "npm link ngx-cookieconsent"
   },
   "private": true,
   "dependencies": {
