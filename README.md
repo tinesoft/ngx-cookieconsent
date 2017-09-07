@@ -1,3 +1,7 @@
+<p align="center">
+  <img height="256px" width="256px" style="text-align: center;" src="demo/src/assets/logo.svg">
+</p>
+
 # ngx-cookieconsent - [Cookie Consent](https://cookieconsent.insites.com/) module for Angular.
 
 [![npm version](https://badge.fury.io/js/ngx-cookieconsent.svg)](https://badge.fury.io/js/ngx-cookieconsent)

@@ -1,5 +1,7 @@
 const gulp = require('gulp');
+const runSequence = require ('run-sequence');
 const gulpRealFavicon = require ('gulp-real-favicon');
+
 
 const fs = require('fs');
 const helpers = require('../helpers');
@@ -13,7 +15,7 @@ const FAVICON_DATA_FILE = 'faviconData.json';
 // package (see the check-for-favicon-update task below).
 gulp.task('generate-favicon', cb => {
 	gulpRealFavicon.generateFavicon({
-		masterPicture: helpers.root('demo/src/assets/logo.png'),
+		masterPicture: helpers.root('demo/src/assets/logo.svg'),
 		dest: helpers.root('demo/src/'),
 		iconsPath: '/',
 		design: {
@@ -86,4 +88,9 @@ gulp.task('check-for-favicon-update', cb => {
 			throw err;
 		}
 	});
+});
+
+
+gulp.task('update-favicon', (cb) => {
+	runSequence('generate-favicon', 'inject-favicon-markups');
 });
