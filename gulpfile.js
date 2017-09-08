@@ -346,7 +346,7 @@ gulp.task('build:doc', (cb)=>{
       tsconfig: 'src/tsconfig.lib.json',
       hideGenerator:true,
       disableCoverage: true,
-      output: `<%= skipDemo ? "${config.outputDir}/doc/": "${config.demoDir}/dist/doc/"%>`
+      output: `${config.demoDir}/dist/doc/`
     })
   ], cb);
 });
@@ -392,7 +392,7 @@ gulp.task('serve:demo', ()=>{
 });
 
 gulp.task('build:demo', ()=>{
-  return execDemoCmd(`build --preserve-symlinks --prod --aot --build-optimizer --base-href ngx-cookieconsent`, { cwd: `${config.demoDir}`});
+  return execDemoCmd(`build --preserve-symlinks --prod --aot --build-optimizer`, { cwd: `${config.demoDir}`});
 });
 
 gulp.task('push:demo', ()=>{
