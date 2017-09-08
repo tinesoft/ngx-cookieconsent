@@ -42,7 +42,7 @@ gulp.task('markdown', () => {
           // replace the file contents with the new HTML created from the Handlebars template + data object that contains the HTML made from the markdown conversion
           file.contents = new Buffer(html, "utf-8");
         }))
-        .pipe(gulpReplace(/(<h1>ngx-cookieconsent[^]+?)(<h2>Dependencies<\/h2>)/, '$2'))// strips everything between start & '<h2 id="installation">'
+        .pipe(gulpReplace(/(<p>&lt;p align=&quot;center&quot;&gt;[^]+?)(<h2>Dependencies<\/h2>)/, '$2'))// strips everything between start & '<h2 id="installation">'
         .pipe(gulpReplace('{', "{{ '{' }}")) // escapes '{' to comply with  angular parser
         .pipe(gulpRename('getting-started.component.html'))
         .pipe(gulp.dest(helpers.root('./demo/src/app/getting-started')));
