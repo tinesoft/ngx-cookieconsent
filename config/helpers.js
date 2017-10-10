@@ -7,26 +7,26 @@ const _root = path.resolve(__dirname, '..');
 
 /**
  * Plaform independant path to an executable cmd
- * @param {string} path 
+ * @param {string} path
  */
 platformPath = (path) => {
-    return /^win/.test(os.platform()) ? `${path}.cmd` : path;
+  return /^win/.test(os.platform()) ? `${path}.cmd` : path;
 };
 
 /**
- * 
- * @param {string[]} args 
+ *
+ * @param {string[]} args
  */
-rootDir = (...args) => { 
-    return path.join.apply(path, [_root].concat(...args));
+rootDir = (...args) => {
+  return path.join.apply(path, [_root].concat(...args));
 };
 
 /**
- * 
- * @param {string} cmd 
+ *
+ * @param {string} cmd
  */
 binPath = (cmd) => {
-    return platformPath(`/node_modules/.bin/${cmd}`);
+  return platformPath(`/node_modules/.bin/${cmd}`);
 };
 
 /**
@@ -37,21 +37,21 @@ binPath = (cmd) => {
  * @returns {Promise<number>}
  */
 execp = (cmd, opts) => {
-    opts = Object.assign(opts || {},{    
-        stdout: process.stdout,
-        stderr: process.stderr
-    });
-    return new Promise((resolve, reject) => {
-        const child = exec(cmd, opts,
-			(err, stdout, stderr) => err ? reject(err.code) : resolve(0));
+  opts = Object.assign(opts || {}, {
+    stdout: process.stdout,
+    stderr: process.stderr
+  });
+  return new Promise((resolve, reject) => {
+    const child = exec(cmd, opts,
+      (err, stdout, stderr) => err ? reject(err.code) : resolve(0));
 
-        if (opts.stdout) {
-            child.stdout.pipe(opts.stdout);
-        }
-        if (opts.stderr) {
-            child.stderr.pipe(opts.stderr);
-        }
-    });
+    if (opts.stdout) {
+      child.stdout.pipe(opts.stdout);
+    }
+    if (opts.stderr) {
+      child.stderr.pipe(opts.stderr);
+    }
+  });
 };
 
 /**
@@ -60,17 +60,14 @@ execp = (cmd, opts) => {
  * @returns {Promise<number>}
  */
 installDependencies = (opts) => {
-    return execp('yarn -v') // first try to install deps using yarn
-        .then(exitCode=>
-            (exitCode === 0 ? execp('yarn install',opts) : execp('npm install',opts))
-            .then(exitCode => Promise.resolve(exitCode))
-        );
+  return execp('yarn -v') // first try to install deps using yarn
+    .then(exitCode => exitCode === 0 ? execp('yarn install', opts) : execp('npm install', opts));
 };
 
 var exports = module.exports = {
-    root: rootDir,
-    execp: execp,
-    binPath: binPath,
-    platformPath: platformPath,
-    installDependencies: installDependencies
+  root: rootDir,
+  execp: execp,
+  binPath: binPath,
+  platformPath: platformPath,
+  installDependencies: installDependencies
 };

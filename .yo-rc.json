@@ -4,12 +4,14 @@
     "authorEmail": "kondotine@gmail.com",
     "githubUsername": "tinesoft",
     "projectName": "ngx-cookieconsent",
-    "projectVersion": "0.0.1",
+    "projectVersion": "1.0.0",
     "projectDescription": "Cookie Consent module for Angular.",
     "projectKeywords": [
       "angular",
       "ng",
+      "library",
       "cookie",
+      "consent",
       "law",
       "eu"
     ],
@@ -21,6 +23,17 @@
       "common"
     ],
     "useGreenkeeper": true,
-    "useCompodoc": true
+    "useCompodoc": true,
+    "exclusions":[
+      "README.md",
+      "CHANGELOG.md",
+      "config/karma.conf",
+      "demo/src/app/**",
+      "demo/src/styles.scss",
+      "demo/src/assets/logo.svg",
+      "demo/src/index.html",
+      "demo/src/favicon.ico",
+      "src/**"
+    ]
   }
 }
