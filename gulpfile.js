@@ -293,7 +293,7 @@ gulp.task('rollup-bundle', (cb) => {
   // Bundle lib.
   .then(() => {
     // Base configuration.
-    const es5Entry = path.join(es5OutputFolder, `index.js`);
+    const es5Input = path.join(es5OutputFolder, `index.js`);
     const globals = {
       // Angular dependencies 
       '@angular/core': 'ng.core',
@@ -325,8 +325,8 @@ gulp.task('rollup-bundle', (cb) => {
       // This is required for UMD bundle users.
     };
     const rollupBaseConfig = {
-      moduleName: _.camelCase(config.libraryName),
-      sourceMap: true,
+      name: _.camelCase(config.libraryName),
+      sourcemap: true,
       globals: globals,
       external: Object.keys(globals),
       plugins: [
@@ -340,15 +340,15 @@ gulp.task('rollup-bundle', (cb) => {
 
     // UMD bundle.
     const umdConfig = Object.assign({}, rollupBaseConfig, {
-      entry: es5Entry,
-      dest: path.join(distFolder, `bundles`, `${config.unscopedLibraryName}.umd.js`),
+      input: es5Input,
+      file: path.join(distFolder, `bundles`, `${config.unscopedLibraryName}.umd.js`),
       format: 'umd',
     });
 
     // Minified UMD bundle.
     const minifiedUmdConfig = Object.assign({}, rollupBaseConfig, {
-      entry: es5Entry,
-      dest: path.join(distFolder, `bundles`, `${config.unscopedLibraryName}.umd.min.js`),
+      input: es5Input,
+      file: path.join(distFolder, `bundles`, `${config.unscopedLibraryName}.umd.min.js`),
       format: 'umd',
       plugins: rollupBaseConfig.plugins.concat([rollupUglify({})])
     });
