@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Optional } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 
@@ -92,7 +92,7 @@ export class NgcCookieConsentService {
   */
   revokeChoice$: Observable<void>;
 
-  constructor(windowService: WindowService, config: NgcCookieConsentConfig) {
+  constructor(windowService: WindowService, @Optional() config: NgcCookieConsentConfig) {
     // Observable  sources
     this.popupOpenSource = new Subject<void>();
     this.popupCloseSource = new Subject<void>();
