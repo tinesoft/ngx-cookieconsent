@@ -12,7 +12,7 @@ import { WindowService, NgcCookieConsentConfig, NgcCookieConsentService } from '
 })
 export class NgcCookieConsentModule {
 
-  static forRoot(config?: NgcCookieConsentConfig): ModuleWithProviders {
+  static forRoot(config: NgcCookieConsentConfig): ModuleWithProviders {
     return {
       ngModule: NgcCookieConsentModule,
       providers: [WindowService, { provide: NgcCookieConsentConfig, useValue: config }, NgcCookieConsentService]

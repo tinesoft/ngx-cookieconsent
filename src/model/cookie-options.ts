@@ -16,7 +16,7 @@ export class NgcCookieOptions {
 
   // The domain that the cookie 'name' belongs to. The cookie can only be read on this domain. Guide to cookie domains
   // Default: <empty string>
-  domain? = '';
+  domain: string;
 
   // The cookies expire date, specified in days (specify -1 for no expiry)
   // Default: 365

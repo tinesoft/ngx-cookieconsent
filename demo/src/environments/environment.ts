@@ -5,5 +5,5 @@
 
 export const environment = {
   production: false,
-  cookieDomain: ''
+  cookieDomain: 'localhost'
 };

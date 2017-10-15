@@ -8,7 +8,7 @@ import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsen
 import { AppRoutingModule } from './app-routing';
 import { AppSharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
-import { environment } from './../environments/environment.prod';
+import { environment } from './../environments/environment';
 import { HomeModule } from './home/home.module';
 
 const cookieConfig:NgcCookieConsentConfig = {

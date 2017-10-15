@@ -1,5 +1,6 @@
-import { NgcCookieConsentService, NgcCookieConsentConfig, NgcCookiePosition, NgcCookieTheme, NgcCookieCompliance } from 'ngx-cookieconsent';
 import { Component, OnInit } from '@angular/core';
+import { NgcCookieConsentService, NgcCookieConsentConfig, NgcCookiePosition, NgcCookieTheme, NgcCookieCompliance } from 'ngx-cookieconsent';
+import { environment } from './../../../environments/environment';
 
 @Component({
   selector: 'app-playground',
@@ -9,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class PlaygroundComponent implements OnInit {
 
   options: NgcCookieConsentConfig;
+  minOptions: NgcCookieConsentConfig;
   optionsBackup: NgcCookieConsentConfig;
   areOptionsCopied = false;
 
@@ -55,7 +57,16 @@ export class PlaygroundComponent implements OnInit {
   constructor(private ccService: NgcCookieConsentService) { }
 
   ngOnInit(): void {
+    this.minOptions = {
+      cookie: {
+        domain: environment.cookieDomain
+      }
+    };
+
     this.options = {
+      cookie: {
+        domain: environment.cookieDomain
+      },
       position: 'bottom',
       theme: 'classic',
       palette: {
@@ -78,7 +89,7 @@ export class PlaygroundComponent implements OnInit {
       }
     };
 
-    this.optionsBackup = Object.assign({}, this.options);
+    this.optionsBackup = Object.assign(this.minOptions, this.options);
   }
 
   selectPosition(position: NgcCookiePosition): void {
@@ -100,7 +111,7 @@ export class PlaygroundComponent implements OnInit {
   }
 
   resetConfig(): void {
-    this.options = Object.assign({}, this.optionsBackup);
+    this.options = Object.assign(this.minOptions, this.optionsBackup);
     this.updateConfig();
   }
 }
