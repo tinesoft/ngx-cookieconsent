@@ -70,6 +70,7 @@ const config = {
   unscopedLibraryName: 'ngx-cookieconsent',
   allSrc: 'src/**/*',
   allTs: 'src/**/!(*.spec).ts',
+  allHtml: 'src/**/*.html',
   demoDir: 'demo/',
   buildDir: 'tmp/',
   outputDir: 'dist/',
@@ -318,11 +319,12 @@ gulp.task('rollup-bundle', (cb) => {
       'rxjs/add/observable/empty': 'Rx.Observable.prototype',
       'rxjs/add/operator/first': 'Rx.Observable.prototype',
       'rxjs/add/operator/startWith': 'Rx.Observable.prototype',
-      'rxjs/add/operator/switchMap': 'Rx.Observable.prototype'
+      'rxjs/add/operator/switchMap': 'Rx.Observable.prototype',
 
       // ATTENTION:
       // Add any other dependency or peer dependency of your library here
       // This is required for UMD bundle users.
+      'cookieconsent': 'cookieconsent'
     };
     const rollupBaseConfig = {
       name: _.camelCase(config.libraryName),

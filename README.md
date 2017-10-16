@@ -85,7 +85,7 @@ import {NgcCookieConsentModule, NgcCookieConsentConfig} from 'ngx-cookieconsent'
 
 const cookieConfig:NgcCookieConsentConfig = {
   cookie: {
-    domain: 'your.domain.com' // it is recommended to set your domain, for cookies to work properly
+    domain: 'localhost' // or 'your.domain.com' // it is mandatory to set a domain, for cookies to work properly (see https://goo.gl/S2Hy2A)
   },
   palette: {
     popup: {
@@ -108,8 +108,6 @@ const cookieConfig:NgcCookieConsentConfig = {
 export class AppModule {
 }
 ```
-
-> Note: The configuration object passed to the `NgcCookieConsentModule.forRoot()` is optional, but it is recommended to provided one, with at least the 'cookie.domain' property set to your domain.
 
 Other modules in your application can simply import `NgcCookieConsentModule`:
 

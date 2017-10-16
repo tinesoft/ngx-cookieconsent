@@ -28,7 +28,7 @@ export class NgcCookieConsentConfig {
   /**
    * Defaults cookie options - it is RECOMMENDED to set these values to correspond with your server
    */
-  cookie?: NgcCookieOptions;
+  cookie: NgcCookieOptions;
 
   /**
    * Each item defines the inner text for the element that it references

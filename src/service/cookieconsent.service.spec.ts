@@ -8,6 +8,13 @@ import { WindowService } from './window.service';
 import { NgcInitializeEvent } from './../event/initialize.event';
 import { NgcStatusChangeEvent } from './../event/status-change.event';
 
+ 
+const minimumConfig: NgcCookieConsentConfig = {
+  cookie: {
+    domain: 'my.domain.com',
+  },
+};
+
 const myConfig: NgcCookieConsentConfig = {
   cookie: {
     domain: 'custom.domain.com',
@@ -50,7 +57,7 @@ describe('Service: NgcCookieConsent', () => {
 
   it('should create the service instance from module imports...', () => {
     TestBed.configureTestingModule({
-      imports: [NgcCookieConsentModule.forRoot()]
+      imports: [NgcCookieConsentModule.forRoot(minimumConfig)]
     });
 
     let service = TestBed.get(NgcCookieConsentService); // inject the service from root injector
@@ -60,7 +67,7 @@ describe('Service: NgcCookieConsent', () => {
 
   it('should inject the default NgcCookieConsent UI when injecting the service without config', () => {
     TestBed.configureTestingModule({
-      imports: [NgcCookieConsentModule.forRoot()]
+      imports: [NgcCookieConsentModule.forRoot(minimumConfig)]
     });
     let service = TestBed.get(NgcCookieConsentService); // inject the service from root injector
     expect(CookieConsentUi.getCcElement()).not.toBeNull();
@@ -93,7 +100,7 @@ describe('Service: NgcCookieConsent', () => {
 
   it('should not inject the NgcCookieConsent UI when not injecting the service', () => {
     TestBed.configureTestingModule({
-      imports: [NgcCookieConsentModule.forRoot()]
+      imports: [NgcCookieConsentModule.forRoot(minimumConfig)]
     });
 
     expect(CookieConsentUi.getCcElement()).toBeNull();
@@ -253,7 +260,7 @@ describe('Service: NgcCookieConsent', () => {
 
   it('should destroy the NgcCookieConsent UI when calling "destroy"', () => {
     TestBed.configureTestingModule({
-      imports: [NgcCookieConsentModule.forRoot()]
+      imports: [NgcCookieConsentModule.forRoot(minimumConfig)]
     });
     let service = TestBed.get(NgcCookieConsentService); // inject the service from root injector
     expect(CookieConsentUi.getCcElement()).not.toBeNull();
@@ -265,7 +272,7 @@ describe('Service: NgcCookieConsent', () => {
 
   it('should fade in the NgcCookieConsent UI when calling "fadeIn"', () => {
     TestBed.configureTestingModule({
-      imports: [NgcCookieConsentModule.forRoot()]
+      imports: [NgcCookieConsentModule.forRoot(minimumConfig)]
     });
     let service = TestBed.get(NgcCookieConsentService); // inject the service from root injector
     expect(CookieConsentUi.getCcElement()).not.toBeNull();
@@ -277,7 +284,7 @@ describe('Service: NgcCookieConsent', () => {
 
   it('should fade out the NgcCookieConsent UI when calling "fadeOut"', () => {
     TestBed.configureTestingModule({
-      imports: [NgcCookieConsentModule.forRoot()]
+      imports: [NgcCookieConsentModule.forRoot(minimumConfig)]
     });
     let service = TestBed.get(NgcCookieConsentService); // inject the service from root injector
     expect(CookieConsentUi.getCcElement()).not.toBeNull();

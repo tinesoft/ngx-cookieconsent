@@ -108,7 +108,6 @@ export class NgcCookieConsentService {
     this.revokeChoice$ = this.revokeChoiceSource.asObservable();
 
     this.window = windowService.nativeWindow;
-
     this.init(config);
   }
 
@@ -127,7 +126,7 @@ export class NgcCookieConsentService {
     if (this.window) { // For Angular Universal suport
       this.cookieconsent = this.window.cookieconsent;
 
-      this.config = config || {};
+      this.config = config;
       // Set callbacks hooks:
       this.config.onPopupOpen =
         () => this.popupOpenSource.next();

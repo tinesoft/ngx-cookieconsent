@@ -62,7 +62,7 @@ describe('cookieconsent-config', () => {
 
         expect(config.cookie.name).toEqual('cookieconsent_status');
         expect(config.cookie.path).toEqual('/');
-        expect(config.cookie.domain).toEqual('');
+        expect(config.cookie.domain).toBeUndefined();
         expect(config.cookie.expiryDays).toEqual(365);
     });
 
