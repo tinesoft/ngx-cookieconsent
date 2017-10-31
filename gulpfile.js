@@ -57,12 +57,15 @@ const argv = yargs
   .option('version', {
     alias: 'v',
     describe: 'Enter Version to bump to',
-    choices: ['patch', 'minor', 'major']
+    choices: ['patch', 'minor', 'major'],
+    type: "string"
   })
   .option('ghToken', {
     alias: 'gh',
-    describe: 'Enter Github Token for releasing'
+    describe: 'Enter Github Token for releasing',
+    type: "string"
   })
+  .version(false) // disable default --version from yargs( since v9.0.0)
   .argv;
 
 const config = {

@@ -37,7 +37,7 @@
     "@angular/common": "2.0.0",
     "cookieconsent": "3.0.4"
    },
-  "devDependencies": {
+   "devDependencies": {
     "@angular/compiler" : "2.0.0",
     "@angular/platform-server" : "2.0.0",
     "@angular/platform-browser" : "2.0.0",
@@ -49,16 +49,17 @@
     "gulp-tslint" : "6.1.1",
     "typescript" : "2.0.3",
     "codelyzer" : "1.0.0-beta.0",
-    "@types/jasmine": "2.6.0",
+    "@types/jasmine": "2.5.41",
     "@types/node": "8.0.44",
     "angular-cli-ghpages": "0.5.1",
     "angular2-template-loader": "0.6.2",
-    "awesome-typescript-loader": "3.2.3",
-    "@compodoc/gulp-compodoc": "0.0.7",
-    "conventional-github-releaser": "1.1.12",
+    "awesome-typescript-loader": "3.0.5",
+    "@compodoc/gulp-compodoc": "0.0.8",
+    "commitplease": "3.1.0",
+    "conventional-github-releaser": "1.1.13",
     "core-js": "2.5.1",
     "del": "3.0.0",
-    "greenkeeper-lockfile": "1.10.0",
+    "greenkeeper-lockfile": "1.12.0",
     "gulp": "3.9.1",
     "gulp-bump": "2.8.0",
     "gulp-conventional-changelog": "1.1.6",
@@ -73,7 +74,7 @@
     "gulp-tap": "1.0.1",
     "gulp-util": "3.0.8",
     "handlebars": "4.0.11",
-    "highlights": "3.0.1",
+    "highlights": "3.1.1",
     "html-loader": "0.5.1",
     "istanbul-instrumenter-loader": "3.0.0",
     "jasmine-core": "2.8.0",
@@ -91,16 +92,16 @@
     "rollup": "0.50.0",
     "rollup-plugin-uglify": "2.0.1",
     "rollup-plugin-sourcemaps": "0.4.2",
-    "rollup-plugin-commonjs": "8.2.3",
+    "rollup-plugin-commonjs": "8.2.6",
     "rollup-plugin-node-resolve": "3.0.0",
     "run-sequence": "2.2.0",
     "raw-loader": "0.5.1",
-    "source-map-loader": "0.2.2",
+    "source-map-loader": "0.2.3",
     "travis-status": "2.0.0",
     "webpack": "3.8.1",
     "webpack-dev-middleware": "1.12.0",
     "webpack-dev-server": "2.9.2",
-    "yargs": "9.0.1"
+    "yargs": "10.0.3"
   },
   "engines": {
     "node": ">=6.0.0"
@@ -114,12 +115,30 @@
       "@angular/platform-browser",
       "@angular/platform-browser-dynamic",
       "@angular/compiler-cli",
+      "@types/jasmine",
       "zone.js",
       "rxjs",
       "tslint",
       "gulp-tslint",
       "typescript",
-      "codelyzer"
+      "codelyzer",
+      "awesome-typescript-loader"
     ]
+  },
+  "commitplease": {
+    "style": "angular",
+    "types": [
+      "feat",
+      "fix",
+      "docs",
+      "style",
+      "refactor",
+      "perf",
+      "test",
+      "chore",
+      "revert",
+      "demo"
+    ],
+    "scope": "\\S+.*"
   }
 }
