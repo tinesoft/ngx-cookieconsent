@@ -56,7 +56,7 @@
     "awesome-typescript-loader": "3.0.5",
     "@compodoc/gulp-compodoc": "0.0.8",
     "commitplease": "3.1.0",
-    "conventional-github-releaser": "1.1.13",
+    "conventional-github-releaser": "2.0.0",
     "core-js": "2.5.1",
     "del": "3.0.0",
     "greenkeeper-lockfile": "1.12.0",
