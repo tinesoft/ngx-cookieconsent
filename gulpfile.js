@@ -385,7 +385,7 @@ gulp.task('build:doc', (cb) => {
       tsconfig: 'src/tsconfig.lib.json',
       hideGenerator:true,
       disableCoverage: true,
-      output: `{config.outputDemoDir}/doc/`
+      output: `${config.outputDemoDir}/doc/`
     })
   ], cb);
 });
