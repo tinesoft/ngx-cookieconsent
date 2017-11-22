@@ -1,8 +1,10 @@
 {
   "generator-ngx-library": {
+    "version": "5.0.0",
     "authorName": "Tine Kondo",
     "authorEmail": "kondotine@gmail.com",
     "githubUsername": "tinesoft",
+    "githubRepoName": "ngx-cookieconsent",
     "projectName": "ngx-cookieconsent",
     "projectVersion": "1.0.0",
     "projectDescription": "Cookie Consent module for Angular.",
@@ -15,16 +17,21 @@
       "law",
       "eu"
     ],
-    "moduleName": "cookieconsent",
     "ngVersion": "2.0.0",
-    "ngPrefix": "ngc",
     "ngModules": [
       "core",
       "common"
     ],
-    "useGreenkeeper": true,
+    "otherDependencies": ["cookieconsent"],
+    "dependenciesRange": ">=",
+    "ngPrefix": "ngc",
+    "useGreenkeeper": false,
     "useCompodoc": true,
-    "exclusions":[
+    "enforceNgGitCommitMsg": true,
+    "skipDemo": false,
+    "skipSample": true,
+    "skipStyles": true,
+    "exclusions": [
       "README.md",
       "CHANGELOG.md",
       "config/karma.conf",
@@ -33,7 +40,7 @@
       "demo/src/assets/logo.svg",
       "demo/src/index.html",
       "demo/src/favicon.ico",
-      "src/**"
+      "src/**/*.*"
     ]
   }
 }

@@ -26,7 +26,7 @@ const gulpCoveralls = require('gulp-coveralls');
 const runSequence = require('run-sequence');
 
 /** To compile & bundle the library with Angular & Rollup */
-const ngc = (args) => {// Promesify version of the ngc compiler
+const ngc = (args) => {// Promisify version of the ngc compiler
   const project = args.p || args.project || '.';
   const cmd = helpers.root(helpers.binPath('ngc'));
   return helpers.execp(`${cmd} -p ${project}`);
@@ -73,10 +73,10 @@ const config = {
   unscopedLibraryName: 'ngx-cookieconsent',
   allSrc: 'src/**/*',
   allTs: 'src/**/!(*.spec).ts',
-  allHtml: 'src/**/*.html',
   demoDir: 'demo/',
   buildDir: 'tmp/',
   outputDir: 'dist/',
+  outputDemoDir: 'demo/dist/browser/',
   coverageDir: 'coverage/'
 };
 
@@ -244,12 +244,12 @@ gulp.task('build-watch-no-tests', (cb) => {
 
 // Watch changes on (*.ts, *.html) and Re-build library
 gulp.task('build:watch', ['build-watch'], () => {
-  gulp.watch([config.allTs, config.allHtml, ], ['build-watch']);
+  gulp.watch([config.allTs], ['build-watch']);
 });
 
 // Watch changes on (*.ts, *.html) and Re-build library (without running tests)
 gulp.task('build:watch-fast', ['build-watch-no-tests'], () => {
-  gulp.watch([config.allTs, config.allHtml, ], ['build-watch-no-tests']);
+  gulp.watch([config.allTs], ['build-watch-no-tests']);
 });
 
 
@@ -275,7 +275,8 @@ gulp.task('npm-package', (cb) => {
   // defines project's dependencies as 'peerDependencies' for final users
   targetPkgJson.peerDependencies = {};
   Object.keys(pkgJson.dependencies).forEach((dependency) => {
-    targetPkgJson.peerDependencies[dependency] = `^${pkgJson.dependencies[dependency]}`;
+    // versions are defined as '^' by default, but you can customize it by editing "dependenciesRange" in '.yo-rc.json' file
+    targetPkgJson.peerDependencies[dependency] = `^${pkgJson.dependencies[dependency].replace(/[\^~><=]/,'')}`;
   });
 
   // copy the needed additional files in the 'dist' folder
@@ -384,7 +385,7 @@ gulp.task('build:doc', (cb) => {
       tsconfig: 'src/tsconfig.lib.json',
       hideGenerator:true,
       disableCoverage: true,
-      output: `${config.demoDir}/dist/doc/`
+      output: `{config.outputDemoDir}/doc/`
     })
   ], cb);
 });
@@ -410,7 +411,7 @@ const execDemoCmd = (args,opts) => {
     return execCmd('ng', args, opts, `/${config.demoDir}`);
   }
   else{
-    gulpUtil.log(gulpUtil.colors.yellow(`No 'node_modules' found in '${config.demoDir}'. Installing dependencies for you..`));
+    gulpUtil.log(gulpUtil.colors.yellow(`No 'node_modules' found in '${config.demoDir}'. Installing dependencies for you...`));
     return helpers.installDependencies({ cwd: `${config.demoDir}` })
       .then(exitCode => exitCode === 0 ? execCmd('ng', args, opts, `/${config.demoDir}`) : Promise.reject())
       .catch(e => {
@@ -426,7 +427,11 @@ gulp.task('test:demo', () => {
 });
 
 gulp.task('serve:demo', () => {
-  return execDemoCmd('serve --preserve-symlinks --proxy-config proxy.conf.json', { cwd: `${config.demoDir}` });
+  return execDemoCmd('serve --preserve-symlinks --aot --proxy-config proxy.conf.json', { cwd: `${config.demoDir}` });
+});
+
+gulp.task('serve:demo-hmr', () => {
+  return execDemoCmd('serve --hmr -e=hmr --preserve-symlinks --aot --proxy-config proxy.conf.json', { cwd: `${config.demoDir}` });
 });
 
 gulp.task('build:demo', () => {
@@ -437,7 +442,7 @@ gulp.task('serve:demo-ssr',['build:demo'], () => {
   return execDemoCmd(`build --preserve-symlinks --prod --aot --build-optimizer --app ssr --output-hashing=none`, { cwd: `${config.demoDir}` })
   .then(exitCode => {
       if(exitCode === 0){
-        execCmd('webpack', '--config webpack.server.config.js', { cwd: `${config.demoDir}` }, `/${config.demoDir}`)
+        execCmd('webpack', '--config webpack.server.config.js --progress --colors', { cwd: `${config.demoDir}` }, `/${config.demoDir}`)
         .then(exitCode => exitCode === 0 ? execExternalCmd('node', 'dist/server.js', { cwd: `${config.demoDir}` }, `/${config.demoDir}`): Promise.reject(1));
       } else{
         Promise.reject(1);
@@ -450,7 +455,7 @@ gulp.task('build:demo-ssr',['build:demo'], () => {
   return execDemoCmd(`build --preserve-symlinks --prod --aot --build-optimizer --app ssr --output-hashing=none`, { cwd: `${config.demoDir}` })
   .then(exitCode => {
       if(exitCode === 0){
-        execCmd('webpack', '--config webpack.server.config.js', { cwd: `${config.demoDir}` }, `/${config.demoDir}`)
+        execCmd('webpack', '--config webpack.server.config.js --progress --colors', { cwd: `${config.demoDir}` }, `/${config.demoDir}`)
         .then(exitCode => exitCode === 0 ? execExternalCmd('node', 'dist/prerender.js', { cwd: `${config.demoDir}` }, `/${config.demoDir}`): Promise.reject(1));
       } else{
         Promise.reject(1);
@@ -460,7 +465,7 @@ gulp.task('build:demo-ssr',['build:demo'], () => {
 });
 
 gulp.task('push:demo', () => {
-  return execCmd('ngh',`--dir ${config.demoDir}/dist --message="chore(demo): :rocket: deploy new version"`);
+  return execCmd('ngh',`--dir ${config.outputDemoDir} --message="chore(demo): :rocket: deploy new version"`);
 });
 
 gulp.task('deploy:demo', (cb) => {
