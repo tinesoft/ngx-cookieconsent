@@ -124,7 +124,7 @@ export class OtherModule {
 
 ## Usage
 
-Once the module is imported, you can use the `NgcCookieContentService` in your component (i.e. `AppComponent`) to subscribe to main events fired by Cookie Consent and do stuff like disabling cookies or other.
+Import the `NgcCookieContentService` in your component (i.e. `AppComponent`) to show the cookie consent popup after the component is loaded. You can subscribe to events fired by Cookie Consent using the `NgcCookieContentService` and do stuff like disabling cookies or other.
 
 Here is how it works:
 
