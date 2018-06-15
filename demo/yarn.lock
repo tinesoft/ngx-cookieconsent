@@ -196,6 +196,14 @@
   version "5.0.0-beta.5"
   resolved "https://registry.yarnpkg.com/@nguniversal/module-map-ngfactory-loader/-/module-map-ngfactory-loader-5.0.0-beta.5.tgz#d86497e704f702e1a18bbcab5dd6586057941fa5"
 
+"@ngx-translate/core@^9.1.1":
+  version "9.1.1"
+  resolved "https://registry.yarnpkg.com/@ngx-translate/core/-/core-9.1.1.tgz#ae103928836b8a9e069fd2e2e76fa2198cc7e628"
+
+"@ngx-translate/http-loader@2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@ngx-translate/http-loader/-/http-loader-2.0.1.tgz#aa67788e64bfa8652691a77b022b3b4031209113"
+
 "@schematics/angular@~0.1.0":
   version "0.1.5"
   resolved "https://registry.yarnpkg.com/@schematics/angular/-/angular-0.1.5.tgz#501ef8bd7319e1b57486ee2a48720d2f3da7ee13"

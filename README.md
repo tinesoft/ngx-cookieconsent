@@ -191,6 +191,73 @@ export class AppComponent implements OnInit, OnDestroy {
 
 See [Cookie Consent Documentation](https://cookieconsent.insites.com/documentation/about-cookie-consent/) to see more about how to customize the UI or interact with user interactions.
 
+## I18n Support
+
+Messages displayed in the Cookie Consent Bar can easily be translated, using libraries like [ngx-translate](https://github.com/ngx-translate/core).
+Basically this involved the following steps (using ngx-translate + Anglar CLI):
+
+* [Install](https://github.com/ngx-translate/core#installation) and [configure](https://github.com/ngx-translate/core#usage) `ngx-translate`
+
+* Provide the translation JSON files in `src/assets/`, for e.g: `en.json`, `fr.json`, ...
+
+```JSON
+{
+    "cookie": {
+        "header": "Cookies used on the website!",
+        "message": "This website uses cookies to ensure you get the best experience on our website.",
+        "dismiss": "Got it!",
+        "allow": "Allow cookies",
+        "deny": "Decline",
+        "link": "Learn more"
+    }
+}
+```
+
+> **Note:** see [content-options.ts](https://github.com/tinesoft/ngx-cookieconsent/blob/master/src/model/content-options.ts) for complete list of messages that can be translated.
+
+* Configure your main component `AppComponent`
+
+```ts
+import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss']
+})
+export class AppComponent {
+
+  constructor(private ccService: NgcCookieConsentService, private translateService:TranslateService) {
+  }
+
+  ngOnInit() {
+    // Support for translated cookies messages
+    this.translateService.addLangs(['en', 'fr']);
+    this.translateService.setDefaultLang('en');
+
+    const browserLang = this.translateService.getBrowserLang();
+    this.translateService.use(browserLang.match(/en|fr/) ? browserLang : 'en');
+
+    this.translateService//
+      .get(['cookie.header', 'cookie.message', 'cookie.dismiss', 'cookie.allow', 'cookie.deny', 'cookie.link'])
+      .subscribe(data => {
+
+        this.ccService.getConfig().content = this.ccService.getConfig().content || {} ;
+        // Override default messages with the translated ones
+        this.ccService.getConfig().content.header = data['cookie.header'];
+        this.ccService.getConfig().content.message = data['cookie.message'];
+        this.ccService.getConfig().content.dismiss = data['cookie.dismiss'];
+        this.ccService.getConfig().content.allow = data['cookie.allow'];
+        this.ccService.getConfig().content.deny = data['cookie.deny'];
+        this.ccService.getConfig().content.link = data['cookie.link'];
+
+        this.ccService.destroy();//remove previous cookie bar (with default messages)
+        this.ccService.init(this.ccService.getConfig()); // update config with translated messages
+      });
+  }
+```
+
 ## Credits
 
 `ngx-cookieconsent` is built upon [Cookie Consent](https://cookieconsent.insites.com/), created by [Insites](https://insites.com)

@@ -4,6 +4,7 @@ import { NgcCookieConsentService, NgcInitializeEvent, NgcStatusChangeEvent } fro
 
 import 'rxjs/add/operator/filter';
 import { Subscription } from 'rxjs/Subscription';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,7 @@ export class AppComponent {
   private statusChangeSubscription: Subscription;
   private revokeChoiceSubscription: Subscription;
 
-  constructor(private ccService: NgcCookieConsentService, private router: Router) {
+  constructor(private ccService: NgcCookieConsentService, private translateService:TranslateService, private router: Router) {
     this.router.events.filter(event => event instanceof NavigationEnd).subscribe(event => {
       window.scroll(0, 0);
     });
@@ -56,6 +57,11 @@ export class AppComponent {
         // you can use this.ccService.getConfig() to do stuff...
         console.log(`revokeChoice: ${JSON.stringify(event)}`);
       });
+
+
+    // (Optional) support for translated cookies messages
+    this.translateService.addLangs(['en', 'fr']);
+    this.translateService.setDefaultLang('en');
   }
 
   ngOnDestroy() {
