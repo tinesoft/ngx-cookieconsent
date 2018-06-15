@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { CookieService } from 'ngx-cookie';
 
 import { NgcCookieConsentService, NgcCookieConsentConfig, NgcCookiePosition, NgcCookieTheme, NgcCookieCompliance } from 'ngx-cookieconsent';
 import { environment } from './../../../environments/environment';
@@ -56,7 +57,7 @@ export class PlaygroundComponent implements OnInit {
   //   { popup: { background: '#efefef', text: '#404040' }, 'button': { background: '#8ec760', text: '#ffffff' } }
   // ];
 
-  constructor(private ccService: NgcCookieConsentService, public translate: TranslateService) { 
+  constructor(private ccService: NgcCookieConsentService, private cookieService:CookieService, public translate: TranslateService) { 
     this.translate.use('en');// default language
   }
 
@@ -134,6 +135,7 @@ export class PlaygroundComponent implements OnInit {
 
   resetConfig(): void {
     this.options = Object.assign(this.minOptions, this.optionsBackup);
+    this.cookieService.remove('cookieconsent_status');
     this.updateConfig();
   }
 }

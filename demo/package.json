@@ -33,6 +33,7 @@
     "include-media": "^1.4.9",
     "ngx-clipboard": "^8.0.4",
     "ngx-color-picker": "^4.2.0",
+    "ngx-cookie": "^4.0.2",
     "rxjs": "^5.5.2",
     "zone.js": "^0.8.14"
   },
