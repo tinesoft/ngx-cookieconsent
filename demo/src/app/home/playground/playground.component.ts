@@ -135,7 +135,7 @@ export class PlaygroundComponent implements OnInit {
 
   resetConfig(): void {
     this.options = Object.assign(this.minOptions, this.optionsBackup);
-    this.cookieService.remove('cookieconsent_status');
+    this.cookieService.remove('cookieconsent_status', { domain: environment.cookieDomain});
     this.updateConfig();
   }
 }
