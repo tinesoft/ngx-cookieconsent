@@ -5,7 +5,6 @@ import { NgbAccordionModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstra
 import { ColorPickerModule } from 'ngx-color-picker';
 import { ClipboardModule } from 'ngx-clipboard';
 import { TranslateModule } from '@ngx-translate/core';
-import { CookieModule } from 'ngx-cookie';
 
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './home.component';
@@ -19,7 +18,6 @@ import { PlaygroundComponent } from './playground/playground.component';
         HomeRoutingModule,
         NgbAccordionModule.forRoot(), 
         NgbDropdownModule.forRoot(),
-        CookieModule.forRoot(),
         TranslateModule,
         ColorPickerModule,
         ClipboardModule],
