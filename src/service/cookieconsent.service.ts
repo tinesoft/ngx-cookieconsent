@@ -28,6 +28,7 @@ export interface NgcCookieConsentPopup {
   getStatus(): NgcCookieConsentStatus;
   clearStatus(): void;
   open(): NgcCookieConsentPopup;
+  close(showRevoke: boolean): NgcCookieConsentPopup;
   destroy(): void;
   fadeIn(): void;
   fadeOut(): void;
@@ -182,6 +183,11 @@ export class NgcCookieConsentService {
   open(): NgcCookieConsentPopup {
     this.checkPopupInstantiated('open');
     return this.popupInstance.open();
+  }
+
+  close(showRevoke: boolean): NgcCookieConsentPopup {
+    this.checkPopupInstantiated('close');
+    return this.popupInstance.close(showRevoke);
   }
 
   destroy(): void {

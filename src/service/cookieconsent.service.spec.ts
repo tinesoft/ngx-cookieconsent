@@ -1,6 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { NgModule } from '@angular/core';
-import { TestBed, async, inject } from '@angular/core/testing';
+import { TestBed, fakeAsync, tick} from '@angular/core/testing';
 import { NgcCookieConsentModule } from './../cookieconsent.module';
 import { NgcCookieConsentService } from './cookieconsent.service';
 import { NgcCookieConsentConfig } from './cookieconsent-config';
@@ -46,6 +45,11 @@ const myConfig: NgcCookieConsentConfig = {
 
 describe('Service: NgcCookieConsent', () => {
 
+  afterEach(()=>{
+    // clean up
+    CookieConsentUi.clearPage();
+  });
+
   it('should create the service instance from providers...', () => {
     TestBed.configureTestingModule({
       providers: [WindowService, NgcCookieConsentService, NgcCookieConsentConfig]
@@ -76,9 +80,6 @@ describe('Service: NgcCookieConsent', () => {
     expect(CookieConsentUi.getCcDismissElement().textContent).toEqual('Got it!');
     expect(CookieConsentUi.getCcLinkElement().textContent).toEqual('Learn more');
     expect(CookieConsentUi.getCcLinkElement().getAttribute('href')).toEqual('http://cookiesandyou.com');
-
-    // clean up
-    CookieConsentUi.clearPage();
   });
 
   it('should inject a custom NgcCookieConsent UI when injecting the service with custom config', () => {
@@ -93,9 +94,6 @@ describe('Service: NgcCookieConsent', () => {
     expect(CookieConsentUi.getCcDismissElement().textContent).toEqual(myConfig.content.dismiss);
     expect(CookieConsentUi.getCcLinkElement().textContent).toEqual(myConfig.content.link);
     expect(CookieConsentUi.getCcLinkElement().getAttribute('href')).toEqual(myConfig.content.href);
-
-    // clean up
-    CookieConsentUi.clearPage();
   });
 
   it('should not inject the NgcCookieConsent UI when not injecting the service', () => {
@@ -114,9 +112,6 @@ describe('Service: NgcCookieConsent', () => {
 
     expect(service.getStatus()).not.toBeNull();
     expect(service.getStatus()).toEqual({ deny: 'deny', allow: 'allow', dismiss: 'dismiss' });
-
-    // clean up
-    CookieConsentUi.clearPage();
   });
 
   it('should return default transition when calling getTransition()', () => {
@@ -126,9 +121,6 @@ describe('Service: NgcCookieConsent', () => {
     let service = TestBed.get(NgcCookieConsentService); // inject the service from root injector
 
     expect(service.getTransition()).toBe(true);
-
-    // clean up
-    CookieConsentUi.clearPage();
   });
 
 
@@ -145,9 +137,6 @@ describe('Service: NgcCookieConsent', () => {
     expect(typeof (config.onInitialize)).toEqual('function');
     expect(typeof (config.onStatusChange)).toEqual('function');
     expect(typeof (config.onRevokeChoice)).toEqual('function');
-
-    // clean up
-    CookieConsentUi.clearPage();
   });
 
   it('should emit onPopupOpen$ event when calling onPopupOpen() callback', () => {
@@ -165,9 +154,6 @@ describe('Service: NgcCookieConsent', () => {
     config.onPopupOpen();
 
     expect(calls).toEqual(2);
-
-    // clean up
-    CookieConsentUi.clearPage();
   });
 
 
@@ -186,9 +172,6 @@ describe('Service: NgcCookieConsent', () => {
     config.onPopupClose();
 
     expect(calls).toEqual(2);
-
-    // clean up
-    CookieConsentUi.clearPage();
   });
 
 
@@ -210,9 +193,6 @@ describe('Service: NgcCookieConsent', () => {
     config.onInitialize('status2');
 
     expect(calls).toEqual(2);
-
-    // clean up
-    CookieConsentUi.clearPage();
   });
 
   it('should emit statusChange$ event when calling onStatusChange() callback', () => {
@@ -233,9 +213,6 @@ describe('Service: NgcCookieConsent', () => {
     config.onStatusChange('status2', 'chosenBefore2');
 
     expect(calls).toEqual(2);
-
-    // clean up
-    CookieConsentUi.clearPage();
   });
 
   it('should emit revokeChoice$ event when calling onRevokeChoice() callback', () => {
@@ -253,9 +230,6 @@ describe('Service: NgcCookieConsent', () => {
     config.onRevokeChoice();
 
     expect(calls).toEqual(2);
-
-    // clean up
-    CookieConsentUi.clearPage();
   });
 
   it('should destroy the NgcCookieConsent UI when calling "destroy"', () => {
@@ -269,6 +243,26 @@ describe('Service: NgcCookieConsent', () => {
 
     expect(CookieConsentUi.getCcElement()).toBeNull();
   });
+
+  it('should toggle RevokeButton the NgcCookieConsent UI when clicking "deny"', fakeAsync(() => {
+    TestBed.configureTestingModule({
+      imports: [NgcCookieConsentModule.forRoot(myConfig)]
+    });
+    let service = TestBed.get(NgcCookieConsentService); // inject the service from root injector
+    expect(CookieConsentUi.getCcElement()).not.toBeNull();
+
+    let revokeBtn:HTMLElement = CookieConsentUi.getCcRevokeElement();
+    expect(revokeBtn.style.display).toEqual("none");
+
+    tick(100);// let the bar time to appear and then simulate click on "Decline" button
+    let denyBtn:HTMLElement = CookieConsentUi.getCcDenyElement();
+    denyBtn.click();
+
+    revokeBtn = CookieConsentUi.getCcRevokeElement();
+    expect(revokeBtn.style.display).toEqual("");
+
+    expect(CookieConsentUi.getCcElement()).not.toBeNull();
+  }));
 
   it('should fade in the NgcCookieConsent UI when calling "fadeIn"', () => {
     TestBed.configureTestingModule({
@@ -317,20 +311,24 @@ export class CookieConsentUi {
     return document.querySelectorAll('div.cc-window.cc-banner');
   }
 
-  public static getCcMessageElement(): Element {
-    return document.querySelectorAll('span.cc-message').item(0);
+  public static getCcMessageElement(): HTMLElement {
+    return document.querySelectorAll('span.cc-message').item(0) as HTMLElement;
   }
 
-  public static getCcLinkElement(): Element {
-    return document.querySelectorAll('a.cc-link').item(0);
+  public static getCcLinkElement(): HTMLElement {
+    return document.querySelectorAll('a.cc-link').item(0) as HTMLElement;
   }
 
-  public static getCcDenyElement(): Element {
-    return document.querySelectorAll('a.cc-btn.cc-deny').item(0);
+  public static getCcDenyElement(): HTMLElement {
+    return document.querySelectorAll('a.cc-btn.cc-deny').item(0) as HTMLElement;
   }
 
-  public static getCcDismissElement(): Element {
-    return document.querySelectorAll('a.cc-btn.cc-dismiss').item(0);
+  public static getCcDismissElement(): HTMLElement {
+    return document.querySelectorAll('a.cc-btn.cc-dismiss').item(0) as HTMLElement;
+  }
+
+  public static getCcRevokeElement(): HTMLElement {
+    return document.querySelectorAll('div.cc-revoke').item(0) as HTMLElement;
   }
 
   constructor() {
