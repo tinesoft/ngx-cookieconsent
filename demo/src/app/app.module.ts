@@ -3,6 +3,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { TransferHttpCacheModule } from '@nguniversal/common';
+
 import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsent';
 
 import { AppRoutingModule } from './app-routing';
@@ -41,7 +43,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         AppComponent
     ],
     imports: [
-        BrowserModule,
+        BrowserModule.withServerTransition({ appId: 'ngx-cookieconsent-demo-id' }),
+        TransferHttpCacheModule,
         FormsModule,
         HttpClientModule,
         TranslateModule.forRoot({

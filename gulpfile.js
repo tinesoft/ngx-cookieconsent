@@ -1,10 +1,12 @@
 const _ = require('lodash');
 const del = require('del');
 const gulp = require('gulp');
-const gulpUtil = require('gulp-util');
+const acolors = require('ansi-colors');
+const fancyLog = require('fancy-log');
 const helpers = require('./config/helpers');
 
 /** TSLint checker */
+const tslint = require('tslint');
 const gulpTslint = require('gulp-tslint');
 
 /** External command runner */
@@ -19,18 +21,17 @@ const gulpFile = require('gulp-file');
 /** To properly handle pipes on error */
 const pump = require('pump');
 
-/** To upload code coverage to coveralls */
+/** Testing/Code Coverage */
 const gulpCoveralls = require('gulp-coveralls');
 
 /** To order tasks */
 const runSequence = require('run-sequence');
 
 /** To compile & bundle the library with Angular & Rollup */
-const ngc = (args) => {// Promisify version of the ngc compiler
-  const project = args.p || args.project || '.';
-  const cmd = helpers.root(helpers.binPath('ngc'));
-  return helpers.execp(`${cmd} -p ${project}`);
-};
+const ngc = (args) => new Promise((resolve, reject)=>{// Promisify version of the ngc compiler
+  let exitCode = require('@angular/compiler-cli/src/main').main(args);
+  resolve(exitCode);
+});
 const rollup = require('rollup');
 const rollupUglify = require('rollup-plugin-uglify');
 const rollupSourcemaps = require('rollup-plugin-sourcemaps');
@@ -84,16 +85,17 @@ const rootFolder = path.join(__dirname);
 const buildFolder = path.join(rootFolder, `${config.buildDir}`);
 const distFolder = path.join(rootFolder, `${config.outputDir}`);
 const es5OutputFolder = path.join(buildFolder, 'lib-es5');
+const es2015OutputFolder = path.join(buildFolder, 'lib-es2015');
 
 //Helper functions
 const startKarmaServer = (isTddMode, hasCoverage, cb) => {
   const karmaServer = require('karma').Server;
-  const travis = process.env.TRAVIS;
+  const isCI = process.env.TRAVIS;
 
   let config = { configFile: `${__dirname}/karma.conf.js`, singleRun: !isTddMode, autoWatch: isTddMode };
 
-  if (travis) {
-    config['browsers'] = ['Chrome_travis_ci']; // 'Chrome_travis_ci' is defined in "customLaunchers" section of config/karma.conf.js
+  if (isCI) {
+    config['browsers'] = ['ChromeHeadlessCI'];
   }
 
   config['hasCoverage'] = hasCoverage;
@@ -108,21 +110,24 @@ const getPackageJsonVersion = () => {
 };
 
 const isOK = condition => {
-  return condition ? gulpUtil.colors.green('[OK]') : gulpUtil.colors.red('[KO]');
+  if(condition === undefined){
+    return acolors.yellow('[SKIPPED]');
+  }
+  return condition ? acolors.green('[OK]') : acolors.red('[KO]');
 };
 
 const readyToRelease = () => {
-  let isTravisPassing = /build #\d+ passed/.test(execSync('npm run check-travis').toString().trim()) ;
+  let isTravisPassing = /build #\d+ passed/.test(execSync('npm run check-travis').toString().trim());
   let onMasterBranch = execSync('git symbolic-ref --short -q HEAD').toString().trim() === 'master';
   let canBump = !!argv.version;
   let canGhRelease = argv.ghToken || process.env.CONVENTIONAL_GITHUB_RELEASER_TOKEN;
   let canNpmPublish = !!execSync('npm whoami').toString().trim() && execSync('npm config get registry').toString().trim() === 'https://registry.npmjs.org/';
 
-  gulpUtil.log(`[travis-ci]      Travis build on 'master' branch is passing............................................${isOK(isTravisPassing)}`);
-  gulpUtil.log(`[git-branch]     User is currently on 'master' branch..................................................${isOK(onMasterBranch)}`);
-  gulpUtil.log(`[npm-publish]    User is currently logged in to NPM Registry...........................................${isOK(canNpmPublish)}`);
-  gulpUtil.log(`[bump-version]   Option '--version' provided, with value : 'major', 'minor' or 'patch'.................${isOK(canBump)}`);
-  gulpUtil.log(`[github-release] Option '--ghToken' provided or 'CONVENTIONAL_GITHUB_RELEASER_TOKEN' variable set......${isOK(canGhRelease)}`);
+  fancyLog(`[travis-ci]      Travis build on 'master' branch is passing............................................${isOK(isTravisPassing)}`);
+  fancyLog(`[git-branch]     User is currently on 'master' branch..................................................${isOK(onMasterBranch)}`);
+  fancyLog(`[npm-publish]    User is currently logged in to NPM Registry...........................................${isOK(canNpmPublish)}`);
+  fancyLog(`[bump-version]   Option '--version' provided, with value : 'major', 'minor' or 'patch'.................${isOK(canBump)}`);
+  fancyLog(`[github-release] Option '--ghToken' provided or 'CONVENTIONAL_GITHUB_RELEASER_TOKEN' variable set......${isOK(canGhRelease)}`);
 
   return isTravisPassing && onMasterBranch && canBump && canGhRelease && canNpmPublish;
 };
@@ -131,8 +136,8 @@ const execCmd = (name, args, opts, ...subFolders) => {
   const cmd = helpers.root(subFolders, helpers.binPath(`${name}`));
   return helpers.execp(`${cmd} ${args}`, opts)
     .catch(e => {
-      gulpUtil.log(gulpUtil.colors.red(`${name} command failed. See below for errors.\n`));
-      gulpUtil.log(gulpUtil.colors.red(e));
+      fancyLog(acolors.red(`${name} command failed. See below for errors.\n`));
+      fancyLog(acolors.red(e));
       process.exit(1);
     });
 };
@@ -140,8 +145,8 @@ const execCmd = (name, args, opts, ...subFolders) => {
 const execExternalCmd = (name, args, opts) => {
   return helpers.execp(`${name} ${args}`, opts)
     .catch(e => {
-      gulpUtil.log(gulpUtil.colors.red(`${name} command failed. See below for errors.\n`));
-      gulpUtil.log(gulpUtil.colors.red(e));
+      fancyLog(acolors.red(`${name} command failed. See below for errors.\n`));
+      fancyLog(acolors.red(e));
       process.exit(1);
     });
 };
@@ -177,7 +182,7 @@ gulp.task('lint', (cb) => {
     gulp.src(config.allTs),
     gulpTslint(
       {
-        
+        program: tslint.Linter.createProgram('./tsconfig.json'),
         formatter: 'verbose',
         configuration: 'tslint.json'
       }),
@@ -211,13 +216,18 @@ gulp.task('pre-compile', (cb) => {
 gulp.task('ng-compile',() => {
   return Promise.resolve()
     // Compile to ES5.
-    .then(() => ngc({ project: `${buildFolder}/tsconfig.lib.json` })
+    .then(() => ngc(['--project',`${buildFolder}/tsconfig.lib.es5.json`])
       .then(exitCode => exitCode === 0 ? Promise.resolve() : Promise.reject())
-      .then(() => gulpUtil.log('ES5 compilation succeeded.'))
+      .then(() => fancyLog('ES5 compilation succeeded.'))
+    )
+    // Compile to ES2015.
+    .then(() => ngc(['--project',`${buildFolder}/tsconfig.lib.json`])
+      .then(exitCode => exitCode === 0 ? Promise.resolve() : Promise.reject())
+      .then(() => fancyLog('ES2015 compilation succeeded.'))
     )
     .catch(e => {
-      gulpUtil.log(gulpUtil.colors.red('ng-compilation failed. See below for errors.\n'));
-      gulpUtil.log(gulpUtil.colors.red(e));
+      fancyLog(acolors.red('ng-compilation failed. See below for errors.\n'));
+      fancyLog(acolors.red(e));
       process.exit(1);
     });
 });
@@ -268,9 +278,10 @@ gulp.task('npm-package', (cb) => {
   //only copy needed properties from project's package json
   fieldsToCopy.forEach((field) => { targetPkgJson[field] = pkgJson[field]; });
 
-  targetPkgJson['main'] = `bundles/${config.unscopedLibraryName}.umd.js`;
-  targetPkgJson['module'] = `index.js`;
-  targetPkgJson['typings'] = `index.d.ts`;
+  targetPkgJson['main'] = `./bundles/${config.unscopedLibraryName}.umd.js`;
+  targetPkgJson['module'] = `./esm5/${config.unscopedLibraryName}.es5.js`;
+  targetPkgJson['es2015'] = `./esm2015/${config.unscopedLibraryName}.js`;
+  targetPkgJson['typings'] = `./${config.unscopedLibraryName}.d.ts`;
 
   // defines project's dependencies as 'peerDependencies' for final users
   targetPkgJson.peerDependencies = {};
@@ -282,9 +293,7 @@ gulp.task('npm-package', (cb) => {
   // copy the needed additional files in the 'dist' folder
   pump(
     [
-      gulp.src(['README.md', 'LICENSE', 'CHANGELOG.md',
-      `${config.buildDir}/lib-es5/**/*.js`,
-      `${config.buildDir}/lib-es5/**/*.js.map`,
+      gulp.src(['README.md', 'LICENSE', 'CHANGELOG.md', 
       `${config.buildDir}/lib-es5/**/*.d.ts`,
       `${config.buildDir}/lib-es5/**/*.metadata.json`]),
       gulpFile('package.json', JSON.stringify(targetPkgJson, null, 2)),
@@ -292,84 +301,105 @@ gulp.task('npm-package', (cb) => {
     ], cb);
 });
 
-// Bundles the library as UMD bundles using RollupJS
+// Bundles the library as UMD/FESM bundles using RollupJS
 gulp.task('rollup-bundle', (cb) => {
   return Promise.resolve()
   // Bundle lib.
   .then(() => {
     // Base configuration.
-    const es5Input = path.join(es5OutputFolder, `index.js`);
+    const es5Input = path.join(es5OutputFolder, `${config.unscopedLibraryName}.js`);
+    const es2015Input = path.join(es2015OutputFolder, `${config.unscopedLibraryName}.js`);
     const globals = {
+      // The key here is library name, and the value is the name of the global variable name
+      // the window object.
+      // See https://github.com/rollup/rollup/wiki/JavaScript-API#globals for more.
+
       // Angular dependencies 
       '@angular/core': 'ng.core',
       '@angular/common': 'ng.common',
 
       // Rxjs dependencies
-      'rxjs/Subject': 'Rx',
-      'rxjs/Observable': 'Rx',
-      'rxjs/add/observable/fromEvent': 'Rx.Observable',
-      'rxjs/add/observable/forkJoin': 'Rx.Observable',
-      'rxjs/add/observable/of': 'Rx.Observable',
-      'rxjs/add/observable/merge': 'Rx.Observable',
-      'rxjs/add/observable/throw': 'Rx.Observable',
-      'rxjs/add/operator/auditTime': 'Rx.Observable.prototype',
-      'rxjs/add/operator/toPromise': 'Rx.Observable.prototype',
-      'rxjs/add/operator/map': 'Rx.Observable.prototype',
-      'rxjs/add/operator/filter': 'Rx.Observable.prototype',
-      'rxjs/add/operator/do': 'Rx.Observable.prototype',
-      'rxjs/add/operator/share': 'Rx.Observable.prototype',
-      'rxjs/add/operator/finally': 'Rx.Observable.prototype',
-      'rxjs/add/operator/catch': 'Rx.Observable.prototype',
-      'rxjs/add/observable/empty': 'Rx.Observable.prototype',
-      'rxjs/add/operator/first': 'Rx.Observable.prototype',
-      'rxjs/add/operator/startWith': 'Rx.Observable.prototype',
-      'rxjs/add/operator/switchMap': 'Rx.Observable.prototype',
+      'rxjs': 'rxjs',
 
       // ATTENTION:
       // Add any other dependency or peer dependency of your library here
       // This is required for UMD bundle users.
-      'cookieconsent': 'cookieconsent'
+      // See https://github.com/tinesoft/generator-ngx-library/TROUBLESHOUTING.md if trouble
+      'cookieconsent': _.camelCase('cookieconsent'.replace('/','.'))
+
     };
     const rollupBaseConfig = {
-      name: _.camelCase(config.libraryName),
-      sourcemap: true,
-      globals: globals,
+      output:{
+        name: _.camelCase(config.libraryName),
+        sourcemap: true,
+        globals: globals
+      },
+      // List of dependencies
+      // See https://github.com/rollup/rollup/wiki/JavaScript-API#external for more.
       external: Object.keys(globals),
       plugins: [
         rollupCommonjs({
           include: ['node_modules/rxjs/**']
         }),
         rollupSourcemaps(),
-        rollupNodeResolve({ jsnext: true, module: true })
+        rollupNodeResolve({ 
+          jsnext: true,
+          module: true,
+          jail: distFolder, // to use final 'package.json' from 'dist/'
+         })
       ]
     };
 
     // UMD bundle.
-    const umdConfig = Object.assign({}, rollupBaseConfig, {
+    const umdConfig = _.merge({}, rollupBaseConfig, {
       input: es5Input,
-      file: path.join(distFolder, `bundles`, `${config.unscopedLibraryName}.umd.js`),
-      format: 'umd',
+      output: {
+        format: 'umd',
+        file: path.join(distFolder, `bundles`, `${config.unscopedLibraryName}.umd.js`)
+      }
     });
 
     // Minified UMD bundle.
-    const minifiedUmdConfig = Object.assign({}, rollupBaseConfig, {
+    const minifiedUmdConfig = _.merge({}, rollupBaseConfig, {
       input: es5Input,
-      file: path.join(distFolder, `bundles`, `${config.unscopedLibraryName}.umd.min.js`),
-      format: 'umd',
+      output: {
+        format: 'umd',
+        file: path.join(distFolder, `bundles`, `${config.unscopedLibraryName}.umd.min.js`),
+      },
       plugins: rollupBaseConfig.plugins.concat([rollupUglify({})])
+    });
+
+    // ESM+ES5 flat module bundle.
+    const fesm5config = _.merge({}, rollupBaseConfig, {
+      input: es5Input,
+      output: {
+        format: 'es',
+        file: path.join(distFolder, 'esm5', `${config.unscopedLibraryName}.es5.js`),
+      }
+    });
+
+    // ESM+ES2015 flat module bundle.
+    const fesm2015config = _.merge({}, rollupBaseConfig, {
+      input: es2015Input,
+      output: {
+        format: 'es',
+        file: path.join(distFolder, 'esm2015', `${config.unscopedLibraryName}.js`),
+      }
     });
 
     const allBundles = [
       umdConfig,
-      minifiedUmdConfig
-    ].map(cfg => rollup.rollup(cfg).then(bundle => bundle.write(cfg)));
+      minifiedUmdConfig,
+      fesm5config,
+      fesm2015config
+    ].map(cfg => rollup.rollup(cfg).then(bundle => bundle.write(cfg.output)));
 
     return Promise.all(allBundles)
-      .then(() => gulpUtil.log('All bundles generated successfully.'))
+      .then(() => fancyLog('All bundles generated successfully.'))
   })
   .catch(e => {
-    gulpUtil.log(gulpUtil.colors.red('rollup-bundling failed. See below for errors.\n'));
-    gulpUtil.log(gulpUtil.colors.red(e));
+    fancyLog(acolors.red('rollup-bundling failed. See below for errors.\n'));
+    fancyLog(acolors.red(e));
     process.exit(1);
   });
 });
@@ -411,12 +441,12 @@ const execDemoCmd = (args,opts) => {
     return execCmd('ng', args, opts, `/${config.demoDir}`);
   }
   else{
-    gulpUtil.log(gulpUtil.colors.yellow(`No 'node_modules' found in '${config.demoDir}'. Installing dependencies for you...`));
+    fancyLog(acolors.yellow(`No 'node_modules' found in '${config.demoDir}'. Installing dependencies for you...`));
     return helpers.installDependencies({ cwd: `${config.demoDir}` })
       .then(exitCode => exitCode === 0 ? execCmd('ng', args, opts, `/${config.demoDir}`) : Promise.reject())
       .catch(e => {
-        gulpUtil.log(gulpUtil.colors.red(`ng command failed. See below for errors.\n`));
-        gulpUtil.log(gulpUtil.colors.red(e));
+        fancyLog(acolors.red(`ng command failed. See below for errors.\n`));
+        fancyLog(acolors.red(e));
         process.exit(1);
       });
   }
@@ -427,41 +457,30 @@ gulp.task('test:demo', () => {
 });
 
 gulp.task('serve:demo', () => {
-  return execDemoCmd('serve --preserve-symlinks --aot --proxy-config proxy.conf.json', { cwd: `${config.demoDir}` });
+  return execDemoCmd('serve --aot --proxy-config proxy.conf.json', { cwd: `${config.demoDir}` });
 });
 
 gulp.task('serve:demo-hmr', () => {
-  return execDemoCmd('serve --hmr -e=hmr --preserve-symlinks --aot --proxy-config proxy.conf.json', { cwd: `${config.demoDir}` });
+  return execDemoCmd('serve --configuration hmr --aot --proxy-config proxy.conf.json', { cwd: `${config.demoDir}` });
 });
 
 gulp.task('build:demo', () => {
-  return execDemoCmd(`build --preserve-symlinks --prod --aot --build-optimizer --base-href /ngx-cookieconsent/ --deploy-url /ngx-cookieconsent/`, { cwd: `${config.demoDir}`});
+  return execDemoCmd(`build --preserve-symlinks --prod --base-href /ngx-cookieconsent/ --deploy-url /ngx-cookieconsent/`, { cwd: `${config.demoDir}`});
 });
 
-gulp.task('serve:demo-ssr',['build:demo'], () => {
-  return execDemoCmd(`build --preserve-symlinks --prod --aot --build-optimizer --app ssr --output-hashing=none`, { cwd: `${config.demoDir}` })
-  .then(exitCode => {
-      if(exitCode === 0){
-        execCmd('webpack', '--config webpack.server.config.js --progress --colors', { cwd: `${config.demoDir}` }, `/${config.demoDir}`)
-        .then(exitCode => exitCode === 0 ? execExternalCmd('node', 'dist/server.js', { cwd: `${config.demoDir}` }, `/${config.demoDir}`): Promise.reject(1));
-      } else{
-        Promise.reject(1);
-      }
-    }
-  );
+gulp.task('serve:demo-ssr',['build:demo-ssr'], () => {
+  return execExternalCmd('node', 'dist/server.js', { cwd: `${config.demoDir}` });
 });
 
-gulp.task('build:demo-ssr',['build:demo'], () => {
-  return execDemoCmd(`build --preserve-symlinks --prod --aot --build-optimizer --app ssr --output-hashing=none`, { cwd: `${config.demoDir}` })
-  .then(exitCode => {
-      if(exitCode === 0){
-        execCmd('webpack', '--config webpack.server.config.js --progress --colors', { cwd: `${config.demoDir}` }, `/${config.demoDir}`)
-        .then(exitCode => exitCode === 0 ? execExternalCmd('node', 'dist/prerender.js', { cwd: `${config.demoDir}` }, `/${config.demoDir}`): Promise.reject(1));
-      } else{
-        Promise.reject(1);
-      }
-    }
-  );
+gulp.task('build:demo-ssr', () => {
+  return execDemoCmd(`build --preserve-symlinks --prod`, { cwd: `${config.demoDir}`})
+    .then(() => execDemoCmd(`run ngx-cookieconsent-demo:server`, { cwd: `${config.demoDir}` }))
+    .then(() => execCmd('webpack', '--config webpack.server.config.js --progress --colors', { cwd: `${config.demoDir}` }, `/${config.demoDir}`))
+    .catch(e => {
+      fancyLog(acolors.red(`build:demo-ssr command failed. See below for errors.\n`));
+      fancyLog(acolors.red(e));
+      process.exit(1);
+    });
 });
 
 gulp.task('push:demo', () => {
@@ -509,7 +528,7 @@ gulp.task('changelog', (cb) => {
 
 gulp.task('github-release', (cb) => {
   if (!argv.ghToken && !process.env.CONVENTIONAL_GITHUB_RELEASER_TOKEN) {
-    gulpUtil.log(gulpUtil.colors.red(`You must specify a Github Token via '--ghToken' or set environment variable 'CONVENTIONAL_GITHUB_RELEASER_TOKEN' to allow releasing on Github`));
+    fancyLog(acolors.red(`You must specify a Github Token via '--ghToken' or set environment variable 'CONVENTIONAL_GITHUB_RELEASER_TOKEN' to allow releasing on Github`));
     throw new Error(`Missing '--ghToken' argument and environment variable 'CONVENTIONAL_GITHUB_RELEASER_TOKEN' not set`);
   }
 
@@ -524,7 +543,7 @@ gulp.task('github-release', (cb) => {
 
 gulp.task('bump-version', (cb) => {
   if (!argv.version) {
-    gulpUtil.log(gulpUtil.colors.red(`You must specify which version to bump to (Possible values: 'major', 'minor', and 'patch')`));
+    fancyLog(acolors.red(`You must specify which version to bump to (Possible values: 'major', 'minor', and 'patch')`));
     throw new Error(`Missing '--version' argument`);
   }
 
@@ -563,7 +582,7 @@ gulp.task('create-new-tag', (cb) => {
 
 // Build and then Publish 'dist' folder to NPM
 gulp.task('npm-publish', ['build'], () => {
-  return execExternalCmd('npm',`publish ${config.outputDir}`)
+  return execExternalCmd('npm',`publish ${config.outputDir} --access public`)
 });
 
 // Perfom pre-release checks (no actual release)
@@ -573,13 +592,13 @@ gulp.task('pre-release', cb => {
 });
 
 gulp.task('release', (cb) => {
-  gulpUtil.log('# Performing Pre-Release Checks...');
+  fancyLog('# Performing Pre-Release Checks...');
   if (!readyToRelease()) {
-    gulpUtil.log(gulpUtil.colors.red('# Pre-Release Checks have failed. Please fix them and try again. Aborting...'));
+    fancyLog(acolors.red('# Pre-Release Checks have failed. Please fix them and try again. Aborting...'));
     cb();
   }
   else {
-    gulpUtil.log(gulpUtil.colors.green('# Pre-Release Checks have succeeded. Continuing...'));
+    fancyLog(acolors.green('# Pre-Release Checks have succeeded. Continuing...'));
     runSequence(
       'bump-version',
       'changelog',
@@ -591,9 +610,9 @@ gulp.task('release', (cb) => {
       'deploy:demo',
       (error) => {
         if (error) {
-          gulpUtil.log(gulpUtil.colors.red(error.message));
+          fancyLog(acolors.red(error.message));
         } else {
-          gulpUtil.log(gulpUtil.colors.green('RELEASE FINISHED SUCCESSFULLY'));
+          fancyLog(acolors.green('RELEASE FINISHED SUCCESSFULLY'));
         }
         cb(error);
       });

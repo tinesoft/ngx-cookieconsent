@@ -16,8 +16,8 @@
 View the module in action at https://tinesoft.github.io/ngx-cookieconsent
 
 ## Dependencies
-* [Angular](https://angular.io) (*requires* Angular 2 or higher, tested with 2.0.0 and 4.0.0)
-* [Cookie Consent](https://cookieconsent.insites.com/) (*requires* Cookie Consent 3 or higher, tested with 3.0.4)
+* [Angular](https://angular.io) (*requires* Angular 6+, [v1.1.0](https://github.com/tinesoft/ngx-cookieconsent/tree/v1.1.0) is the latest version for Angular < 6 )
+* [Cookie Consent](https://cookieconsent.insites.com/) (*requires* Cookie Consent 3 or higher, tested with 3.0.6)
 
 
 ## Installation
@@ -264,5 +264,5 @@ export class AppComponent {
 
 ## License
 
-Copyright (c) 2017 Tine Kondo. Licensed under the MIT License (MIT)
+Copyright (c) 2018 Tine Kondo. Licensed under the MIT License (MIT)
 

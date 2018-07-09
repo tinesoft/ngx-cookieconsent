@@ -1,9 +1,11 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
+import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
+import { Router, NavigationEnd, RouterEvent } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
+
 import { NgcCookieConsentService, NgcInitializeEvent, NgcStatusChangeEvent } from 'ngx-cookieconsent';
 
-import 'rxjs/add/operator/filter';
-import { Subscription } from 'rxjs/Subscription';
+import { filter } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
@@ -20,9 +22,13 @@ export class AppComponent {
   private statusChangeSubscription: Subscription;
   private revokeChoiceSubscription: Subscription;
 
-  constructor(private ccService: NgcCookieConsentService, private translateService:TranslateService, private router: Router) {
-    this.router.events.filter(event => event instanceof NavigationEnd).subscribe(event => {
-      window.scroll(0, 0);
+  constructor(private ccService: NgcCookieConsentService, private translateService:TranslateService, private router: Router, @Inject(PLATFORM_ID) private platformId: Object) {
+    this.router.events.pipe(
+      filter((event:RouterEvent) => event instanceof NavigationEnd)
+    ).subscribe(event => {
+      if (isPlatformBrowser(this.platformId)) {
+        window.scroll(0, 0);
+      }
     });
   }
 

@@ -6,12 +6,8 @@
     "module": "es2015",
     "types": [],
     "paths": {
-      "@angular/*": [
-        "../node_modules/@angular/*"
-      ],
-      "cookieconsent": [
-        "../node_modules/cookieconsent"
-      ]
+      "@angular/*": ["../node_modules/@angular/*"],
+      "cookieconsent": ["../node_modules/cookieconsent"]
     }
   },
   "exclude": [
