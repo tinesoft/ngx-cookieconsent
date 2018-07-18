@@ -135,7 +135,7 @@ export class NgcCookieConsentService {
       this.config.onPopupClose =
         () => this.popupCloseSource.next();
 
-      this.config.onInitialize =
+      this.config.onInitialise =
         (status: 'allow' | 'deny' | 'dismiss') => this.InitializeSource.next({ status: status });
 
       this.config.onStatusChange =

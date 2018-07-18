@@ -196,7 +196,7 @@ export class NgcCookieConsentConfig {
   // these callback hooks are called at certain points in the program execution
   onPopupOpen?: () => void;
   onPopupClose?: () => void;
-  onInitialize?: (status: string) => void;
+  onInitialise?: (status: string) => void;
   onStatusChange?: (status: string, chosenBefore: boolean) => void;
   onRevokeChoice?: () => void;
 

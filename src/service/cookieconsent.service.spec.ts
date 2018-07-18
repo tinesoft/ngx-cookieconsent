@@ -134,7 +134,7 @@ describe('Service: NgcCookieConsent', () => {
 
     expect(typeof (config.onPopupOpen)).toEqual('function');
     expect(typeof (config.onPopupClose)).toEqual('function');
-    expect(typeof (config.onInitialize)).toEqual('function');
+    expect(typeof (config.onInitialise)).toEqual('function');
     expect(typeof (config.onStatusChange)).toEqual('function');
     expect(typeof (config.onRevokeChoice)).toEqual('function');
   });
@@ -175,7 +175,7 @@ describe('Service: NgcCookieConsent', () => {
   });
 
 
-  it('should emit initialize$ event when calling onInitialize() callback', () => {
+  it('should emit initialize$ event when calling onInitialise() callback', () => {
     TestBed.configureTestingModule({
       imports: [NgcCookieConsentModule.forRoot(myConfig)]
     });
@@ -189,8 +189,8 @@ describe('Service: NgcCookieConsent', () => {
       expect(event).toEqual({ status: `status${calls}` });
     });
 
-    config.onInitialize('status1');
-    config.onInitialize('status2');
+    config.onInitialise('status1');
+    config.onInitialise('status2');
 
     expect(calls).toEqual(2);
   });
