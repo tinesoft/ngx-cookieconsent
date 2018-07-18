@@ -146,6 +146,7 @@ export class AppComponent implements OnInit, OnDestroy {
   private initializeSubscription: Subscription;
   private statusChangeSubscription: Subscription;
   private revokeChoiceSubscription: Subscription;
+  private noCookieLawSubscription: Subscription;
 
   constructor(private ccService: NgcCookieConsentService){}
 
@@ -175,6 +176,11 @@ export class AppComponent implements OnInit, OnDestroy {
       () => {
         // you can use this.ccService.getConfig() to do stuff...
       });
+
+      this.noCookieLawSubscription = this.ccService.noCookieLaw$.subscribe(
+      (event: NgcNoCookieLawEvent) => {
+        // you can use this.ccService.getConfig() to do stuff...
+      });
   }
 
   ngOnDestroy() {
@@ -184,6 +190,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.initializeSubscription.unsubscribe();
     this.statusChangeSubscription.unsubscribe();
     this.revokeChoiceSubscription.unsubscribe();
+    this.noCookieLawSubscription.unsubscribe();
   }
 }
 

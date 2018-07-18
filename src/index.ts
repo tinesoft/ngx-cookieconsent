@@ -10,4 +10,4 @@ export {
     NgcCookiePosition, NgcCookieLayout, NgcCookieType, NgcCookieTheme, NgcCookieCompliance
 } from './model/index';
 
-export { NgcInitializeEvent, NgcStatusChangeEvent } from './event/index';
+export { NgcInitializeEvent, NgcStatusChangeEvent, NgcNoCookieLawEvent } from './event/index';

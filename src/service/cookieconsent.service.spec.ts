@@ -6,6 +6,7 @@ import { NgcCookieConsentConfig } from './cookieconsent-config';
 import { WindowService } from './window.service';
 import { NgcInitializeEvent } from './../event/initialize.event';
 import { NgcStatusChangeEvent } from './../event/status-change.event';
+import { NgcNoCookieLawEvent } from './../event/no-cookie-law.event';
 
  
 const minimumConfig: NgcCookieConsentConfig = {
@@ -211,6 +212,26 @@ describe('Service: NgcCookieConsent', () => {
 
     config.onStatusChange('status1', 'chosenBefore1');
     config.onStatusChange('status2', 'chosenBefore2');
+
+    expect(calls).toEqual(2);
+  });
+
+  it('should emit noCookieLaw$ event when calling onNoCookieLaw() callback', () => {
+    TestBed.configureTestingModule({
+      imports: [NgcCookieConsentModule.forRoot(myConfig)]
+    });
+
+    let service = TestBed.get(NgcCookieConsentService); // inject the service from root injector
+    let config = service.getConfig();
+
+    let calls = 0;
+    service.noCookieLaw$.subscribe((event: NgcNoCookieLawEvent) => {
+      calls++;
+      expect(event).toEqual({ countryCode: `countryCode${calls}`, country: `country${calls}` });
+    });
+
+    config.onNoCookieLaw('countryCode1', 'country1');
+    config.onNoCookieLaw('countryCode2', 'country2');
 
     expect(calls).toEqual(2);
   });
