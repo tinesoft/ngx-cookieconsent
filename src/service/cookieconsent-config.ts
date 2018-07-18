@@ -199,5 +199,6 @@ export class NgcCookieConsentConfig {
   onInitialise?: (status: string) => void;
   onStatusChange?: (status: string, chosenBefore: boolean) => void;
   onRevokeChoice?: () => void;
+  onNoCookieLaw?: (countryCode: string, country: string) => void;
 
 }

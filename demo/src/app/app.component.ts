@@ -2,11 +2,12 @@ import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core
 import { Router, NavigationEnd, RouterEvent } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 
-import { NgcCookieConsentService, NgcInitializeEvent, NgcStatusChangeEvent } from 'ngx-cookieconsent';
+import { NgcCookieConsentService, NgcInitializeEvent, NgcStatusChangeEvent, NgcNoCookieLawEvent } from 'ngx-cookieconsent';
 
 import { filter } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { NgcNoCookieLawEvent } from '../../../src/event/no-cookie-law.event';
 
 @Component({
   selector: 'app-root',
@@ -21,6 +22,7 @@ export class AppComponent {
   private initializeSubscription: Subscription;
   private statusChangeSubscription: Subscription;
   private revokeChoiceSubscription: Subscription;
+  private noCookieLawSubscription: Subscription;
 
   constructor(private ccService: NgcCookieConsentService, private translateService:TranslateService, private router: Router, @Inject(PLATFORM_ID) private platformId: Object) {
     this.router.events.pipe(
@@ -61,7 +63,13 @@ export class AppComponent {
     this.revokeChoiceSubscription = this.ccService.revokeChoice$.subscribe(
       () => {
         // you can use this.ccService.getConfig() to do stuff...
-        console.log(`revokeChoice: ${JSON.stringify(event)}`);
+        console.log(`revokeChoice`);
+      });
+
+    this.noCookieLawSubscription = this.ccService.noCookieLaw$.subscribe(
+      (event: NgcNoCookieLawEvent) => {
+        // you can use this.ccService.getConfig() to do stuff...
+        console.log(`noCookieLaw: ${JSON.stringify(event)}`);
       });
 
 
@@ -77,5 +85,6 @@ export class AppComponent {
     this.initializeSubscription.unsubscribe();
     this.statusChangeSubscription.unsubscribe();
     this.revokeChoiceSubscription.unsubscribe();
+    this.noCookieLawSubscription.unsubscribe();
   }
 }
