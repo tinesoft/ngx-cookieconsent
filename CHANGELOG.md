@@ -1,3 +1,13 @@
+<a name="1.1.1"></a>
+## [1.1.1](https://github.com/tinesoft/ngx-cookieconsent/compare/v1.1.0...v1.1.1) (2018-07-18)
+
+
+### Bug Fixes
+
+* **initialize$:** callback was never called due to typo (`onInitialise`) ([6cd260f](https://github.com/tinesoft/ngx-cookieconsent/commit/6cd260f)), closes [#19](https://github.com/tinesoft/ngx-cookieconsent/issues/19)
+
+
+
 <a name="1.1.0"></a>
 # [1.1.0](https://github.com/tinesoft/ngx-cookieconsent/compare/v1.0.1...v1.1.0) (2018-07-03)
 

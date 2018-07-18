@@ -1,7 +1,7 @@
 {
   "name": "ngx-cookieconsent",
   "description": "Cookie Consent module for Angular.",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "homepage": "https://github.com/tinesoft/ngx-cookieconsent",
   "author": {
     "name": "Tine Kondo",
