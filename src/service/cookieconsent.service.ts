@@ -68,7 +68,7 @@ export class NgcCookieConsentService {
   // Observable  sources
   private popupOpenSource: Subject<void>;
   private popupCloseSource: Subject<void>;
-  private InitializeSource: Subject<NgcInitializeEvent>;
+  private initializeSource: Subject<NgcInitializeEvent>;
   private statusChangeSource: Subject<NgcStatusChangeEvent>;
   private revokeChoiceSource: Subject<void>;
 
@@ -97,14 +97,14 @@ export class NgcCookieConsentService {
     // Observable  sources
     this.popupOpenSource = new Subject<void>();
     this.popupCloseSource = new Subject<void>();
-    this.InitializeSource = new Subject<NgcInitializeEvent>();
+    this.initializeSource = new Subject<NgcInitializeEvent>();
     this.statusChangeSource = new Subject<NgcStatusChangeEvent>();
     this.revokeChoiceSource = new Subject<void>();
 
     // Observable  streams
     this.popupOpen$ = this.popupOpenSource.asObservable();
     this.popupClose$ = this.popupCloseSource.asObservable();
-    this.initialize$ = this.InitializeSource.asObservable();
+    this.initialize$ = this.initializeSource.asObservable();
     this.statusChange$ = this.statusChangeSource.asObservable();
     this.revokeChoice$ = this.revokeChoiceSource.asObservable();
 
@@ -136,7 +136,7 @@ export class NgcCookieConsentService {
         () => this.popupCloseSource.next();
 
       this.config.onInitialise =
-        (status: 'allow' | 'deny' | 'dismiss') => this.InitializeSource.next({ status: status });
+        (status: 'allow' | 'deny' | 'dismiss') => this.initializeSource.next({ status: status });
 
       this.config.onStatusChange =
         (status: 'allow' | 'deny' | 'dismiss', chosenBefore: boolean) => {
