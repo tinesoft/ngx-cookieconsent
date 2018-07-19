@@ -1,3 +1,20 @@
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/tinesoft/ngx-cookieconsent/compare/v1.1.1...v2.0.0) (2018-07-19)
+
+
+### Features
+
+* **ng6:** add support for angular 6 ([2ab9341](https://github.com/tinesoft/ngx-cookieconsent/commit/2ab9341)), closes [#17](https://github.com/tinesoft/ngx-cookieconsent/issues/17) [#18](https://github.com/tinesoft/ngx-cookieconsent/issues/18)
+* **onNoCookieLaw:** add support for `onNoCookieLaw` callback ([2d960c8](https://github.com/tinesoft/ngx-cookieconsent/commit/2d960c8))
+
+
+### BREAKING CHANGES
+
+* **ng6:** - Minimum version of Angular is now v6+
+- Minimum version of Node is v8+
+
+
+
 <a name="1.1.1"></a>
 ## [1.1.1](https://github.com/tinesoft/ngx-cookieconsent/compare/v1.1.0...v1.1.1) (2018-07-18)
 
