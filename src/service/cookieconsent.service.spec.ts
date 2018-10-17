@@ -29,7 +29,7 @@ const myConfig: NgcCookieConsentConfig = {
     allow: '[custom]Allow cookies',
     deny: '[custom]Decline',
     link: '[custom]Learn more',
-    href: 'http://cookiesandyou.com/[custom]',
+    href: 'https://cookiesandyou.com/[custom]',
     close: '&#x2789;'
   },
   palette: {
@@ -80,7 +80,7 @@ describe('Service: NgcCookieConsent', () => {
     expect(CookieConsentUi.getCcMessageElement().textContent).toEqual('This website uses cookies to ensure you get the best experience on our website. Learn more');
     expect(CookieConsentUi.getCcDismissElement().textContent).toEqual('Got it!');
     expect(CookieConsentUi.getCcLinkElement().textContent).toEqual('Learn more');
-    expect(CookieConsentUi.getCcLinkElement().getAttribute('href')).toEqual('http://cookiesandyou.com');
+    expect(CookieConsentUi.getCcLinkElement().getAttribute('href')).toEqual('https://cookiesandyou.com');
   });
 
   it('should inject a custom NgcCookieConsent UI when injecting the service with custom config', () => {
@@ -92,7 +92,8 @@ describe('Service: NgcCookieConsent', () => {
     expect(CookieConsentUi.getCcElement()).not.toBeNull();
 
     expect(CookieConsentUi.getCcMessageElement().textContent).toEqual(myConfig.content.message + ' ' + myConfig.content.link);
-    expect(CookieConsentUi.getCcDismissElement().textContent).toEqual(myConfig.content.dismiss);
+    expect(CookieConsentUi.getCcDenyElement().textContent).toEqual(myConfig.content.deny);
+    expect(CookieConsentUi.getCcAllowElement().textContent).toEqual(myConfig.content.allow);
     expect(CookieConsentUi.getCcLinkElement().textContent).toEqual(myConfig.content.link);
     expect(CookieConsentUi.getCcLinkElement().getAttribute('href')).toEqual(myConfig.content.href);
   });
@@ -342,6 +343,10 @@ export class CookieConsentUi {
 
   public static getCcDenyElement(): HTMLElement {
     return document.querySelectorAll('a.cc-btn.cc-deny').item(0) as HTMLElement;
+  }
+
+  public static getCcAllowElement(): HTMLElement {
+    return document.querySelectorAll('a.cc-btn.cc-allow').item(0) as HTMLElement;
   }
 
   public static getCcDismissElement(): HTMLElement {

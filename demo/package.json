@@ -27,7 +27,7 @@
     "@ng-bootstrap/ng-bootstrap": "^2.2.0",
     "@ngx-translate/core": "^10.0.2",
     "@ngx-translate/http-loader": "3.0.1",
-    "@stackblitz/sdk":"^1.2.0",
+    "@stackblitz/sdk": "^1.2.0",
     "bootstrap": "^4.0.1",
     "cookieconsent": "^3.0.4",
     "core-js": "^2.5.4",

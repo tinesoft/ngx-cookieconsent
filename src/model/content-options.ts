@@ -17,7 +17,7 @@ export class NgcContentOptions {
 
   link? = 'Learn more';
 
-  href? = 'http://cookiesandyou.com';
+  href? = 'https://cookiesandyou.com';
 
   close? = '&#x274c;';
 

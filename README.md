@@ -17,7 +17,7 @@ View the module in action at https://tinesoft.github.io/ngx-cookieconsent
 
 ## Dependencies
 * [Angular](https://angular.io) (*requires* Angular 6+, [v1.1.0](https://github.com/tinesoft/ngx-cookieconsent/tree/v1.1.0) is the latest version for Angular < 6 )
-* [Cookie Consent](https://cookieconsent.insites.com/) (*requires* Cookie Consent 3 or higher, tested with 3.0.6)
+* [Cookie Consent](https://cookieconsent.insites.com/) (*requires* Cookie Consent 3 or higher, tested with 3.1.0)
 
 
 ## Installation
@@ -35,7 +35,7 @@ npm install --save ngx-cookieconsent
 ##### Angular-CLI
 >**Note**: If you are using `angular-cli` to build your app, make sure that `cookieconsent` is properly listed as a [global library](https://github.com/angular/angular-cli/wiki/stories-global-scripts), and as [global style](https://github.com/angular/angular-cli/wiki/stories-global-styles).
 
-To do so, edit your `.angular-cli.json` as such:
+To do so, edit your `angular-cli.json` as such:
 ```
       "scripts": [
         "../node_modules/cookieconsent/build/cookieconsent.min.js"
