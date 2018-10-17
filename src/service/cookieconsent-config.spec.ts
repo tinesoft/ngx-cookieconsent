@@ -53,6 +53,8 @@ describe('cookieconsent-config', () => {
         expect(config.content.link).toEqual('Learn more');
         expect(config.content.href).toEqual('http://cookiesandyou.com');
         expect(config.content.close).toEqual('&#x274c;');
+        expect(config.content.policy).toEqual('Cookie Policy');
+        expect(config.content.target).toEqual('_blank');
     });
 
     it('should have sensible "cookie" default values', () => {

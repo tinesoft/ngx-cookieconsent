@@ -5,6 +5,7 @@
         "dismiss": "OK, j'ai compris!",
         "allow": "Autoriser les cookies",
         "deny": "Refuser",
-        "link": "Plus d'information"
+        "link": "Plus d'information",
+        "policy": "Cookie Policy"
     }
 }
