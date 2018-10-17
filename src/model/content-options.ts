@@ -20,4 +20,8 @@ export class NgcContentOptions {
   href? = 'http://cookiesandyou.com';
 
   close? = '&#x274c;';
+
+  policy? = 'Cookie Policy';
+
+  target? = '_blank';
 }

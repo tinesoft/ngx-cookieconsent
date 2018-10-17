@@ -5,6 +5,7 @@
         "dismiss": "Got it!",
         "allow": "Allow cookies",
         "deny": "Decline",
-        "link": "Learn more"
+        "link": "Learn more",
+        "policy": "Cookie Policy"
     }
 }

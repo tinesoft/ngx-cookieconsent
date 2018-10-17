@@ -215,7 +215,8 @@ Basically this involved the following steps (using ngx-translate + Anglar CLI):
         "dismiss": "Got it!",
         "allow": "Allow cookies",
         "deny": "Decline",
-        "link": "Learn more"
+        "link": "Learn more",
+        "policy": "Cookie Policy"
     }
 }
 ```
@@ -247,7 +248,7 @@ export class AppComponent {
     this.translateService.use(browserLang.match(/en|fr/) ? browserLang : 'en');
 
     this.translateService//
-      .get(['cookie.header', 'cookie.message', 'cookie.dismiss', 'cookie.allow', 'cookie.deny', 'cookie.link'])
+      .get(['cookie.header', 'cookie.message', 'cookie.dismiss', 'cookie.allow', 'cookie.deny', 'cookie.link', 'cookie.policy'])
       .subscribe(data => {
 
         this.ccService.getConfig().content = this.ccService.getConfig().content || {} ;
@@ -258,6 +259,7 @@ export class AppComponent {
         this.ccService.getConfig().content.allow = data['cookie.allow'];
         this.ccService.getConfig().content.deny = data['cookie.deny'];
         this.ccService.getConfig().content.link = data['cookie.link'];
+        this.ccService.getConfig().content.policy = data['cookie.policy'];
 
         this.ccService.destroy();//remove previous cookie bar (with default messages)
         this.ccService.init(this.ccService.getConfig()); // update config with translated messages
