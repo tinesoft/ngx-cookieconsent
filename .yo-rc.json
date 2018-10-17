@@ -40,7 +40,8 @@
       "demo/src/assets/logo.svg",
       "demo/src/index.html",
       "demo/src/favicon.ico",
-      "src/**/*.ts"
+      "src/**/*.ts",
+      ".git/HEAD"
     ],
     "deleteExclusions": [
       "README.md",
@@ -50,7 +51,8 @@
       "demo/src/assets/logo.svg",
       "demo/src/index.html",
       "demo/src/favicon.ico",
-      "src/**/*.ts"
+      "src/**/*.ts",
+      ".git/HEAD"
     ]
   }
 }
