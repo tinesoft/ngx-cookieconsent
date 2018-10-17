@@ -34,7 +34,7 @@
   "dependencies": {
     "@angular/core": "6.0.0",
     "@angular/common": "6.0.0",
-    "cookieconsent": "3.0.6"
+    "cookieconsent": "3.1.0"
   },
   "devDependencies": {
     "@angular/compiler": "6.0.0",

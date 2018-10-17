@@ -9,7 +9,7 @@
 <h2>Dependencies</h2>
 <ul>
 <li><a href="https://angular.io">Angular</a> (<em>requires</em> Angular 6+, <a href="https://github.com/tinesoft/ngx-cookieconsent/tree/v1.1.0">v1.1.0</a> is the latest version for Angular &lt; 6 )</li>
-<li><a href="https://cookieconsent.insites.com/">Cookie Consent</a> (<em>requires</em> Cookie Consent 3 or higher, tested with 3.0.6)</li>
+<li><a href="https://cookieconsent.insites.com/">Cookie Consent</a> (<em>requires</em> Cookie Consent 3 or higher, tested with 3.1.0)</li>
 </ul>
 <h2>Installation</h2>
 <p>Install above dependencies via <em>npm</em>. In particular for <code>Cookie Consent</code>:</p>
@@ -21,7 +21,7 @@
 <blockquote>
 <p><strong>Note</strong>: If you are using <code>angular-cli</code> to build your app, make sure that <code>cookieconsent</code> is properly listed as a <a href="https://github.com/angular/angular-cli/wiki/stories-global-scripts">global library</a>, and as <a href="https://github.com/angular/angular-cli/wiki/stories-global-styles">global style</a>.</p>
 </blockquote>
-<p>To do so, edit your <code>.angular-cli.json</code> as such:</p>
+<p>To do so, edit your <code>angular-cli.json</code> as such:</p>
 <pre class="editor editor-colors"><div class="line"><span class="source js"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="string quoted double js"><span class="punctuation definition string begin js"><span>&quot;</span></span><span>scripts</span><span class="punctuation definition string end js"><span>&quot;</span></span></span><span class="keyword operator assignment js"><span>:</span></span><span>&nbsp;</span><span class="meta brace square js"><span>[</span></span></span></div><div class="line"><span class="source js"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="string quoted double js"><span class="punctuation definition string begin js"><span>&quot;</span></span><span>../node_modules/cookieconsent/build/cookieconsent.min.js</span><span class="punctuation definition string end js"><span>&quot;</span></span></span></span></div><div class="line"><span class="source js"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta brace square js"><span>]</span></span><span class="meta delimiter object comma js"><span>,</span></span></span></div><div class="line"><span class="source js"><span>&nbsp;</span></span></div><div class="line"><span class="source js"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="string quoted double js"><span class="punctuation definition string begin js"><span>&quot;</span></span><span>styles</span><span class="punctuation definition string end js"><span>&quot;</span></span></span><span class="keyword operator assignment js"><span>:</span></span><span>&nbsp;</span><span class="meta brace square js"><span>[</span></span></span></div><div class="line"><span class="source js"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="string quoted double js"><span class="punctuation definition string begin js"><span>&quot;</span></span><span>../node_modules/cookieconsent/build/cookieconsent.min.css</span><span class="punctuation definition string end js"><span>&quot;</span></span></span></span></div><div class="line"><span class="source js"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="meta brace square js"><span>]</span></span><span class="meta delimiter object comma js"><span>,</span></span></span></div><div class="line"><span class="source js"><span>&nbsp;</span></span></div></pre>
 <h5>SystemJS</h5>
 <blockquote>

@@ -51,7 +51,7 @@ describe('cookieconsent-config', () => {
         expect(config.content.allow).toEqual('Allow cookies');
         expect(config.content.deny).toEqual('Decline');
         expect(config.content.link).toEqual('Learn more');
-        expect(config.content.href).toEqual('http://cookiesandyou.com');
+        expect(config.content.href).toEqual('https://cookiesandyou.com');
         expect(config.content.close).toEqual('&#x274c;');
         expect(config.content.policy).toEqual('Cookie Policy');
         expect(config.content.target).toEqual('_blank');
@@ -66,6 +66,7 @@ describe('cookieconsent-config', () => {
         expect(config.cookie.path).toEqual('/');
         expect(config.cookie.domain).toBeUndefined();
         expect(config.cookie.expiryDays).toEqual(365);
+        expect(config.cookie.secure).toEqual(false);
     });
 
     it('should have sensible "elements" default values', () => {

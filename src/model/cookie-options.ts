@@ -21,4 +21,7 @@ export class NgcCookieOptions {
   // The cookies expire date, specified in days (specify -1 for no expiry)
   // Default: 365
   expiryDays? = 365;
+
+  // If true the cookie will be created with the secure flag. Secure cookies will only be transmitted via HTTPS.
+  secure? = false;
 }
