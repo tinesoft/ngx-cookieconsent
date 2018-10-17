@@ -7,14 +7,13 @@ import { NgcCookieConsentService, NgcInitializeEvent, NgcStatusChangeEvent, NgcN
 import { filter } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
-import { NgcNoCookieLawEvent } from '../../../src/event/no-cookie-law.event';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy{
 
   //keep refs to subscriptions to be able to unsubscribe later
   private popupOpenSubscription: Subscription;
