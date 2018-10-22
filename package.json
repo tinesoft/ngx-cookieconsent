@@ -121,7 +121,8 @@
       "test",
       "chore",
       "revert",
-      "demo"
+      "demo",
+      "build"
     ],
     "scope": "\\S+.*"
   }
