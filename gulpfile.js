@@ -22,7 +22,7 @@ const gulpFile = require('gulp-file');
 const pump = require('pump');
 
 /** Testing/Code Coverage */
-const gulpCoveralls = require('gulp-coveralls');
+const gulpCoveralls = require('zyan-gulp-coveralls');
 
 /** To order tasks */
 const runSequence = require('run-sequence');
@@ -33,7 +33,7 @@ const ngc = (args) => new Promise((resolve, reject)=>{// Promisify version of th
   resolve(exitCode);
 });
 const rollup = require('rollup');
-const rollupUglify = require('rollup-plugin-uglify');
+const rollupUglify = require('rollup-plugin-uglify').uglify;
 const rollupSourcemaps = require('rollup-plugin-sourcemaps');
 const rollupNodeResolve = require('rollup-plugin-node-resolve');
 const rollupCommonjs = require('rollup-plugin-commonjs');
