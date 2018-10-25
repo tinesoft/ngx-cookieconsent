@@ -1,3 +1,14 @@
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/tinesoft/ngx-cookieconsent/compare/v2.0.0...v2.1.0) (2018-10-25)
+
+
+### Features
+
+* **core:** update to `cookieconsent v3.1.0` and its features ([d674b93](https://github.com/tinesoft/ngx-cookieconsent/commit/d674b93))
+* **options:** add `policy` and `target` options to `NgcContentOptions` ([a0849f2](https://github.com/tinesoft/ngx-cookieconsent/commit/a0849f2)), closes [#23](https://github.com/tinesoft/ngx-cookieconsent/issues/23)
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/tinesoft/ngx-cookieconsent/compare/v1.1.1...v2.0.0) (2018-07-19)
 
