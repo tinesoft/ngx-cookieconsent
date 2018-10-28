@@ -535,6 +535,7 @@ gulp.task('github-release', (cb) => {
   conventionalGithubReleaser(
     {
       type: 'oauth',
+      url: 'https://api.github.com/',
       token: argv.ghToken || process.env.CONVENTIONAL_GITHUB_RELEASER_TOKEN
     },
     { preset: 'angular' },
