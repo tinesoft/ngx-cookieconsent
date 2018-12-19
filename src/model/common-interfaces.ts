@@ -37,8 +37,8 @@ export interface NgcLayouts {
  */
 export interface NgcCookieConsentStatus {
   [key: string]: 'deny' | 'allow' | 'dismiss';
-  allow?: 'allow';
-  deny?: 'deny';
-  dismiss?: 'dismiss';
+  allow: 'allow';
+  deny: 'deny';
+  dismiss: 'dismiss';
 }
 
