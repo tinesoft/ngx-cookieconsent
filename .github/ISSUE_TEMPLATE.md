@@ -7,17 +7,22 @@ IF YOU DON'T FILL OUT THE FOLLOWING INFORMATION YOUR ISSUE MIGHT BE CLOSED WITHO
 - [ ] feature request
 ```
 
-### OS and Version?
+### CookieConsent and Library Versions?
+```
+- cookieconsent version:
+- ngx-cookieconsent version:
+```
+
+### OS Version?
 <!--
 > Windows 7, 8 or 10. Linux (which distribution).macOS(Yosemite ? El Capitan? Sierra ?)
 -->
 
-### Versions
+### Angular, Node and al Versions?
 <!--
 Output from: `ng --version`, in case you are using Angular CLI.
 Otherwise, output from: `node --version` , `npm --version` and Angular version.
 -->
-
 
 ### Repro steps
 <!--
