@@ -19,7 +19,7 @@ export class NgcCookieConsentConfig {
   /**
    * If false, this prevents the popup from showing (useful for giving to control to another piece of code)
    */
-  enabled?= true;
+  enabled ?= true;
   /**
    * Optional (expecting a HTML element) if passed, the popup is appended to this element. default is `document.body`
    */
