@@ -26,6 +26,7 @@ steps:
 
 - script: |
     npm install --quiet -g gulp-cli
+    npm install
     gulp test:ci
     gulp coveralls
   displayName: 'npm install and build'
