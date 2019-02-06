@@ -1,4 +1,12 @@
-<a name="2.1.0"></a>
+## [2.1.1](https://github.com/tinesoft/ngx-cookieconsent/compare/v2.1.0...v2.1.1) (2019-02-06)
+
+
+### Bug Fixes
+
+* **typings:** fix lint isssue due to bad typings in NgcCookieConsentStatus ([27ebb55](https://github.com/tinesoft/ngx-cookieconsent/commit/27ebb55)), closes [#11](https://github.com/tinesoft/ngx-cookieconsent/issues/11)
+
+
+
 # [2.1.0](https://github.com/tinesoft/ngx-cookieconsent/compare/v2.0.0...v2.1.0) (2018-10-25)
 
 
@@ -9,7 +17,6 @@
 
 
 
-<a name="2.0.0"></a>
 # [2.0.0](https://github.com/tinesoft/ngx-cookieconsent/compare/v1.1.1...v2.0.0) (2018-07-19)
 
 
@@ -26,7 +33,6 @@
 
 
 
-<a name="1.1.1"></a>
 ## [1.1.1](https://github.com/tinesoft/ngx-cookieconsent/compare/v1.1.0...v1.1.1) (2018-07-18)
 
 
@@ -36,7 +42,6 @@
 
 
 
-<a name="1.1.0"></a>
 # [1.1.0](https://github.com/tinesoft/ngx-cookieconsent/compare/v1.0.1...v1.1.0) (2018-07-03)
 
 
@@ -52,7 +57,6 @@
 
 
 
-<a name="1.0.1"></a>
 ## [1.0.1](https://github.com/tinesoft/ngx-cookieconsent/compare/v1.0.0...v1.0.1) (2017-11-22)
 
 
@@ -64,7 +68,6 @@
 
 
 
-<a name="1.0.0"></a>
 # [1.0.0](https://github.com/tinesoft/ngx-cookieconsent/compare/5f8a340...v1.0.0) (2017-09-07)
 
 
