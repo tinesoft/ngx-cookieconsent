@@ -261,10 +261,11 @@ export class AppComponent {
         this.ccService.getConfig().content.link = data['cookie.link'];
         this.ccService.getConfig().content.policy = data['cookie.policy'];
 
-        this.ccService.destroy();//remove previous cookie bar (with default messages)
+        this.ccService.destroy(); // remove previous cookie bar (with default messages)
         this.ccService.init(this.ccService.getConfig()); // update config with translated messages
       });
   }
+}
 ```
 
 ## Custom Layout Support
