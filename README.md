@@ -267,6 +267,72 @@ export class AppComponent {
   }
 ```
 
+## Custom Layout Support
+
+Cookie Consent supports [custom layouts](https://cookieconsent.insites.com/documentation/javascript-api/#layout_options), and so does `ngx-cookieconsent`.
+So if your are not happy with the default appearance of the cookie bar, you can totally customize it to better suit your needs. This involves overriding a few options:
+
+* [NgcCookieConsentConfig.layout](https://github.com/tinesoft/ngx-cookieconsent/blob/master/src/service/cookieconsent-config.ts#L78): to define the name of your custom layout to use. For e.g `my-custom-layout`
+* [NgcCookieConsentConfig.layouts](https://github.com/tinesoft/ngx-cookieconsent/blob/master/src/service/cookieconsent-config.ts#L73): to define your custom layout HTML. Elements between `{{` and `}}` will be replaced by their content (see in NgcContentOptions below)
+* [NgcCookieConsentConfig.elements](https://github.com/tinesoft/ngx-cookieconsent/blob/master/src/model/cookieconsent-config.ts#L44) : html elements referenced in the custom layout (between `{{` and `}}`)
+* [NgcCookieConsentConfig.content](https://github.com/tinesoft/ngx-cookieconsent/blob/master/src/model/cookieconsent-config.ts#L36) : content of elements referenced in the custom elements above (between `{{` and `}}`)
+
+Here is a example of a **custom layout**, that is inspired from the default ['basic' layout] , but simply changes the message and links that are displayed in the bar.
+
+```ts
+import {NgcCookieConsentModule, NgcCookieConsentConfig} from 'ngx-cookieconsent';
+
+const cookieConfig:NgcCookieConsentConfig = {
+  cookie: {
+    domain: 'localhost'// it is recommended to set your domain, for cookies to work properly
+  },
+  palette: {
+    popup: {
+      background: '#000'
+    },
+    button: {
+      background: '#f1d600'
+    }
+  },
+  theme: 'edgeless',
+  type: 'opt-out',
+  layout: 'my-custom-layout',
+  layouts: {
+    "my-custom-layout": '{{messageLink}}{{compliance}}'
+  },
+  elements:{
+    messageLink: `
+    <span id="cookieconsent:desc" class="cc-message">{{message}} 
+      <a aria-label="learn more about cookies" tabindex="0" class="cc-link" href="{{cookiePolicyHref}}" target="_blank">{{cookiePolicyLink}}</a>, 
+      <a aria-label="learn more about our privacy policy" tabindex="1" class="cc-link" href="{{privacyPolicyHref}}" target="_blank">{{privacyPolicyLink}}</a> and our 
+      <a aria-label="learn more about our terms of service" tabindex="2" class="cc-link" href="{{tosHref}}" target="_blank">{{tosLink}}</a>
+    </span>
+    `,
+  },
+  content:{
+    message: 'By using our site, you acknowledge that you have read and understand our ',
+    
+    cookiePolicyLink: 'Cookie Policy',
+    cookiePolicyHref: 'https://cookie.com',
+
+    privacyPolicyLink: 'Privacy Policy',
+    privacyPolicyHref: 'https://privacy.com',
+
+    tosLink: 'Terms of Service',
+    tosHref: 'https://tos.com',
+  }
+};
+
+
+@NgModule({
+  declarations: [AppComponent, ...],
+  imports: [NgcCookieConsentModule.forRoot(cookieConfig), ...],  
+  bootstrap: [AppComponent]
+})
+export class AppModule {
+}
+```
+
 ## Credits
 
 `ngx-cookieconsent` is built upon [Cookie Consent](https://cookieconsent.insites.com/), created by [Insites](https://insites.com)

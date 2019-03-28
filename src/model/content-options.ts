@@ -24,4 +24,6 @@ export class NgcContentOptions {
   policy ? = 'Cookie Policy';
 
   target ? = '_blank';
+
+  [key: string]: string;
 }
