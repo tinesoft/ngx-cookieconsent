@@ -1,3 +1,12 @@
+# [2.2.0](https://github.com/tinesoft/ngx-cookieconsent/compare/v2.1.1...v2.2.0) (2019-03-28)
+
+
+### Features
+
+* **customLayout:** allow customizing the cookie bar layout and content ([4b32ce0](https://github.com/tinesoft/ngx-cookieconsent/commit/4b32ce0))
+
+
+
 ## [2.1.1](https://github.com/tinesoft/ngx-cookieconsent/compare/v2.1.0...v2.1.1) (2019-02-06)
 
 
