@@ -273,11 +273,11 @@ Cookie Consent supports [custom layouts](https://cookieconsent.insites.com/docum
 So if your are not happy with the default appearance of the cookie bar, you can totally customize it to better suit your needs. This involves overriding a few options:
 
 * [NgcCookieConsentConfig.layout](https://github.com/tinesoft/ngx-cookieconsent/blob/master/src/service/cookieconsent-config.ts#L78): to define the name of your custom layout to use. For e.g `my-custom-layout`
-* [NgcCookieConsentConfig.layouts](https://github.com/tinesoft/ngx-cookieconsent/blob/master/src/service/cookieconsent-config.ts#L73): to define your custom layout HTML. Elements between `{{` and `}}` will be replaced by their content (see in NgcContentOptions below)
+* [NgcCookieConsentConfig.layouts](https://github.com/tinesoft/ngx-cookieconsent/blob/master/src/service/cookieconsent-config.ts#L73): to define your custom layout HTML. Elements between `{{` and `}}` will be replaced by their content (see in `[NgcCookieConsentConfig.content` below)
 * [NgcCookieConsentConfig.elements](https://github.com/tinesoft/ngx-cookieconsent/blob/master/src/model/cookieconsent-config.ts#L44) : html elements referenced in the custom layout (between `{{` and `}}`)
 * [NgcCookieConsentConfig.content](https://github.com/tinesoft/ngx-cookieconsent/blob/master/src/model/cookieconsent-config.ts#L36) : content of elements referenced in the custom elements above (between `{{` and `}}`)
 
-Here is a example of a **custom layout**, that is inspired from the default ['basic' layout] , but simply changes the message and links that are displayed in the bar.
+Here is a example of a **custom layout**, that is inspired from the default 'basic' layout , but simply changes the message and links that are displayed in the bar.
 
 ```ts
 import {NgcCookieConsentModule, NgcCookieConsentConfig} from 'ngx-cookieconsent';
@@ -339,5 +339,5 @@ export class AppModule {
 
 ## License
 
-Copyright (c) 2018 Tine Kondo. Licensed under the MIT License (MIT)
+Copyright (c) 2019 Tine Kondo. Licensed under the MIT License (MIT)
 
