@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title }     from '@angular/platform-browser';
+import sdk from '@stackblitz/sdk';
 
 @Component({
   selector: 'app-home',
@@ -14,4 +15,7 @@ export class HomeComponent implements OnInit {
     this.titleService.setTitle('Home | ngx-cookieconsent');
   }
 
+  editOnStackBlitz() {
+    sdk.openGithubProject('tinesoft/ngx-cookieconsent/tree/master/demo');
+  }
 }
