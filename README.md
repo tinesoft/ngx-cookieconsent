@@ -279,6 +279,10 @@ So if your are not happy with the default appearance of the cookie bar, you can 
 
 Here is a example of a **custom layout**, that is inspired from the default 'basic' layout , but simply changes the message and links that are displayed in the bar.
 
+<p align="center">
+  <img style="text-align: center;" src="https://cdn.rawgit.com/tinesoft/ngx-cookieconsent/master/demo/src/assets/custom-cookie-bar.png">
+</p>
+
 ```ts
 import {NgcCookieConsentModule, NgcCookieConsentConfig} from 'ngx-cookieconsent';
 
@@ -298,10 +302,10 @@ const cookieConfig:NgcCookieConsentConfig = {
   type: 'opt-out',
   layout: 'my-custom-layout',
   layouts: {
-    "my-custom-layout": '{{messageLink}}{{compliance}}'
+    "my-custom-layout": '{{messagelink}}{{compliance}}'
   },
   elements:{
-    messageLink: `
+    messagelink: `
     <span id="cookieconsent:desc" class="cc-message">{{message}} 
       <a aria-label="learn more about cookies" tabindex="0" class="cc-link" href="{{cookiePolicyHref}}" target="_blank">{{cookiePolicyLink}}</a>, 
       <a aria-label="learn more about our privacy policy" tabindex="1" class="cc-link" href="{{privacyPolicyHref}}" target="_blank">{{privacyPolicyLink}}</a> and our 
