@@ -20,5 +20,5 @@ export class NgcHTMLElements {
 
   close ? = '<span aria-label="dismiss cookie message" tabindex="0" class="cc-close">{{close}}</span>';
 
-  [key: string]: string;
+  [key: string]: string | undefined;
 }

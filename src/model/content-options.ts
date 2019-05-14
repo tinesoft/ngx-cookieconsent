@@ -25,5 +25,5 @@ export class NgcContentOptions {
 
   target ? = '_blank';
 
-  [key: string]: string;
+  [key: string]: string | undefined;
 }
