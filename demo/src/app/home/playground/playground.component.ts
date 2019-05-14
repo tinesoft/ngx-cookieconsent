@@ -117,6 +117,9 @@ export class PlaygroundComponent implements OnInit {
       .get(['cookie.header', 'cookie.message', 'cookie.dismiss', 'cookie.allow', 'cookie.deny', 'cookie.link', 'cookie.policy'])
       .subscribe(data => {
 
+        if(!this.options.content)
+          this.options.content = {};
+
         this.options.content.header = data['cookie.header'];
         this.options.content.message = data['cookie.message'];
         this.options.content.dismiss = data['cookie.dismiss'];
