@@ -1,3 +1,12 @@
+## [2.2.1](https://github.com/tinesoft/ngx-cookieconsent/compare/v2.2.0...v2.2.1) (2019-05-14)
+
+
+### Bug Fixes
+
+* **typings:** correct ` ERROR TS2411` when compiling with `strict` mode on ([4fb02eb](https://github.com/tinesoft/ngx-cookieconsent/commit/4fb02eb)), closes [#49](https://github.com/tinesoft/ngx-cookieconsent/issues/49)
+
+
+
 # [2.2.0](https://github.com/tinesoft/ngx-cookieconsent/compare/v2.1.1...v2.2.0) (2019-03-28)
 
 
