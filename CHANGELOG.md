@@ -1,3 +1,13 @@
+## [2.2.2](https://github.com/tinesoft/ngx-cookieconsent/compare/v2.2.1...v2.2.2) (2019-05-28)
+
+
+### Bug Fixes
+
+* **NgcCookieOptions:** add missing export ([971b65e](https://github.com/tinesoft/ngx-cookieconsent/commit/971b65e)), closes [#53](https://github.com/tinesoft/ngx-cookieconsent/issues/53)
+* **sponsorship:** fix github sponsorship of yours truly ([d3a7b3d](https://github.com/tinesoft/ngx-cookieconsent/commit/d3a7b3d))
+
+
+
 ## [2.2.1](https://github.com/tinesoft/ngx-cookieconsent/compare/v2.2.0...v2.2.1) (2019-05-14)
 
 
