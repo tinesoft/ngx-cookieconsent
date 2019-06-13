@@ -190,7 +190,7 @@ export class NgcCookieConsentConfig {
   /**
    * Location Options
    */
-  location?: NgcLocationOptions;
+  location?: boolean | NgcLocationOptions;
 
   /**
    * Set value as click anything on the page, excluding the `ignoreClicksFrom` below (if we click on the revoke button etc)

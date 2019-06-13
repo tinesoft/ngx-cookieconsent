@@ -7,5 +7,5 @@ export class NgcLawOptions {
 
   // If false, then we only enable the popup if the country has the cookie law. We ignore all other country specific rules.
   // Default: true
-  regionalLaw = true;
+  regionalLaw ?= true;
 }
