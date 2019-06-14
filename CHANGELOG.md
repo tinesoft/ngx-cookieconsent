@@ -1,3 +1,12 @@
+## [2.2.3](https://github.com/tinesoft/ngx-cookieconsent/compare/v2.2.2...v2.2.3) (2019-06-14)
+
+
+### Features
+
+* **location:** allow activating location services in config and improve typings for `NgcLawOptions`, `NgcLocationOptions` ([306fe18](https://github.com/tinesoft/ngx-cookieconsent/commit/306fe18)), closes [#57](https://github.com/tinesoft/ngx-cookieconsent/issues/57)
+
+
+
 ## [2.2.2](https://github.com/tinesoft/ngx-cookieconsent/compare/v2.2.1...v2.2.2) (2019-05-28)
 
 
