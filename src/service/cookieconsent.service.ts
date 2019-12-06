@@ -131,7 +131,7 @@ export class NgcCookieConsentService {
    */
   init(config: NgcCookieConsentConfig): void {
 
-    if (this.window) { // For Angular Universal suport
+    if (this.window && this.window.cookieconsent) { // For Angular Universal suport
       this.cookieconsent = this.window.cookieconsent;
 
       this.config = config;
