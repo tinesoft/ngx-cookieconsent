@@ -11,7 +11,7 @@ addons:
 
 language: node_js
 node_js:
-  - "6"
+  - "8"
 
 before_script:
   - export DISPLAY=:99.0
@@ -23,5 +23,6 @@ script: gulp test:ci
 after_success: gulp coveralls
 
 cache:
-  yarn: true
+  directories:
+    - node_modules
   

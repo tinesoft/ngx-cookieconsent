@@ -3,7 +3,16 @@
     <div class="col text-left">
       <h2>Playground</h2>
     </div>
-    <div class="col text-right"> <button type="button" class="btn btn-primary" (click)="resetConfig()">Reset <i class="fa fa-undo" aria-hidden="true"></i></button></div>
+    <div class="col text-right"> 
+      <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-outline-primary" id="dropdownLang" ngbDropdownToggle>Language <i class="fa fa-globe" aria-hidden="true"></i></button>
+          <div ngbDropdownMenu aria-labelledby="dropdownLang">
+            <a #langLink *ngFor="let lang of translate.getLangs()" 
+              [ngClass]="{'dropdown-item': true, 'active': (lang === translate.currentLang) }" 
+              (click)="changeLang(langLink.innerText)">{{ lang }}</a>
+          </div>
+      </div>
+      <button type="button" class="btn btn-primary" (click)="resetConfig()">Reset <i class="fa fa-undo" aria-hidden="true"></i></button></div>
   </div>
   <div class="row">
     <div class="col-md-6">

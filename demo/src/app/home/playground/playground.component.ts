@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+
 import { NgcCookieConsentService, NgcCookieConsentConfig, NgcCookiePosition, NgcCookieTheme, NgcCookieCompliance } from 'ngx-cookieconsent';
 import { environment } from './../../../environments/environment';
 
@@ -54,7 +56,9 @@ export class PlaygroundComponent implements OnInit {
   //   { popup: { background: '#efefef', text: '#404040' }, 'button': { background: '#8ec760', text: '#ffffff' } }
   // ];
 
-  constructor(private ccService: NgcCookieConsentService) { }
+  constructor(private ccService: NgcCookieConsentService, public translate: TranslateService) { 
+    this.translate.use('en');// default language
+  }
 
   ngOnInit(): void {
     this.minOptions = {
@@ -85,7 +89,9 @@ export class PlaygroundComponent implements OnInit {
         dismiss: 'Got it!',
         deny: 'Refuse cookies',
         link: 'Learn more',
-        href: 'https://cookiesandyou.com'
+        href: 'https://cookiesandyou.com',
+        policy: 'Cookie Policy',
+
       }
     };
 
@@ -104,7 +110,30 @@ export class PlaygroundComponent implements OnInit {
     this.options.type = compliance;
   }
 
+  changeLang(lang: string){
+    this.translate.use(lang);
+    this.translate//
+      // See assets/i18n/**.json for the keys
+      .get(['cookie.header', 'cookie.message', 'cookie.dismiss', 'cookie.allow', 'cookie.deny', 'cookie.link', 'cookie.policy'])
+      .subscribe(data => {
+
+        if(!this.options.content)
+          this.options.content = {};
+
+        this.options.content.header = data['cookie.header'];
+        this.options.content.message = data['cookie.message'];
+        this.options.content.dismiss = data['cookie.dismiss'];
+        this.options.content.allow = data['cookie.allow'];
+        this.options.content.deny = data['cookie.deny'];
+        this.options.content.link = data['cookie.link'];
+        this.options.content.policy = data['cookie.policy'];
+
+        this.updateConfig();
+      });
+  }
+
   updateConfig(): void {
+    this.ccService.clearStatus();
     this.ccService.destroy();
     this.ccService.init(this.options);
     this.areOptionsCopied = false;

@@ -19,7 +19,7 @@ export class NgcCookieConsentConfig {
   /**
    * If false, this prevents the popup from showing (useful for giving to control to another piece of code)
    */
-  enabled?= true;
+  enabled ?= true;
   /**
    * Optional (expecting a HTML element) if passed, the popup is appended to this element. default is `document.body`
    */
@@ -190,14 +190,25 @@ export class NgcCookieConsentConfig {
   /**
    * Location Options
    */
-  location?: NgcLocationOptions;
+  location?: boolean | NgcLocationOptions;
 
+  /**
+   * Set value as click anything on the page, excluding the `ignoreClicksFrom` below (if we click on the revoke button etc)
+   */
+  dismissOnWindowClick?: boolean;
+
+  /**
+   * If `dismissOnWindowClick` is true, we can click on 'revoke' and we'll still dismiss the banner, so we need exceptions.
+   * Should be an array of class names (not CSS selectors).
+   */
+  ignoreClicksFrom?: string[];
 
   // these callback hooks are called at certain points in the program execution
   onPopupOpen?: () => void;
   onPopupClose?: () => void;
-  onInitialize?: (status: string) => void;
+  onInitialise?: (status: string) => void;
   onStatusChange?: (status: string, chosenBefore: boolean) => void;
   onRevokeChoice?: () => void;
+  onNoCookieLaw?: (countryCode: string, country: string) => void;
 
 }

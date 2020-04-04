@@ -1,23 +1,10 @@
 {
+  "extends": "../tsconfig.json",
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
-    "moduleResolution": "node",
-    "sourceMap": true,
-    "inlineSources": true,
-    "declaration": true,
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "noImplicitAny": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "rootDir": "./",
     "baseUrl": "",
-    "skipLibCheck": true,
-    "stripInternal": true,
-    "lib": [
-      "es2015",
-      "dom"
-    ],
+    "module": "commonjs",
+    "declaration": false,
+    "emitDecoratorMetadata": true,
     "typeRoots": [
       "../node_modules/@types"
     ]

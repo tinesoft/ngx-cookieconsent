@@ -1,16 +1,19 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router, NavigationEnd } from '@angular/router';
-import { NgcCookieConsentService, NgcInitializeEvent, NgcStatusChangeEvent } from 'ngx-cookieconsent';
+import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
+import { Router, NavigationEnd, RouterEvent } from '@angular/router';
+import { isPlatformBrowser } from '@angular/common';
 
-import 'rxjs/add/operator/filter';
-import { Subscription } from 'rxjs/Subscription';
+import { NgcCookieConsentService, NgcInitializeEvent, NgcStatusChangeEvent, NgcNoCookieLawEvent } from 'ngx-cookieconsent';
+
+import { filter } from 'rxjs/operators';
+import { Subscription } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit, OnDestroy{
 
   //keep refs to subscriptions to be able to unsubscribe later
   private popupOpenSubscription: Subscription;
@@ -18,10 +21,15 @@ export class AppComponent {
   private initializeSubscription: Subscription;
   private statusChangeSubscription: Subscription;
   private revokeChoiceSubscription: Subscription;
+  private noCookieLawSubscription: Subscription;
 
-  constructor(private ccService: NgcCookieConsentService, private router: Router) {
-    this.router.events.filter(event => event instanceof NavigationEnd).subscribe(event => {
-      window.scroll(0, 0);
+  constructor(private ccService: NgcCookieConsentService, private translateService:TranslateService, private router: Router, @Inject(PLATFORM_ID) private platformId: Object) {
+    this.router.events.pipe(
+      filter((event:RouterEvent) => event instanceof NavigationEnd)
+    ).subscribe(event => {
+      if (isPlatformBrowser(this.platformId)) {
+        window.scroll(0, 0);
+      }
     });
   }
 
@@ -54,8 +62,19 @@ export class AppComponent {
     this.revokeChoiceSubscription = this.ccService.revokeChoice$.subscribe(
       () => {
         // you can use this.ccService.getConfig() to do stuff...
-        console.log(`revokeChoice: ${JSON.stringify(event)}`);
+        console.log(`revokeChoice`);
       });
+
+    this.noCookieLawSubscription = this.ccService.noCookieLaw$.subscribe(
+      (event: NgcNoCookieLawEvent) => {
+        // you can use this.ccService.getConfig() to do stuff...
+        console.log(`noCookieLaw: ${JSON.stringify(event)}`);
+      });
+
+
+    // (Optional) support for translated cookies messages
+    this.translateService.addLangs(['en', 'fr']);
+    this.translateService.setDefaultLang('en');
   }
 
   ngOnDestroy() {
@@ -65,5 +84,6 @@ export class AppComponent {
     this.initializeSubscription.unsubscribe();
     this.statusChangeSubscription.unsubscribe();
     this.revokeChoiceSubscription.unsubscribe();
+    this.noCookieLawSubscription.unsubscribe();
   }
 }

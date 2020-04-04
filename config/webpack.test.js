@@ -1,6 +1,5 @@
 const helpers = require('./helpers');
-const LoaderOptionsPlugin = require('webpack/lib/LoaderOptionsPlugin');
-const ContextReplacementPlugin = require('webpack/lib/ContextReplacementPlugin');
+const webpack = require('webpack');
 const { CheckerPlugin } = require('awesome-typescript-loader');
 
 const getConfig = (hasCoverage, isTddMode) => {
@@ -27,6 +26,7 @@ const getConfig = (hasCoverage, isTddMode) => {
     }
 
     return {
+        mode: 'none',
         devtool: 'inline-source-map',
         resolve: {
             extensions: ['.ts', '.js'],
@@ -75,14 +75,14 @@ const getConfig = (hasCoverage, isTddMode) => {
 
         plugins: [
 
-            new LoaderOptionsPlugin({
+            new webpack.LoaderOptionsPlugin({
                 debug: false,
                 options: {
                     // legacy options go here
                 }
             }),
             // Fixes linker warnings (see https://github.com/angular/angular/issues/11580)
-            new ContextReplacementPlugin(
+            new webpack.ContextReplacementPlugin(
                 // fixes WARNING Critical dependency: the request of a dependency is an expression
                 /(.+)?angular(\\|\/)core(.+)?/,
                 helpers.root('src'), // location of your src

@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
+import { Subject, Observable } from 'rxjs';
 
 import { NgcCookieConsentStatus } from '../model/common-interfaces';
 import { NgcStatusChangeEvent } from '../event/status-change.event';
+import { NgcNoCookieLawEvent } from '../event/no-cookie-law.event';
 import { NgcInitializeEvent } from '../event/initialize.event';
 import { NgcCookieConsentConfig } from './cookieconsent-config';
 import { WindowService } from './window.service';
@@ -28,6 +28,7 @@ export interface NgcCookieConsentPopup {
   getStatus(): NgcCookieConsentStatus;
   clearStatus(): void;
   open(): NgcCookieConsentPopup;
+  close(showRevoke: boolean): NgcCookieConsentPopup;
   destroy(): void;
   fadeIn(): void;
   fadeOut(): void;
@@ -67,9 +68,10 @@ export class NgcCookieConsentService {
   // Observable  sources
   private popupOpenSource: Subject<void>;
   private popupCloseSource: Subject<void>;
-  private InitializeSource: Subject<NgcInitializeEvent>;
+  private initializeSource: Subject<NgcInitializeEvent>;
   private statusChangeSource: Subject<NgcStatusChangeEvent>;
   private revokeChoiceSource: Subject<void>;
+  private noCookieLawSource: Subject<NgcNoCookieLawEvent>;
 
   /**
    * Observable to subscribe to and get notified when Cookie Consent popup opens.
@@ -88,24 +90,30 @@ export class NgcCookieConsentService {
   */
   statusChange$: Observable<NgcStatusChangeEvent>;
   /**
-  * Observable to subscribe to and get notified when Cookie is revoked.
-  */
+   * Observable to subscribe to and get notified when Cookie is revoked.
+   */
   revokeChoice$: Observable<void>;
+  /**
+  * Observable to subscribe to and get notified when no Cookie Law is applicable.
+  */
+  noCookieLaw$: Observable<NgcNoCookieLawEvent>;
 
   constructor(windowService: WindowService, config: NgcCookieConsentConfig) {
     // Observable  sources
     this.popupOpenSource = new Subject<void>();
     this.popupCloseSource = new Subject<void>();
-    this.InitializeSource = new Subject<NgcInitializeEvent>();
+    this.initializeSource = new Subject<NgcInitializeEvent>();
     this.statusChangeSource = new Subject<NgcStatusChangeEvent>();
     this.revokeChoiceSource = new Subject<void>();
+    this.noCookieLawSource = new Subject<NgcNoCookieLawEvent>();
 
     // Observable  streams
     this.popupOpen$ = this.popupOpenSource.asObservable();
     this.popupClose$ = this.popupCloseSource.asObservable();
-    this.initialize$ = this.InitializeSource.asObservable();
+    this.initialize$ = this.initializeSource.asObservable();
     this.statusChange$ = this.statusChangeSource.asObservable();
     this.revokeChoice$ = this.revokeChoiceSource.asObservable();
+    this.noCookieLaw$ = this.noCookieLawSource.asObservable();
 
     this.window = windowService.nativeWindow;
     this.init(config);
@@ -123,7 +131,7 @@ export class NgcCookieConsentService {
    */
   init(config: NgcCookieConsentConfig): void {
 
-    if (this.window) { // For Angular Universal suport
+    if (this.window && this.window.cookieconsent) { // For Angular Universal suport
       this.cookieconsent = this.window.cookieconsent;
 
       this.config = config;
@@ -134,8 +142,8 @@ export class NgcCookieConsentService {
       this.config.onPopupClose =
         () => this.popupCloseSource.next();
 
-      this.config.onInitialize =
-        (status: 'allow' | 'deny' | 'dismiss') => this.InitializeSource.next({ status: status });
+      this.config.onInitialise =
+        (status: 'allow' | 'deny' | 'dismiss') => this.initializeSource.next({ status: status });
 
       this.config.onStatusChange =
         (status: 'allow' | 'deny' | 'dismiss', chosenBefore: boolean) => {
@@ -144,6 +152,11 @@ export class NgcCookieConsentService {
 
       this.config.onRevokeChoice =
         () => this.revokeChoiceSource.next();
+
+      this.config.onNoCookieLaw =
+        (countryCode: string, country: string) => {
+          this.noCookieLawSource.next({ countryCode: countryCode, country: country });
+        };
 
       // Init the cookieconsent library with injected config
       this.cookieconsent.initialise(this.config, (popup: NgcCookieConsentPopup) => this.popupInstance = popup);
@@ -182,6 +195,11 @@ export class NgcCookieConsentService {
   open(): NgcCookieConsentPopup {
     this.checkPopupInstantiated('open');
     return this.popupInstance.open();
+  }
+
+  close(showRevoke: boolean): NgcCookieConsentPopup {
+    this.checkPopupInstantiated('close');
+    return this.popupInstance.close(showRevoke);
   }
 
   destroy(): void {

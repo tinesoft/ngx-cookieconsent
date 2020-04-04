@@ -5,19 +5,25 @@
  */
 export class NgcContentOptions {
 
-  header? = 'Cookies used on the website!';
+  header ? = 'Cookies used on the website!';
 
-  message? = 'This website uses cookies to ensure you get the best experience on our website.';
+  message ? = 'This website uses cookies to ensure you get the best experience on our website.';
 
-  dismiss? = 'Got it!';
+  dismiss ? = 'Got it!';
 
-  allow? = 'Allow cookies';
+  allow ? = 'Allow cookies';
 
-  deny? = 'Decline';
+  deny ? = 'Decline';
 
-  link? = 'Learn more';
+  link ? = 'Learn more';
 
-  href? = 'http://cookiesandyou.com';
+  href ? = 'https://cookiesandyou.com';
 
-  close? = '&#x274c;';
+  close ? = '&#x274c;';
+
+  policy ? = 'Cookie Policy';
+
+  target ? = '_blank';
+
+  [key: string]: string | undefined;
 }
