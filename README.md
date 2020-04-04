@@ -38,11 +38,11 @@ npm install --save ngx-cookieconsent
 To do so, edit your `angular-cli.json` as such:
 ```
       "scripts": [
-        "../node_modules/cookieconsent/build/cookieconsent.min.js"
+        "node_modules/cookieconsent/build/cookieconsent.min.js"
       ],
 
       "styles": [
-        "../node_modules/cookieconsent/build/cookieconsent.min.css"
+        "node_modules/cookieconsent/build/cookieconsent.min.css"
       ],
 
 ```
@@ -131,7 +131,7 @@ Here is how it works:
 ```ts
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgcCookieConsentService } from 'ngx-cookieconsent';
-import { Subscription }   from 'rxjs/Subscription';
+import { Subscription }   from 'rxjs';
 
 @Component({
   selector: 'app-root',
