@@ -340,9 +340,9 @@ export class AppModule {
 
 ## Credits
 
-`ngx-cookieconsent` is built upon [Cookie Consent](https://cookieconsent.insites.com/), created by [Insites](https://insites.com)
+`ngx-cookieconsent` is built upon [Cookie Consent](https://www.osano.com/cookieconsent/), by [Osano](https://osano.com)
 
 ## License
 
-Copyright (c) 2019 Tine Kondo. Licensed under the MIT License (MIT)
+Copyright (c) 2020 Tine Kondo. Licensed under the MIT License (MIT)
 
