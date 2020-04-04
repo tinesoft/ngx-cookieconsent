@@ -320,6 +320,7 @@ gulp.task('rollup-bundle', (cb) => {
 
       // Rxjs dependencies
       'rxjs': 'rxjs',
+      "rxjs/operators": "rxjs.operators",
 
       // ATTENTION:
       // Add any other dependency or peer dependency of your library here
