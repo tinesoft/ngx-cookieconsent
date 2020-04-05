@@ -5,6 +5,9 @@
   import { environment } from './environments/environment';
   
   import { hmrBootstrap } from './hmr';
+
+  //workaround for https://github.com/tinesoft/ngx-cookieconsent/issues/69
+  import 'cookieconsent';
   
   if (environment.production) {
     enableProdMode();
