@@ -165,14 +165,14 @@ export class NgcCookieConsentConfig {
    * - using RegExp   : /\/page_[\d]+\.html/    (matched '/page_1.html' and '/page_2.html' etc)
    *
    */
-  whitelistPage?: string[] = [];
+  whitelistPage?: (string | RegExp)[] = [];
   /**
    * Simple blacklist for pages. specify page by:
    * - using a string : '/index.html'           (matches '/index.html' exactly) OR
    * - using RegExp   : /\/page_[\d]+\.html/    (matched '/page_1.html' and '/page_2.html' etc)
    *
    */
-  blacklistPage?: string[] = [];
+  blacklistPage?: (string | RegExp)[] = [];
 
   /**
    * If this is defined, then it is used as the inner html instead of layout. This allows for ultimate customisation.
