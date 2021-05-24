@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-content-wrapper',
+  selector: 'ngc-demo-content-wrapper',
   templateUrl: './content-wrapper.component.html',
   styleUrls: ['./content-wrapper.component.scss']
 })

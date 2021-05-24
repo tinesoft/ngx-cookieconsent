@@ -3,7 +3,7 @@ import { Title }     from '@angular/platform-browser';
 import sdk from '@stackblitz/sdk';
 
 @Component({
-  selector: 'app-home',
+  selector: 'ngc-demo-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })

@@ -7,7 +7,7 @@ import { TransferHttpCacheModule } from '@nguniversal/common';
 
 import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsent';
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from './ngc-demo-routing.module';
 import { AppSharedModule } from './shared/shared.module';
 import { AppComponent } from './app.component';
 import { environment } from './../environments/environment';
