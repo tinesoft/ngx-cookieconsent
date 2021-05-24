@@ -1,0 +1,237 @@
+.editor {
+  background-color: #f5f5f5;
+  color: #555555;
+  .gutter {
+    background-color: #f5f5f5;
+    color: #555555;
+  }
+  .invisible-character, .indent-guide {
+    color: rgba(85, 85, 85, 0.2);
+  }
+  .wrap-guide {
+    background-color: rgba(85, 85, 85, 0.2);
+  }
+  .gutter {
+    color: #555555;
+    background: #ffffff;
+    .line-number {
+      &.folded, &:after {
+        color: #e87b00;
+      }
+    }
+  }
+  .fold-marker:after {
+    color: #e87b00;
+  }
+  .invisible {
+    color: #555;
+  }
+  .selection .region {
+    background-color: #e1e1e1;
+  }
+  &.is-focused {
+    .cursor {
+      border-color: #000000;
+    }
+    .selection .region {
+      background-color: #afc4da;
+    }
+    .line-number.cursor-line-no-selection, .line.cursor-line {
+      background-color: rgba(255, 255, 134, 0.34);
+    }
+  }
+  .comment {
+    color: #999988;
+    font-style: italic;
+  }
+  .string {
+    color: #D14;
+  }
+  .source .string {
+    .source, .meta.embedded.line {
+      color: #5A5A5A;
+    }
+    .punctuation.section.embedded {
+      color: #920B2D;
+      .source {
+        color: #920B2D;
+      }
+    }
+  }
+  .constant {
+    &.numeric {
+      color: #D14;
+    }
+    &.language, &.character, &.other {
+      color: #606aa1;
+    }
+    &.symbol {
+      color: #990073;
+    }
+    &.numeric.line-number.find-in-files .match {
+      color: rgba(143, 190, 0, 0.63);
+    }
+  }
+  .variable {
+    color: #008080;
+    &.parameter {
+      color: #606aa1;
+    }
+  }
+  .keyword {
+    color: #222;
+    font-weight: bold;
+    &.unit {
+      color: #445588;
+    }
+    &.special-method {
+      color: #0086B3;
+    }
+  }
+  .storage {
+    color: #222;
+    &.type {
+      color: #222;
+    }
+  }
+  .entity {
+    &.name.class, &.other.inherited-class {
+      text-decoration: underline;
+      color: #606aa1;
+    }
+    &.name {
+      &.function {
+        color: #900;
+      }
+      &.tag {
+        color: #008080;
+      }
+    }
+    &.other.attribute-name {
+      color: #458;
+      font-weight: bold;
+    }
+    &.name.filename.find-in-files {
+      color: #E6DB74;
+    }
+  }
+  .support {
+    &.constant, &.function, &.type {
+      color: #458;
+    }
+    &.class {
+      color: #008080;
+    }
+  }
+  .invalid {
+    color: #F8F8F0;
+    background-color: #00A8C6;
+    &.deprecated {
+      color: #F8F8F0;
+      background-color: #8FBE00;
+    }
+  }
+  .meta {
+    &.structure.dictionary {
+      &.json > .string.quoted.double.json {
+        color: #000080;
+        .punctuation.string {
+          color: #000080;
+        }
+      }
+      &.value.json > .string.quoted.double.json {
+        color: #d14;
+      }
+    }
+    &.diff {
+      color: #75715E;
+      &.header {
+        color: #75715E;
+      }
+    }
+  }
+  .css {
+    &.support.property-name {
+      font-weight: bold;
+      color: #333;
+    }
+    &.constant {
+      color: #099;
+    }
+  }
+  .source.gfm {
+    color: #444;
+  }
+  .gfm {
+    .markup.heading {
+      color: #111;
+    }
+    .link, .variable.list {
+      color: #888;
+    }
+  }
+  .markdown {
+    .paragraph {
+      color: #444;
+    }
+    .heading {
+      color: #111;
+    }
+    .link {
+      color: #888;
+      .string {
+        color: #888;
+      }
+    }
+  }
+  .search-results .marker {
+    .region {
+      background-color: transparent;
+      border: 1px solid #999999;
+    }
+    &.current-result .region {
+      border: 1px solid #000000;
+    }
+  }
+}
+
+.bracket-matcher {
+  background-color: #C9C9C9;
+  opacity: .7;
+  border-bottom: 0 none;
+}
+
+strong.code {
+  font-family: Consolas, "Liberation Mono", Menlo, Monaco, Courier, monospace;
+}
+
+blockquote {
+  padding: 0 15px;
+  color: #555;
+  border-left: 4px solid #ccc;
+}
+
+code {
+  font-family: Consolas, "Liberation Mono", Menlo, Monaco, Courier, monospace;
+  background-color: #f5f5f5;
+}
+
+pre {
+  overflow-x: auto;
+  width: 100%;
+  &.editor {
+    display: inline-block;
+    padding: 8px;
+    border-radius: 2px;
+  }
+  code {
+    display: inline-block;
+    padding: 8px;
+    border-radius: 2px;
+    margin: 0 0 15px 0;
+  }
+}
+
+.highlight {
+  margin: 0 0 15px 0;
+}

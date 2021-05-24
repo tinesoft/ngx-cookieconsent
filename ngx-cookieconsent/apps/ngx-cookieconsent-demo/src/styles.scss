@@ -1,0 +1,40 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import '_variables';
+@import 'variables';
+@import 'highlight';
+@import '~bootstrap/scss/bootstrap';
+@import '~font-awesome/scss/font-awesome';
+@import '~cookieconsent/build/cookieconsent.min';
+
+
+.jumbotron {
+    //margin-top: 3.4rem;
+    margin-bottom: 0rem;
+    h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1.4rem;
+    }
+    p {
+        font-size: 1.2rem;
+    }
+
+    .btn{
+        margin: .5rem;
+    }
+
+}
+
+@include media-breakpoint-up(sm) {
+    .jumbotron {
+       // margin-top: 3.4rem;
+        margin-bottom: 0rem;
+        h1 {
+            font-size: 3.6rem;
+            margin-bottom: 1.8rem;
+        }
+        p {
+            font-size: 1.4rem;
+        }
+    }
+}
