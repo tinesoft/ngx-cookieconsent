@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({
-  selector: 'ngx-cookieconsent-root',
+  selector: 'ngc-demo-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })

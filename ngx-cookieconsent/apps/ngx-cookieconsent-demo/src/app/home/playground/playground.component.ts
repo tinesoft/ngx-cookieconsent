@@ -5,7 +5,7 @@ import { NgcCookieConsentService, NgcCookieConsentConfig, NgcCookiePosition, Ngc
 import { environment } from './../../../environments/environment';
 
 @Component({
-  selector: 'app-playground',
+  selector: 'ngc-demo-playground',
   templateUrl: './playground.component.html',
   styleUrls: ['./playground.component.scss']
 })

@@ -36,7 +36,7 @@
       "projectType": "application",
       "root": "apps/ngx-cookieconsent-demo",
       "sourceRoot": "apps/ngx-cookieconsent-demo/src",
-      "prefix": "ngx-cookieconsent",
+      "prefix": "ngc-demo",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",

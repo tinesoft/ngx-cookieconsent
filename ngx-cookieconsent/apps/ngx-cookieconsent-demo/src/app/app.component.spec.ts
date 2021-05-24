@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { GettingStartedComponent } from './getting-started/getting-started.component';
 import { AppSharedModule } from './shared/shared.module';
-import { AppRoutingModule } from './app-routing';
+import { AppRoutingModule } from './ngc-demo-routing';
 import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsent';
 
 const cookieConfig:NgcCookieConsentConfig = {

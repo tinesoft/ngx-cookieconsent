@@ -3,7 +3,7 @@ import { Title }     from '@angular/platform-browser';
 
 
 @Component({
-  selector: 'app-getting-started',
+  selector: 'ngc-demo-getting-started',
   templateUrl: './getting-started.component.html',
   styleUrls: ['./getting-started.component.scss']
 })
