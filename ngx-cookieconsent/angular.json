@@ -97,7 +97,10 @@
               "browserTarget": "ngx-cookieconsent-demo:build:development"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "development",
+          "options": {
+            "proxyConfig": "apps/ngx-cookieconsent-demo/src/proxy.conf.json"
+          }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -243,6 +246,18 @@
               "libs/ngx-cookieconsent/src/**/*.ts",
               "libs/ngx-cookieconsent/src/**/*.html"
             ]
+          }
+        },
+        "compodoc": {
+          "builder": "@twittwer/compodoc:compodoc",
+          "options": {
+            "tsConfig": "libs/ngx-cookieconsent/tsconfig.lib.json",
+            "outputPath": "dist/compodoc/ngx-cookieconsent"
+          },
+          "configurations": {
+            "json": {
+              "exportFormat": "json"
+            }
           }
         }
       }

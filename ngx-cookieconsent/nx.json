@@ -14,7 +14,13 @@
     "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": ["build", "lint", "test", "e2e"],
+        "cacheableOperations": [
+          "build",
+          "lint",
+          "test",
+          "e2e",
+          "compodoc"
+        ],
         "accessToken": "M2U1ZTk5OTctN2MwMC00MGM4LWFjYjgtMGZiNTNmYWVhYzY0fHJlYWQtd3JpdGU=",
         "canTrackAnalytics": false,
         "showUsageWarnings": true
@@ -27,7 +33,9 @@
     },
     "ngx-cookieconsent-demo-e2e": {
       "tags": [],
-      "implicitDependencies": ["ngx-cookieconsent-demo"]
+      "implicitDependencies": [
+        "ngx-cookieconsent-demo"
+      ]
     },
     "ngx-cookieconsent": {
       "tags": []
