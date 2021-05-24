@@ -1,0 +1,251 @@
+{
+  "version": 1,
+  "cli": {
+    "defaultCollection": "@nrwl/angular"
+  },
+  "defaultProject": "ngx-cookieconsent-demo",
+  "schematics": {
+    "@nrwl/angular": {
+      "application": {
+        "linter": "eslint"
+      },
+      "library": {
+        "linter": "eslint"
+      },
+      "storybook-configuration": {
+        "linter": "eslint"
+      }
+    },
+    "@nrwl/angular:application": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest",
+      "e2eTestRunner": "cypress"
+    },
+    "@nrwl/angular:library": {
+      "style": "scss",
+      "linter": "eslint",
+      "unitTestRunner": "jest"
+    },
+    "@nrwl/angular:component": {
+      "style": "scss"
+    }
+  },
+  "projects": {
+    "ngx-cookieconsent-demo": {
+      "projectType": "application",
+      "root": "apps/ngx-cookieconsent-demo",
+      "sourceRoot": "apps/ngx-cookieconsent-demo/src",
+      "prefix": "ngx-cookieconsent",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/ngx-cookieconsent-demo/browser",
+            "index": "apps/ngx-cookieconsent-demo/src/index.html",
+            "main": "apps/ngx-cookieconsent-demo/src/main.ts",
+            "polyfills": "apps/ngx-cookieconsent-demo/src/polyfills.ts",
+            "tsConfig": "apps/ngx-cookieconsent-demo/tsconfig.app.json",
+            "inlineStyleLanguage": "scss",
+            "assets": [
+              "apps/ngx-cookieconsent-demo/src/favicon.ico",
+              "apps/ngx-cookieconsent-demo/src/assets"
+            ],
+            "styles": ["apps/ngx-cookieconsent-demo/src/styles.scss"],
+            "scripts": ["node_modules/cookieconsent/build/cookieconsent.min.js"]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "2kb",
+                  "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "apps/ngx-cookieconsent-demo/src/environments/environment.ts",
+                  "with": "apps/ngx-cookieconsent-demo/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "configurations": {
+            "production": {
+              "browserTarget": "ngx-cookieconsent-demo:build:production"
+            },
+            "development": {
+              "browserTarget": "ngx-cookieconsent-demo:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ngx-cookieconsent-demo:build"
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/ngx-cookieconsent-demo/src/**/*.ts",
+              "apps/ngx-cookieconsent-demo/src/**/*.html"
+            ]
+          }
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/ngx-cookieconsent-demo"],
+          "options": {
+            "jestConfig": "apps/ngx-cookieconsent-demo/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "server": {
+          "builder": "@angular-devkit/build-angular:server",
+          "options": {
+            "outputPath": "dist/ngx-cookieconsent-demo/server",
+            "main": "apps/ngx-cookieconsent-demo/server.ts",
+            "tsConfig": "apps/ngx-cookieconsent-demo/tsconfig.server.json",
+            "inlineStyleLanguage": "scss"
+          },
+          "configurations": {
+            "production": {
+              "outputHashing": "media",
+              "fileReplacements": [
+                {
+                  "replace": "apps/ngx-cookieconsent-demo/src/environments/environment.ts",
+                  "with": "apps/ngx-cookieconsent-demo/src/environments/environment.prod.ts"
+                }
+              ]
+            },
+            "development": {
+              "optimization": false,
+              "sourceMap": true,
+              "extractLicenses": false
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "serve-ssr": {
+          "builder": "@nguniversal/builders:ssr-dev-server",
+          "configurations": {
+            "development": {
+              "browserTarget": "ngx-cookieconsent-demo:build:development",
+              "serverTarget": "ngx-cookieconsent-demo:server:development"
+            },
+            "production": {
+              "browserTarget": "ngx-cookieconsent-demo:build:production",
+              "serverTarget": "ngx-cookieconsent-demo:server:production"
+            }
+          },
+          "defaultConfiguration": "development"
+        },
+        "prerender": {
+          "builder": "@nguniversal/builders:prerender",
+          "options": {
+            "routes": [
+              "/"
+            ]
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ngx-cookieconsent-demo:build:production"
+            },
+            "development": {
+              "browserTarget": "ngx-cookieconsent-demo:build:development"
+            }
+          },
+          "defaultConfiguration": "production"
+        }
+      }
+    },
+    "ngx-cookieconsent-demo-e2e": {
+      "root": "apps/ngx-cookieconsent-demo-e2e",
+      "sourceRoot": "apps/ngx-cookieconsent-demo-e2e/src",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/ngx-cookieconsent-demo-e2e/cypress.json",
+            "tsConfig": "apps/ngx-cookieconsent-demo-e2e/tsconfig.e2e.json",
+            "devServerTarget": "ngx-cookieconsent-demo:serve:development"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ngx-cookieconsent-demo:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/ngx-cookieconsent-demo-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "ngx-cookieconsent": {
+      "projectType": "library",
+      "root": "libs/ngx-cookieconsent",
+      "sourceRoot": "libs/ngx-cookieconsent/src",
+      "prefix": "ngx-cookieconsent",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "options": {
+            "project": "libs/ngx-cookieconsent/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/ngx-cookieconsent/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/ngx-cookieconsent/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/ngx-cookieconsent"],
+          "options": {
+            "jestConfig": "libs/ngx-cookieconsent/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/ngx-cookieconsent/src/**/*.ts",
+              "libs/ngx-cookieconsent/src/**/*.html"
+            ]
+          }
+        }
+      }
+    }
+  }
+}
