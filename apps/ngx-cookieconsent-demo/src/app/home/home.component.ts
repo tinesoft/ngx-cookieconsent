@@ -16,6 +16,6 @@ export class HomeComponent implements OnInit {
   }
 
   editOnStackBlitz() {
-    sdk.openGithubProject('tinesoft/ngx-cookieconsent/tree/master/demo');
+    sdk.openGithubProject('tinesoft/ngx-cookieconsent/tree/develop/apps/ngx-cookieconsent-demo');
   }
 }
