@@ -1,6 +1,6 @@
 {
   "name": "ngx-cookieconsent",
-  "version": "0.0.0",
+  "version": "0.0.0-development",
   "license": "MIT",
   "scripts": {
     "ng": "nx",
@@ -29,7 +29,9 @@
     "dev:ssr": "ng run ngx-cookieconsent-demo:serve-ssr",
     "serve:ssr": "node dist/ngx-cookieconsent-demo/server/main.js",
     "build:ssr": "ng build && ng run ngx-cookieconsent-demo:server",
-    "prerender": "ng run ngx-cookieconsent-demo:prerender"
+    "prerender": "ng run ngx-cookieconsent-demo:prerender",
+    "semantic-release": "nx affected --target release --all",
+    "prepare": "husky install"
   },
   "private": true,
   "dependencies": {
@@ -43,6 +45,8 @@
     "@angular/platform-browser-dynamic": "12.0.0",
     "@angular/platform-server": "12.0.0",
     "@angular/router": "12.0.0",
+    "@commitlint/cli": "^12.1.4",
+    "@commitlint/config-conventional": "^12.1.4",
     "@ng-bootstrap/ng-bootstrap": "^9.1.1",
     "@nguniversal/express-engine": "^12.0.0",
     "@ngx-translate/core": "^13.0.0",
@@ -77,6 +81,9 @@
     "@nrwl/nx-cloud": "latest",
     "@nrwl/tao": "12.3.4",
     "@nrwl/workspace": "12.3.4",
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/exec": "^5.0.0",
+    "@semantic-release/git": "^9.0.0",
     "@twittwer/compodoc": "^1.5.3",
     "@types/express": "^4.17.0",
     "@types/jest": "26.0.8",
@@ -88,12 +95,18 @@
     "eslint": "7.22.0",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-cypress": "^2.10.3",
+    "husky": "^6.0.0",
     "jest": "26.2.2",
     "jest-preset-angular": "8.4.0",
     "ng-packagr": "^12.0.0",
     "prettier": "2.2.1",
+    "semantic-release": "^17.4.3",
     "ts-jest": "26.5.5",
     "ts-node": "~9.1.1",
     "typescript": "~4.2.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tinesoft/ngx-cookieconsent.git"
   }
 }
