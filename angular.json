@@ -259,6 +259,13 @@
               "exportFormat": "json"
             }
           }
+        },
+        "release": {
+          "builder": "@nrwl/workspace:run-commands",
+          "options": {
+            "command": "npx semantic-release",
+            "cwd": "libs/ngx-cookieconsent"
+          }
         }
       }
     }
