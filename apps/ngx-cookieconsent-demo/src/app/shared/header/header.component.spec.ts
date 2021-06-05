@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
@@ -14,10 +14,10 @@ describe('HeaderComponent', () => {
   let linkDes: DebugElement[];
   let links: RouterLinkStubDirective[];
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [
-        NgbCollapseModule.forRoot()
+        NgbCollapseModule
       ],
       declarations: [
         HeaderComponent,
@@ -48,16 +48,16 @@ describe('HeaderComponent', () => {
   });
 
   it('can get RouterLinks from template', () => {
-    expect(links.length).toBe(2, 'should have 2 links');
-    expect(links[0].linkParams).toBe('/home', '1st link should go to Home');
-    expect(links[1].linkParams).toBe('/getting-started', '2nd link should go to GettingStarted');
+    expect(links.length).toBe(2);
+    expect(links[0].linkParams).toBe('/home');
+    expect(links[1].linkParams).toBe('/getting-started');
   });
 
   it('can click Home link in template', () => {
     const homeLinkDe = linkDes[0];
     const homeLink = links[0];
 
-    expect(homeLink.navigatedTo).toBeNull('link should not have navigated yet');
+    expect(homeLink.navigatedTo).toBeNull();
 
     homeLinkDe.triggerEventHandler('click', null);
     fixture.detectChanges();
@@ -69,7 +69,7 @@ describe('HeaderComponent', () => {
     const gettingStartedLinkDe = linkDes[1];
     const gettingStartedLink = links[1];
 
-    expect(gettingStartedLink.navigatedTo).toBeNull('link should not have navigated yet');
+    expect(gettingStartedLink.navigatedTo).toBeNull();
 
     gettingStartedLinkDe.triggerEventHandler('click', null);
     fixture.detectChanges();

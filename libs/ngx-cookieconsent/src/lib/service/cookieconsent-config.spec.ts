@@ -64,7 +64,7 @@ describe('cookieconsent-config', () => {
 
         expect(config.cookie.name).toEqual('cookieconsent_status');
         expect(config.cookie.path).toEqual('/');
-        expect(config.cookie.domain).toBeUndefined();
+        expect(config.cookie.domain).toEqual('');
         expect(config.cookie.expiryDays).toEqual(365);
         expect(config.cookie.secure).toEqual(false);
     });
@@ -109,16 +109,16 @@ describe('cookieconsent-config', () => {
 
         config.palette = new NgcPaletteOptions();
 
-        expect(config.palette.popup.background).toEqual('#000000');
-        expect(config.palette.popup.text).toEqual('#fff');
-        expect(config.palette.popup.link).toEqual('#fff');
+        expect(config.palette.popup?.background).toEqual('#000000');
+        expect(config.palette.popup?.text).toEqual('#fff');
+        expect(config.palette.popup?.link).toEqual('#fff');
 
-        expect(config.palette.button.background).toEqual('transparent');
-        expect(config.palette.button.border).toEqual('#f8e71c');
-        expect(config.palette.button.text).toEqual('#f8e71c');
+        expect(config.palette.button?.background).toEqual('transparent');
+        expect(config.palette.button?.border).toEqual('#f8e71c');
+        expect(config.palette.button?.text).toEqual('#f8e71c');
 
-        expect(config.palette.highlight.background).toEqual('#f8e71c');
-        expect(config.palette.highlight.border).toEqual('#f8e71c');
-        expect(config.palette.highlight.text).toEqual('#000000');
+        expect(config.palette.highlight?.background).toEqual('#f8e71c');
+        expect(config.palette.highlight?.border).toEqual('#f8e71c');
+        expect(config.palette.highlight?.text).toEqual('#000000');
     });
 });

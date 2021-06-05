@@ -7,8 +7,10 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { GettingStartedComponent } from './getting-started/getting-started.component';
 import { AppSharedModule } from './shared/shared.module';
-import { AppRoutingModule } from './ngc-demo-routing';
+import { AppRoutingModule } from './app-routing.module';
 import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsent';
+import { TranslateService } from '@ngx-translate/core';
+import { MockModule, MockProvider} from 'ng-mocks';
 
 const cookieConfig:NgcCookieConsentConfig = {
   cookie: {
@@ -26,13 +28,15 @@ describe('App: ngx-cookieconsent', () => {
         AppComponent,
         GettingStartedComponent,
         HomeComponent],
-      providers: [{ provide: APP_BASE_HREF, useValue: '/' }]
+      providers: [
+        MockProvider(TranslateService),
+        { provide: APP_BASE_HREF, useValue: '/' }]
     });
   });
 
   it('should create the app', async(() => {
-    let fixture = TestBed.createComponent(AppComponent);
-    let app = fixture.debugElement.componentInstance;
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
 
