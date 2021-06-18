@@ -214,7 +214,7 @@
       "projectType": "library",
       "root": "libs/ngx-cookieconsent",
       "sourceRoot": "libs/ngx-cookieconsent/src",
-      "prefix": "ngx-cookieconsent",
+      "prefix": "ngc",
       "architect": {
         "build": {
           "builder": "@nrwl/angular:package",
