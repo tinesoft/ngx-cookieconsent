@@ -76,11 +76,11 @@ describe('cookieconsent-config', () => {
 
         expect(config.elements.header).toEqual( '<span class="cc-header">{{header}}</span>&nbsp;');
         expect(config.elements.message).toEqual( '<span id="cookieconsent:desc" class="cc-message">{{message}}</span>');
-        expect(config.elements.messagelink).toEqual( '<span id="cookieconsent:desc" class="cc-message">{{message}} <a aria-label="learn more about cookies" tabindex="0" class="cc-link" href="{{href}}" target="_blank">{{link}}</a></span>');
+        expect(config.elements.messagelink).toEqual( '<span id="cookieconsent:desc" class="cc-message">{{message}} <a aria-label="learn more about cookies" tabindex="0" class="cc-link" href="{{href}}" target="_blank" rel="noopener">{{link}}</a></span>');
         expect(config.elements.dismiss).toEqual( '<a aria-label="dismiss cookie message" tabindex="0" class="cc-btn cc-dismiss">{{dismiss}}</a>');
         expect(config.elements.allow).toEqual( '<a aria-label="allow cookies" tabindex="0" class="cc-btn cc-allow">{{allow}}</a>');
         expect(config.elements.deny).toEqual( '<a aria-label="deny cookies" tabindex="0" class="cc-btn cc-deny">{{deny}}</a>');
-        expect(config.elements.link).toEqual( '<a aria-label="learn more about cookies" tabindex="0" class="cc-link" href="{{href}}" target="_blank">{{link}}</a>');
+        expect(config.elements.link).toEqual( '<a aria-label="learn more about cookies" tabindex="0" class="cc-link" href="{{href}}" target="_blank" rel="noopener">{{link}}</a>');
         expect(config.elements.close).toEqual( '<span aria-label="dismiss cookie message" tabindex="0" class="cc-close">{{close}}</span>');
         expect(config.elements.compliance).toBeUndefined();
     });
