@@ -8,7 +8,7 @@ export class NgcHTMLElements {
 
   message ? = '<span id="cookieconsent:desc" class="cc-message">{{message}}</span>';
 
-  messagelink ? = '<span id="cookieconsent:desc" class="cc-message">{{message}} <a aria-label="learn more about cookies" tabindex="0" class="cc-link" href="{{href}}" target="_blank">{{link}}</a></span>';
+  messagelink ? = '<span id="cookieconsent:desc" class="cc-message">{{message}} <a aria-label="learn more about cookies" tabindex="0" class="cc-link" href="{{href}}" target="_blank" rel="noopener">{{link}}</a></span>';
 
   dismiss ? = '<a aria-label="dismiss cookie message" tabindex="0" class="cc-btn cc-dismiss">{{dismiss}}</a>';
 
@@ -16,7 +16,7 @@ export class NgcHTMLElements {
 
   deny ? = '<a aria-label="deny cookies" tabindex="0" class="cc-btn cc-deny">{{deny}}</a>';
 
-  link ? = '<a aria-label="learn more about cookies" tabindex="0" class="cc-link" href="{{href}}" target="_blank">{{link}}</a>';
+  link ? = '<a aria-label="learn more about cookies" tabindex="0" class="cc-link" href="{{href}}" target="_blank" rel="noopener">{{link}}</a>';
 
   close ? = '<span aria-label="dismiss cookie message" tabindex="0" class="cc-close">{{close}}</span>';
 
