@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core
 import { Router, NavigationEnd, Event } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 
-import { NgcCookieConsentService, NgcInitializeEvent, NgcInitializationErrorEvent, NgcStatusChangeEvent, NgcNoCookieLawEvent } from 'ngx-cookieconsent';
+import { NgcCookieConsentService, NgcInitializingEvent, NgcInitializationErrorEvent, NgcStatusChangeEvent, NgcNoCookieLawEvent } from 'ngx-cookieconsent';
 
 import { filter } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
@@ -48,10 +48,10 @@ export class AppComponent implements OnInit, OnDestroy{
         console.log('popuClose');
       });
 
-    this.initializeSubscription = this.ccService.initialize$.subscribe(
-      (event: NgcInitializeEvent) => {
+    this.initializeSubscription = this.ccService.initializing$.subscribe(
+      (event: NgcInitializingEvent) => {
         // the cookieconsent is initilializing... Not yet safe to call methods like `NgcCookieConsentService.hasAnswered()`
-        console.log(`initialize: ${JSON.stringify(event)}`);
+        console.log(`initializing: ${JSON.stringify(event)}`);
       });
     
     this.initializedSubscription = this.ccService.initialized$.subscribe(

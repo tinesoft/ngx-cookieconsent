@@ -4,7 +4,7 @@ import { NgcCookieConsentModule } from './../ngx-cookieconsent.module';
 import { NgcCookieConsentService } from './cookieconsent.service';
 import { NgcCookieConsentConfig } from './cookieconsent-config';
 import { WindowService } from './window.service';
-import { NgcInitializeEvent } from './../event/initialize.event';
+import { NgcInitializingEvent } from './../event/initializing.event';
 import { NgcStatusChangeEvent } from './../event/status-change.event';
 import { NgcNoCookieLawEvent } from './../event/no-cookie-law.event';
 
@@ -177,7 +177,7 @@ describe('Service: NgcCookieConsent', () => {
   });
 
 
-  it('should emit initialize$ event when calling onInitialise() callback', () => {
+  it('should emit initializing$ event when calling onInitialise() callback', () => {
     TestBed.configureTestingModule({
       imports: [NgcCookieConsentModule.forRoot(myConfig)]
     });
@@ -190,7 +190,7 @@ describe('Service: NgcCookieConsent', () => {
       '1': 'allow',
       '2': 'deny'
     };
-    service.initialize$.subscribe((event: NgcInitializeEvent) => {
+    service.initializing$.subscribe((event: NgcInitializingEvent) => {
       calls++;
       expect(event).toEqual({ status: `${statusCallParams[calls]}` });
     });
