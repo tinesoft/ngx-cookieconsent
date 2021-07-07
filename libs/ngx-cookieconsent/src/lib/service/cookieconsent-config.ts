@@ -204,11 +204,32 @@ export class NgcCookieConsentConfig {
   ignoreClicksFrom?: string[];
 
   // these callback hooks are called at certain points in the program execution
+  
+  /**
+   * This is called when the popup is opened. It can be used to trigger an animation, or to attach extra handlers, etc.
+   */
   onPopupOpen?: () => void;
+
+  /**
+   * This is called when the popup is closed. It can be used to clean up commands from onPopupOpen.
+   */
   onPopupClose?: () => void;
+
+  /**
+   * This is called on start up, with the current chosen compliance. It can be used to tell you if the user has already consented or not as soon as you initialise the tool.
+   */
   onInitialise?: (status: 'allow' | 'deny' | 'dismiss') => void;
+
+  /**
+   * This is called any time the status is changed. This can be used to react to changes that are made to the compliance level. You can use the popup instance functions from within these callbacks too. I.E. `this.hasAnswered()` and `this.hasConsented()`.
+   */
   onStatusChange?: (status: 'allow' | 'deny' | 'dismiss', chosenBefore: boolean) => void;
+
+  /**
+   * This is called when the user clicks the `revoke` button. This means that their current choice has been invalidated.
+   */
   onRevokeChoice?: () => void;
+  
   onNoCookieLaw?: (countryCode: string, country: string) => void;
 
 }
