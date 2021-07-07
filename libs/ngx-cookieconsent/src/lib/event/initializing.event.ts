@@ -1,7 +1,7 @@
 /**
  * Event fired when Cookie Consent initializes.
  */
-export interface NgcInitializeEvent {
+export interface NgcInitializingEvent {
   /**
    * The status of cookie consent
    */

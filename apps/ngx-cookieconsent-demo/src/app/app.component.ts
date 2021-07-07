@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core
 import { Router, NavigationEnd, Event } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 
-import { NgcCookieConsentService, NgcInitializeEvent, NgcInitializationErrorEvent, NgcStatusChangeEvent, NgcNoCookieLawEvent } from 'ngx-cookieconsent';
+import { NgcCookieConsentService, NgcInitializingEvent, NgcInitializationErrorEvent, NgcStatusChangeEvent, NgcNoCookieLawEvent } from 'ngx-cookieconsent';
 
 import { filter } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
@@ -17,7 +17,7 @@ export class AppComponent implements OnInit, OnDestroy{
   //keep refs to subscriptions to be able to unsubscribe later
   private popupOpenSubscription!: Subscription;
   private popupCloseSubscription!: Subscription;
-  private initializeSubscription!: Subscription;
+  private initializingSubscription!: Subscription;
   private initializedSubscription!: Subscription;
   private initializationErrorSubscription!: Subscription;
   private statusChangeSubscription!: Subscription;
@@ -48,10 +48,10 @@ export class AppComponent implements OnInit, OnDestroy{
         console.log('popuClose');
       });
 
-    this.initializeSubscription = this.ccService.initialize$.subscribe(
-      (event: NgcInitializeEvent) => {
+    this.initializingSubscription = this.ccService.initializing$.subscribe(
+      (event: NgcInitializingEvent) => {
         // the cookieconsent is initilializing... Not yet safe to call methods like `NgcCookieConsentService.hasAnswered()`
-        console.log(`initialize: ${JSON.stringify(event)}`);
+        console.log(`initializing: ${JSON.stringify(event)}`);
       });
     
     this.initializedSubscription = this.ccService.initialized$.subscribe(
@@ -95,7 +95,9 @@ export class AppComponent implements OnInit, OnDestroy{
     // unsubscribe to cookieconsent observables to prevent memory leaks
     this.popupOpenSubscription.unsubscribe();
     this.popupCloseSubscription.unsubscribe();
-    this.initializeSubscription.unsubscribe();
+    this.initializingSubscription.unsubscribe();
+    this.initializedSubscription.unsubscribe();
+    this.initializationErrorSubscription.unsubscribe();
     this.statusChangeSubscription.unsubscribe();
     this.revokeChoiceSubscription.unsubscribe();
     this.noCookieLawSubscription.unsubscribe();

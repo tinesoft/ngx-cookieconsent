@@ -4,7 +4,7 @@ import { Subject, Observable } from 'rxjs';
 import { NgcCookieConsentStatus } from '../model/common-interfaces';
 import { NgcStatusChangeEvent } from '../event/status-change.event';
 import { NgcNoCookieLawEvent } from '../event/no-cookie-law.event';
-import { NgcInitializeEvent } from '../event/initialize.event';
+import { NgcInitializingEvent } from '../event/initializing.event';
 import { NgcInitializationErrorEvent } from '../event';
 import { NgcCookieConsentConfig } from './cookieconsent-config';
 import { WindowService } from './window.service';
@@ -69,7 +69,7 @@ export class NgcCookieConsentService {
   // Observable  sources
   private popupOpenSource: Subject<void>;
   private popupCloseSource: Subject<void>;
-  private initializeSource: Subject<NgcInitializeEvent>;
+  private initializingSource: Subject<NgcInitializingEvent>;
   private initializedSource: Subject<void>;
   private initializationErrorSource: Subject<NgcInitializationErrorEvent>;
   private statusChangeSource: Subject<NgcStatusChangeEvent>;
@@ -87,7 +87,7 @@ export class NgcCookieConsentService {
   /**
    * Observable to subscribe to and get notified when Cookie Consent is initializing.
    */
-  initialize$: Observable<NgcInitializeEvent>;
+  initializing$: Observable<NgcInitializingEvent>;
   /**
    * Observable to subscribe to and get notified when Cookie Consent has been successfully initialized.
    */
@@ -113,7 +113,7 @@ export class NgcCookieConsentService {
     // Observable  sources
     this.popupOpenSource = new Subject<void>();
     this.popupCloseSource = new Subject<void>();
-    this.initializeSource = new Subject<NgcInitializeEvent>();
+    this.initializingSource = new Subject<NgcInitializingEvent>();
     this.initializedSource = new Subject<void>();
     this.initializationErrorSource = new Subject<NgcInitializationErrorEvent>();
     this.statusChangeSource = new Subject<NgcStatusChangeEvent>();
@@ -123,7 +123,7 @@ export class NgcCookieConsentService {
     // Observable  streams
     this.popupOpen$ = this.popupOpenSource.asObservable();
     this.popupClose$ = this.popupCloseSource.asObservable();
-    this.initialize$ = this.initializeSource.asObservable();
+    this.initializing$ = this.initializingSource.asObservable();
     this.initialized$ = this.initializedSource.asObservable();
     this.initializationError$ = this.initializationErrorSource.asObservable();
     this.statusChange$ = this.statusChangeSource.asObservable();
@@ -158,7 +158,7 @@ export class NgcCookieConsentService {
         () => this.popupCloseSource.next();
 
       this.config.onInitialise =
-        (status: 'allow' | 'deny' | 'dismiss') => this.initializeSource.next({ status: status });
+        (status: 'allow' | 'deny' | 'dismiss') => this.initializingSource.next({ status: status });
 
       this.config.onStatusChange =
         (status: 'allow' | 'deny' | 'dismiss', chosenBefore: boolean) => {
