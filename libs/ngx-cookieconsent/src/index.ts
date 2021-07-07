@@ -11,4 +11,4 @@ export {
     NgcCookiePosition, NgcCookieLayout, NgcCookieType, NgcCookieTheme, NgcCookieCompliance, NgcCookieOptions
 } from './lib/model/index';
 
-export { NgcInitializeEvent, NgcStatusChangeEvent, NgcNoCookieLawEvent } from './lib/event/index';
+export { NgcInitializeEvent, NgcInitializationErrorEvent, NgcStatusChangeEvent, NgcNoCookieLawEvent } from './lib/event/index';

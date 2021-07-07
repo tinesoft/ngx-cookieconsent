@@ -5,6 +5,7 @@ import { NgcCookieConsentStatus } from '../model/common-interfaces';
 import { NgcStatusChangeEvent } from '../event/status-change.event';
 import { NgcNoCookieLawEvent } from '../event/no-cookie-law.event';
 import { NgcInitializeEvent } from '../event/initialize.event';
+import { NgcInitializationErrorEvent } from '../event';
 import { NgcCookieConsentConfig } from './cookieconsent-config';
 import { WindowService } from './window.service';
 
@@ -16,7 +17,7 @@ export interface NgcCookieConsent {
   hasTransition: boolean;
   status: NgcCookieConsentStatus;
   getStatus(): NgcCookieConsentStatus;
-  initialise(config: NgcCookieConsentConfig, callback?: (popup: NgcCookieConsentPopup) => void): void;
+  initialise(config: NgcCookieConsentConfig, successCallback?: (popup: NgcCookieConsentPopup) => void, errorCallback?: (error: Error, popup: NgcCookieConsentPopup) => void): void;
 
 }
 
@@ -69,6 +70,8 @@ export class NgcCookieConsentService {
   private popupOpenSource: Subject<void>;
   private popupCloseSource: Subject<void>;
   private initializeSource: Subject<NgcInitializeEvent>;
+  private initializedSource: Subject<void>;
+  private initializationErrorSource: Subject<NgcInitializationErrorEvent>;
   private statusChangeSource: Subject<NgcStatusChangeEvent>;
   private revokeChoiceSource: Subject<void>;
   private noCookieLawSource: Subject<NgcNoCookieLawEvent>;
@@ -82,9 +85,17 @@ export class NgcCookieConsentService {
    */
   popupClose$: Observable<void>;
   /**
-   * Observable to subscribe to and get notified when Cookie Consent initializes.
+   * Observable to subscribe to and get notified when Cookie Consent is initializing.
    */
   initialize$: Observable<NgcInitializeEvent>;
+  /**
+   * Observable to subscribe to and get notified when Cookie Consent has been successfully initialized.
+   */
+  initialized$: Observable<void>;
+  /**
+   * Observable to subscribe to and get notified when Cookie Consent has failed to initialize.
+   */
+  initializationError$: Observable<NgcInitializationErrorEvent>;
   /**
   * Observable to subscribe to and get notified when Cookie Consent status changes.
   */
@@ -103,6 +114,8 @@ export class NgcCookieConsentService {
     this.popupOpenSource = new Subject<void>();
     this.popupCloseSource = new Subject<void>();
     this.initializeSource = new Subject<NgcInitializeEvent>();
+    this.initializedSource = new Subject<void>();
+    this.initializationErrorSource = new Subject<NgcInitializationErrorEvent>();
     this.statusChangeSource = new Subject<NgcStatusChangeEvent>();
     this.revokeChoiceSource = new Subject<void>();
     this.noCookieLawSource = new Subject<NgcNoCookieLawEvent>();
@@ -111,6 +124,8 @@ export class NgcCookieConsentService {
     this.popupOpen$ = this.popupOpenSource.asObservable();
     this.popupClose$ = this.popupCloseSource.asObservable();
     this.initialize$ = this.initializeSource.asObservable();
+    this.initialized$ = this.initializedSource.asObservable();
+    this.initializationError$ = this.initializationErrorSource.asObservable();
     this.statusChange$ = this.statusChangeSource.asObservable();
     this.revokeChoice$ = this.revokeChoiceSource.asObservable();
     this.noCookieLaw$ = this.noCookieLawSource.asObservable();
@@ -159,7 +174,15 @@ export class NgcCookieConsentService {
         };
 
       // Init the cookieconsent library with injected config
-      this.cookieconsent.initialise(this.config, (popup: NgcCookieConsentPopup) => this.popupInstance = popup);
+      this.cookieconsent.initialise(this.config,
+        (popup: NgcCookieConsentPopup) => {
+          this.popupInstance = popup;
+          this.initializedSource.next();//notify of successful initialization
+        },
+        (error: Error, popup: NgcCookieConsentPopup) => {
+          this.initializationErrorSource.next({error: error});//notify of failed initialization
+        }
+      );
     }
   }
 

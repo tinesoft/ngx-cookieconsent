@@ -2,12 +2,11 @@ import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core
 import { Router, NavigationEnd, Event } from '@angular/router';
 import { isPlatformBrowser } from '@angular/common';
 
-import { NgcCookieConsentService, NgcInitializeEvent, NgcStatusChangeEvent, NgcNoCookieLawEvent } from 'ngx-cookieconsent';
+import { NgcCookieConsentService, NgcInitializeEvent, NgcInitializationErrorEvent, NgcStatusChangeEvent, NgcNoCookieLawEvent } from 'ngx-cookieconsent';
 
 import { filter } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
-
 @Component({
   selector: 'ngc-demo-root',
   templateUrl: './app.component.html',
@@ -19,6 +18,8 @@ export class AppComponent implements OnInit, OnDestroy{
   private popupOpenSubscription!: Subscription;
   private popupCloseSubscription!: Subscription;
   private initializeSubscription!: Subscription;
+  private initializedSubscription!: Subscription;
+  private initializationErrorSubscription!: Subscription;
   private statusChangeSubscription!: Subscription;
   private revokeChoiceSubscription!: Subscription;
   private noCookieLawSubscription!: Subscription;
@@ -49,8 +50,21 @@ export class AppComponent implements OnInit, OnDestroy{
 
     this.initializeSubscription = this.ccService.initialize$.subscribe(
       (event: NgcInitializeEvent) => {
-        // you can use this.ccService.getConfig() to do stuff...
+        // the cookieconsent is initilializing... Not yet safe to call methods like `NgcCookieConsentService.hasAnswered()`
         console.log(`initialize: ${JSON.stringify(event)}`);
+      });
+    
+    this.initializedSubscription = this.ccService.initialized$.subscribe(
+      () => {
+        // the cookieconsent has been successfully initialized.
+        // It's now safe to use methods on NgcCookieConsentService that require it, like `hasAnswered()` for eg...
+        console.log(`initialized: ${JSON.stringify(event)}`);
+      });
+
+    this.initializationErrorSubscription = this.ccService.initializationError$.subscribe(
+      (event: NgcInitializationErrorEvent) => {
+        // the cookieconsent has failed to initialize... 
+        console.log(`initializationError: ${JSON.stringify(event.error?.message)}`);
       });
 
     this.statusChangeSubscription = this.ccService.statusChange$.subscribe(
