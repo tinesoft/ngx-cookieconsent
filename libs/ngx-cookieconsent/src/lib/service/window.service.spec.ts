@@ -1,12 +1,15 @@
 /* tslint:disable:no-unused-variable */
 
-import { TestBed, async, inject } from '@angular/core/testing';
+import { DOCUMENT } from '@angular/common';
+import { TestBed, inject } from '@angular/core/testing';
 import { WindowService } from './window.service';
+
+declare const document: Document
 
 describe('Service: Window, Angular Tests', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [WindowService]
+      providers: [{ provide: DOCUMENT, useValue: document}, WindowService]
     });
   });
 
@@ -17,14 +20,3 @@ describe('Service: Window, Angular Tests', () => {
   }));
 });
 
-describe('Service: Window, Isolated Tests', () => {
-
-  let service: WindowService;
-
-  beforeEach(() => { service = new WindowService(); });
-
-  it('nativeWindow should be defined and equaled to "window" object', () => {
-    expect(service.nativeWindow).toBeDefined();
-    expect(service.nativeWindow).toBe(window);
-  });
-});
