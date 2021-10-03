@@ -1,0 +1,69 @@
+name: 🐛 Bug Report
+description: Create a report to help us improve
+title: "[Bug] "
+labels: [':bug: Bug']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+  - type: input
+    id: ngxCcVersion
+    attributes:
+      label: Ngx-CookieConsent Version
+      placeholder: for e.g. v1.0.0
+    validations:
+      required: true
+  - type: input
+    id: ccVersion
+    attributes:
+      label: CookieConsent Version
+      description: Version of [Cookie Consent](https://github.com/osano/cookieconsent) you're using
+      placeholder: for e.g. v1.0.0
+    validations:
+      required: true
+  - type: input
+    id: cliVersion
+    attributes:
+      label: Angular CLI (or Nx CLI) Version
+      description: "`ng --version` or `nx --version`"
+    validations:
+      required: true
+  - type: input
+    id: nodeVersion
+    attributes:
+      label: Node Version
+      description: "`node --version`"
+    validations:
+      required: false
+  - type: input
+    id: osVersion
+    attributes:
+      label: OS Version
+      placeholder: Windows ?, Linux (which distribution?), Mac OS ?
+    validations:
+      required: false
+  - type: textarea
+    id: expectedBehaviour
+    attributes:
+      label: Expected Behaviour
+      placeholder: ...
+    validations:
+      required: true
+  - type: textarea
+    id: actualBehaviour
+    attributes:
+      label: Actual Behaviour
+      placeholder: ...
+    validations:
+      required: true
+  - type: textarea
+    id: reproductionSteps
+    attributes:
+      label: Steps to reproduce the behaviour
+      placeholder: |
+        1. ...
+        2. ...
+        3. ...
+    validations:
+      required: true
