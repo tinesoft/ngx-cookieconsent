@@ -4,9 +4,6 @@
   "overrides": [
     {
       "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
-      "parserOptions": {
-        "project": "apps/ngx-cookieconsent-demo-e2e/tsconfig.*?.json"
-      },
       "rules": {}
     },
     {
