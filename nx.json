@@ -16,6 +16,16 @@
         "target": "build",
         "projects": "dependencies"
       }
+    ],
+    "release": [
+      {
+        "target": "build",
+        "projects": "self"
+      },
+      {
+        "target": "release",
+        "projects": "dependencies"
+      }
     ]
   },
   "cli": {

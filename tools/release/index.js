@@ -14,8 +14,8 @@ function createReleaseConfig({
   projectRoot,
   buildOutput,
 }) {
-  projectRoot = projectRoot || `packages/${projectName}`;
-  buildOutput = buildOutput || `dist/packages/${projectName}`;
+  projectRoot = projectRoot || `libs/${projectName}`;
+  buildOutput = buildOutput || `dist/libs/${projectName}`;
 
   const relativeWorkspaceRoot = buildReversePath(projectRoot);
   const relativeBuildOutput = `${relativeWorkspaceRoot}/${buildOutput}`;
@@ -45,6 +45,7 @@ function createReleaseConfig({
       [
         '@semantic-release/git',
         {
+          assets: ["package.json", "CHANGELOG.md"],
           message: releaseCommit,
         },
       ],
@@ -54,5 +55,5 @@ function createReleaseConfig({
 }
 
 module.exports = {
-  createScopedReleaseConfig: createReleaseConfig,
+  createReleaseConfig,
 };
