@@ -364,5 +364,5 @@ export class AppModule {
 
 ## License
 
-Copyright (c) 2018-2021 Tine Kondo. Licensed under the MIT License (MIT)
+Copyright (c) 2018-present Tine Kondo. Licensed under the MIT License (MIT)
 
