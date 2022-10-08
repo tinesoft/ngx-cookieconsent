@@ -2,6 +2,7 @@ import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HomeComponent } from './home.component';
 import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsent';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 const cookieConfig:NgcCookieConsentConfig = {
   cookie: {
@@ -17,7 +18,8 @@ describe('HomeComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         NgcCookieConsentModule.forRoot(cookieConfig)],
-      declarations: [HomeComponent]
+      declarations: [HomeComponent],
+      schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents()
       .then(() => {

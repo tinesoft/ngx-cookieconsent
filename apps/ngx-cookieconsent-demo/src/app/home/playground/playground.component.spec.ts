@@ -4,6 +4,7 @@ import { NgcCookieConsentModule } from 'ngx-cookieconsent';
 
 import { PlaygroundComponent } from './playground.component';
 import { MockModule, MockProvider} from 'ng-mocks';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 
 describe('PlaygroundComponent', () => {
@@ -14,7 +15,8 @@ describe('PlaygroundComponent', () => {
     TestBed.configureTestingModule({
       imports: [MockModule(NgcCookieConsentModule.forRoot({}))],
       providers: [MockProvider(TranslateService)],
-      declarations: [ PlaygroundComponent ]
+      declarations: [ PlaygroundComponent ],
+      schemas: [NO_ERRORS_SCHEMA]
     })
     .compileComponents();
   }));
