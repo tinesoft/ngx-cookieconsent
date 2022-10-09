@@ -1,3 +1,9 @@
+## [3.0.1](https://github.com/tinesoft/ngx-cookieconsent/compare/v3.0.0...v3.0.1) (2022-10-09)
+
+### Bug Fixes
+
+- **core:** remove wrong peerDependency on `platform-browser-dynamic` ([7ccf807](https://github.com/tinesoft/ngx-cookieconsent/commit/7ccf807f70bb43348aa907ef43798f690e6267cc))
+
 # [3.0.0](https://github.com/tinesoft/ngx-cookieconsent/compare/v2.2.3...v3.0.0) (2022-10-08)
 
 ### Bug Fixes
