@@ -1,8 +1,5 @@
-<p align="center">
-  <img height="256px" width="256px" style="text-align: center;" src="https://cdn.jsdelivr.net/gh/tinesoft/ngx-cookieconsent@master/demo/src/assets/logo.svg">
-</p>
 
-# ngx-cookieconsent - [Cookie Consent](https://cookieconsent.insites.com/) module for Angular.
+# ngx-cookieconsent
 
 [![npm version](https://badge.fury.io/js/ngx-cookieconsent.svg)](https://badge.fury.io/js/ngx-cookieconsent)
 [![Build Status](https://travis-ci.org/tinesoft/ngx-cookieconsent.svg?branch=master)](https://travis-ci.org/tinesoft/ngx-cookieconsent)
@@ -11,31 +8,49 @@
 [![devDependency Status](https://david-dm.org/tinesoft/ngx-cookieconsent/dev-status.svg?branch=master)](https://david-dm.org/tinesoft/ngx-cookieconsent#info=devDependencies)
 [![Greenkeeper Badge](https://badges.greenkeeper.io/tinesoft/ngx-cookieconsent.svg)](https://greenkeeper.io/)
 
+> [Cookie Consent](https://cookieconsent.insites.com/) module for Angular
+
+<p align="center">
+  <img height="256px" width="256px" style="text-align: center;" src="https://cdn.jsdelivr.net/gh/tinesoft/ngx-cookieconsent@master/demo/src/assets/logo.svg">
+</p>
+
 ## Demo
 
 View the module in action at https://tinesoft.github.io/ngx-cookieconsent
 
 ## Dependencies
-* [Angular](https://angular.io) (*requires* Angular 6+, [v1.1.0](https://github.com/tinesoft/ngx-cookieconsent/tree/v1.1.0) is the latest version for Angular < 6 )
+
+* [Angular](https://angular.io) (see  [Compatibility Matrix ](#compatibility-with-angular) below)
 * [Cookie Consent](https://cookieconsent.insites.com/) (*requires* Cookie Consent 3 or higher, tested with 3.1.0)
 
-
 ## Installation
-Install above dependencies via *npm*. In particular for `Cookie Consent`:
+
+Install `Cookie Consent` dependency:
+
 ```shell
 npm install --save cookieconsent
+
+// or 
+
+yarn add cookieconsent
 ```
 
 Now install `ngx-cookieconsent` via:
+
 ```shell
 npm install --save ngx-cookieconsent
+
+// or
+
+yarn add ngx-cookieconsent
 ```
 
 ---
 ##### Angular-CLI
->**Note**: If you are using `angular-cli` to build your app, make sure that `cookieconsent` is properly listed as a [global library](https://github.com/angular/angular-cli/wiki/stories-global-scripts), and as [global style](https://github.com/angular/angular-cli/wiki/stories-global-styles).
 
-To do so, edit your `angular-cli.json` as such:
+>**Note**: If you are using `Angular CLI` or `Nx CLI` to build your app, make sure that `cookieconsent` is properly listed as a [global library](https://github.com/angular/angular-cli/wiki/stories-global-scripts), and as [global style](https://github.com/angular/angular-cli/wiki/stories-global-styles).
+
+To do so, edit your `angular.json` as such:
 ```
       "scripts": [
         "node_modules/cookieconsent/build/cookieconsent.min.js"
@@ -48,6 +63,7 @@ To do so, edit your `angular-cli.json` as such:
 ```
 
 ##### SystemJS
+
 >**Note**:If you are using `SystemJS`, you should adjust your configuration to point to the UMD bundle.
 In your systemjs config file, `map` needs to tell the System loader where to look for `ngx-cookieconsent`:
 ```js
@@ -63,7 +79,9 @@ In your systemjs config file, `meta` needs to tell the System loader how to load
         }
     }
 ```
+
 In your index.html file, add script and link tags to load  `cookieconsent` globally:
+
 ```html
     <!-- 1. Configure SystemJS -->
     <script src="system.config.js"></script>
@@ -75,11 +93,14 @@ In your index.html file, add script and link tags to load  `cookieconsent` globa
 ---
 
 Once installed you need to import the main module:
+
 ```ts
 import {NgcCookieConsentModule} from 'ngx-cookieconsent';
 ```
+
 The only remaining part is to list the imported module in your application module. The exact method will be slightly
 different for the root (top-level) module for which you should end up with the code similar to (notice `NgcCookieConsentModule.forRoot()`):
+
 ```ts
 import {NgcCookieConsentModule, NgcCookieConsentConfig} from 'ngx-cookieconsent';
 
@@ -358,6 +379,17 @@ export class AppModule {
 }
 ```
 
+## Compatibility with Angular
+
+Every Nx plugin relies on the underlying Nx Workspace/DevKit it runs on. This table provides the compatibility matrix between major versions of Nx workspace and this plugin.
+
+| Library Version | Angular version
+| -------------- | --------------------
+| `>=v4.x.x`     | `>=v14.x.x`
+| `>=v3.x.x`     | `>=v12.x.x`
+| `>=v2.2.3`     | `>=v6.x.x`
+| `v1.1.0`       | `<v6.x.x`
+
 ## Credits
 
 `ngx-cookieconsent` is built upon [Cookie Consent](https://www.osano.com/cookieconsent/), by [Osano](https://osano.com)
@@ -365,4 +397,3 @@ export class AppModule {
 ## License
 
 Copyright (c) 2018-present Tine Kondo. Licensed under the MIT License (MIT)
-
