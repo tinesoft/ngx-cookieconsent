@@ -1,5 +1,6 @@
-module.exports = {
-  displayName: 'ngx-cookieconsent',
+/* eslint-disable */
+export default {
+  displayName: 'ngx-cookieconsent-demo',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   globals: {
@@ -8,7 +9,7 @@ module.exports = {
       stringifyContentPathRegex: '\\.(html|svg)$',
     },
   },
-  coverageDirectory: '../../coverage/libs/ngx-cookieconsent',
+  coverageDirectory: '../../coverage/apps/ngx-cookieconsent-demo',
   snapshotSerializers: [
     'jest-preset-angular/build/serializers/no-ng-attributes',
     'jest-preset-angular/build/serializers/ng-snapshot',

@@ -8,9 +8,13 @@
   },
   "tasksRunnerOptions": {
     "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
+      "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": ["build", "test"]
+        "cacheableOperations": [
+          "build",
+          "test"
+        ],
+        "accessToken": "MjE0OWQ1M2ItNTFjOC00ZDU4LWIzYzgtOWQzODZjNmFlYjhifHJlYWQtd3JpdGU="
       }
     }
   },
@@ -18,27 +22,6 @@
     "defaultBase": "develop"
   },
   "npmScope": "ngx-cookieconsent",
-  "targetDependencies": {
-    "build": [
-      {
-        "target": "build",
-        "projects": "dependencies"
-      }
-    ],
-    "release": [
-      {
-        "target": "build",
-        "projects": "self"
-      },
-      {
-        "target": "release",
-        "projects": "dependencies"
-      }
-    ]
-  },
-  "cli": {
-    "defaultCollection": "@nrwl/angular"
-  },
   "defaultProject": "ngx-cookieconsent-demo",
   "generators": {
     "@nrwl/angular": {
@@ -64,6 +47,20 @@
     },
     "@nrwl/angular:component": {
       "style": "scss"
+    }
+  },
+  "$schema": "./node_modules/nx/schemas/nx-schema.json",
+  "targetDefaults": {
+    "build": {
+      "dependsOn": [
+        "^build"
+      ]
+    },
+    "release": {
+      "dependsOn": [
+        "build",
+        "^release"
+      ]
     }
   }
 }
