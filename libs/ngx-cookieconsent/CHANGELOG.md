@@ -1,3 +1,9 @@
+# [3.1.0](https://github.com/tinesoft/ngx-cookieconsent/compare/v3.0.1...v3.1.0) (2022-10-10)
+
+### Features
+
+- **core:** migrate to Angular 14 and Nx 14 ([#125](https://github.com/tinesoft/ngx-cookieconsent/issues/125)) ([35d0e61](https://github.com/tinesoft/ngx-cookieconsent/commit/35d0e61cd99d716fa2e85611191f1d22f9f488db))
+
 ## [3.0.1](https://github.com/tinesoft/ngx-cookieconsent/compare/v3.0.0...v3.0.1) (2022-10-09)
 
 ### Bug Fixes
