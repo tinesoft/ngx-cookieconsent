@@ -1,6 +1,6 @@
 
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, SecurityContext } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import { TransferHttpCacheModule } from '@nguniversal/common';
@@ -15,7 +15,7 @@ import { HomeModule } from './home/home.module';
 
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-
+import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
 
 const cookieConfig:NgcCookieConsentConfig = {
   cookie: {
@@ -37,7 +37,6 @@ const cookieConfig:NgcCookieConsentConfig = {
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, './assets/i18n/', '.json');
 }
-
 @NgModule({
     declarations: [
         AppComponent
@@ -55,6 +54,21 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
           }
         }),
         NgcCookieConsentModule.forRoot(cookieConfig),
+        MarkdownModule.forRoot(
+          {
+            markedOptions: {
+              provide: MarkedOptions,
+              useValue: {
+                gfm: true,
+                breaks: false,
+                pedantic: false,
+                smartLists: true,
+                smartypants: false,
+              },
+            },
+            sanitize: SecurityContext.NONE
+          }
+        ),
         AppRoutingModule,
         AppSharedModule,
         HomeModule

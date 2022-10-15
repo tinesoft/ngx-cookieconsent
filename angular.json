@@ -81,8 +81,18 @@
               "apps/ngx-cookieconsent-demo/src/favicon.ico",
               "apps/ngx-cookieconsent-demo/src/assets"
             ],
-            "styles": ["apps/ngx-cookieconsent-demo/src/styles.scss"],
-            "scripts": ["node_modules/cookieconsent/build/cookieconsent.min.js"]
+            "styles": [
+              "apps/ngx-cookieconsent-demo/src/styles.scss",
+              "node_modules/prismjs/themes/prism-okaidia.css"
+            ],
+            "scripts": [
+              "node_modules/cookieconsent/build/cookieconsent.min.js", 
+              "node_modules/marked/marked.min.js",
+              "node_modules/prismjs/prism.js",
+              "node_modules/prismjs/components/prism-json.min.js",
+              "node_modules/prismjs/components/prism-typescript.min.js"
+
+            ]
           },
           "configurations": {
             "production": {

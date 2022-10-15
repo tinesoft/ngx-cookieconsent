@@ -3,9 +3,9 @@
 @import '_variables';
 @import 'variables';
 @import 'highlight';
-@import '~bootstrap/scss/bootstrap';
-@import '~font-awesome/scss/font-awesome';
-@import '~cookieconsent/build/cookieconsent.min';
+@import 'node_modules/bootstrap/scss/bootstrap';
+@import 'node_modules/font-awesome/scss/font-awesome';
+@import 'node_modules/cookieconsent/build/cookieconsent.min';
 
 
 .jumbotron {

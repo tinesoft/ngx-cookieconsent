@@ -1,10 +1,10 @@
 <div class="container">
   <div class="row">
-    <div class="col text-left">
+    <div class="col text-start">
       <h2>Playground</h2>
     </div>
-    <div class="col text-right"> 
-      <div ngbDropdown class="d-inline-block">
+    <div class="col text-end"> 
+      <div ngbDropdown class="d-inline-block  me-2">
           <button class="btn btn-outline-primary" id="dropdownLang" ngbDropdownToggle>Language <i class="fa fa-globe" aria-hidden="true"></i></button>
           <div ngbDropdownMenu aria-labelledby="dropdownLang">
             <a #langLink *ngFor="let lang of translate.getLangs()" 
