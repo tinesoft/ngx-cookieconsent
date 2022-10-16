@@ -10,10 +10,7 @@
     "default": {
       "runner": "@nrwl/nx-cloud",
       "options": {
-        "cacheableOperations": [
-          "build",
-          "test"
-        ],
+        "cacheableOperations": ["build", "test", "compodoc"],
         "accessToken": "MjE0OWQ1M2ItNTFjOC00ZDU4LWIzYzgtOWQzODZjNmFlYjhifHJlYWQtd3JpdGU="
       }
     }
@@ -52,15 +49,13 @@
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "targetDefaults": {
     "build": {
-      "dependsOn": [
-        "^build"
-      ]
+      "dependsOn": ["^build"]
     },
     "release": {
-      "dependsOn": [
-        "build",
-        "^release"
-      ]
+      "dependsOn": ["build", "^release"]
+    },
+    "deploy": {
+      "dependsOn": ["predeploy"]
     }
   }
 }

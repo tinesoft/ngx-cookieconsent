@@ -44,9 +44,12 @@
           "builder": "@twittwer/compodoc:compodoc",
           "options": {
             "tsConfig": "libs/ngx-cookieconsent/tsconfig.lib.json",
-            "outputPath": "dist/compodoc/ngx-cookieconsent"
+            "outputPath": "dist/ngx-cookieconsent-demo/browser/doc"
           },
           "configurations": {
+            "serve": { 
+              "watch": true 
+            },
             "json": {
               "exportFormat": "json"
             }
@@ -86,12 +89,11 @@
               "node_modules/prismjs/themes/prism-okaidia.css"
             ],
             "scripts": [
-              "node_modules/cookieconsent/build/cookieconsent.min.js", 
+              "node_modules/cookieconsent/build/cookieconsent.min.js",
               "node_modules/marked/marked.min.js",
               "node_modules/prismjs/prism.js",
               "node_modules/prismjs/components/prism-json.min.js",
               "node_modules/prismjs/components/prism-typescript.min.js"
-
             ]
           },
           "configurations": {
@@ -220,6 +222,23 @@
             }
           },
           "defaultConfiguration": "production"
+        },
+        "predeploy": {
+          "builder": "nx:run-commands",
+          "options": {
+            "commands": [
+              "npx nx build ngx-cookieconsent-demo --base-href /ngx-cookieconsent/ --deploy-url /ngx-cookieconsent/",
+              "npx nx compodoc ngx-cookieconsent"
+            ],
+            "parallel": false
+          }
+        },
+        "deploy": {
+          "builder": "@nx-dotnet/nx-ghpages:deploy",
+          "options": {
+            "remote": "https://github.com/tinesoft/ngx-cookieconsent.git",
+            "directory": "dist/ngx-cookieconsent-demo/browser"
+          }
         }
       },
       "tags": []
