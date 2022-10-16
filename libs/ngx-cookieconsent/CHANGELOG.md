@@ -1,3 +1,9 @@
+## [4.0.1](https://github.com/tinesoft/ngx-cookieconsent/compare/v4.0.0...v4.0.1) (2022-10-16)
+
+### Bug Fixes
+
+- **core:** fix `rxjs ` `peerDependencies` for rxjs for Angular v14+ ([0215a2f](https://github.com/tinesoft/ngx-cookieconsent/commit/0215a2f3960cfb11374c98b6fe4e0452f5d76180)), closes [#146](https://github.com/tinesoft/ngx-cookieconsent/issues/146)
+
 # [4.0.0](https://github.com/tinesoft/ngx-cookieconsent/compare/v3.0.1...v4.0.0) (2022-10-10)
 
 ### Bug Fixes
