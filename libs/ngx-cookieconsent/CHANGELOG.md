@@ -1,3 +1,9 @@
+## [4.0.2](https://github.com/tinesoft/ngx-cookieconsent/compare/v4.0.1...v4.0.2) (2023-03-06)
+
+### Bug Fixes
+
+- **core:** make `rxjs` dependency less restrictive ([66d6ebc](https://github.com/tinesoft/ngx-cookieconsent/commit/66d6ebc20a4801221e007c515aecf553b5832c86)), closes [#129](https://github.com/tinesoft/ngx-cookieconsent/issues/129)
+
 ## [4.0.1](https://github.com/tinesoft/ngx-cookieconsent/compare/v4.0.0...v4.0.1) (2022-10-16)
 
 ### Bug Fixes
