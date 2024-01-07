@@ -1,4 +1,6 @@
 export * from './lib/ngx-cookieconsent.module';
+export * from './lib/ngx-cookieconsent.config';
+
 
 export {
     WindowService, NgcCookieConsentConfig, NgcCookieConsentService,

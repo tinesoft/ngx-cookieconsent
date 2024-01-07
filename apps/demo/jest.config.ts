@@ -1,9 +1,9 @@
 /* eslint-disable */
 export default {
-  displayName: 'ngx-cookieconsent',
+  displayName: 'demo',
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../coverage/libs/ngx-cookieconsent',
+  coverageDirectory: '../../coverage/apps/demo',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

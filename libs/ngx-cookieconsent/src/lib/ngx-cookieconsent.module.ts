@@ -1,6 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { WindowService, NgcCookieConsentConfig, NgcCookieConsentService } from './service/index';
+import { provideNgcCookieConsent } from './ngx-cookieconsent.config';
 
 /**
  * Main module of the library
@@ -15,7 +16,7 @@ export class NgcCookieConsentModule {
   static forRoot(config: NgcCookieConsentConfig): ModuleWithProviders<NgcCookieConsentModule> {
     return {
       ngModule: NgcCookieConsentModule,
-      providers: [WindowService, { provide: NgcCookieConsentConfig, useValue: config }, NgcCookieConsentService]
+      providers: provideNgcCookieConsent(config)
     };
   }
 }

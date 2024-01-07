@@ -1,9 +1,5 @@
-const { getJestProjects } = require('@nrwl/jest');
+import { getJestProjects } from '@nx/jest';
 
 export default {
-  projects: [
-    ...getJestProjects(),
-    '<rootDir>/apps/ngx-cookieconsent-demo',
-    '<rootDir>/libs/ngx-cookieconsent',
-  ],
+  projects: getJestProjects(),
 };

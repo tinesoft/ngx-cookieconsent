@@ -1,0 +1,7 @@
+ >  NX   Next steps:
+
+   - Make sure package.json changes make sense and then run 'npm install',
+   - Run 'npx nx migrate --run-migrations'
+   - You opted out of some migrations for now. Write the following command down somewhere to apply these migrations later:
+     nx migrate 17.2.8 --from nx@16.1.0-beta.0 --exclude-applied-migrations
+   - To learn more go to https://nx.dev/recipes/tips-n-tricks/advanced-update

@@ -1,0 +1,51 @@
+{
+	"name": "NgxCookieConsentDevContainer",
+	// Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
+	"image": "mcr.microsoft.com/devcontainers/typescript-node:1-18-bullseye",
+	"features": {
+		"ghcr.io/devcontainers/features/common-utils:2": {
+			"installZsh": true,
+			"installOhMyZsh": true,
+			"installOhMyZshConfig": true,
+			"upgradePackages": true,
+			"username": "automatic",
+			"userUid": "automatic",
+			"userGid": "automatic"
+		}
+	},	
+	
+	"mounts": [
+		"source=ngx-cookieconsent-node_modules,target=${containerWorkspaceFolder}/node_modules,type=volume"
+	],
+
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
+	 "forwardPorts": [
+		4211
+	 ],
+
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "npm i",
+
+	// Configure tool-specific properties.
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"mhutchie.git-graph",
+				"eamodio.gitlens",
+				"usernamehw.errorlens",
+				"nrwl.angular-console",
+				"esbenp.prettier-vscode",
+				"dbaeumer.vscode-eslint",
+				"firsttris.vscode-jest-runner",
+				"anweber.reveal-button"
+			],
+			"settings":{
+				"debug.javascript.autoAttachFilter": "onlyWithFlag",
+				"dotfiles.repository": "https://github.com/tinesoft/dotfiles"
+			}
+		}
+	}
+
+	// Uncomment to connect as root instead. More info: https://aka.ms/dev-containers-non-root.
+	// "remoteUser": "root"
+}

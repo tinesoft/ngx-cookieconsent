@@ -4,9 +4,11 @@
 /dist
 /tmp
 /out-tsc
+/bin
 
 # dependencies
 /node_modules
+.pnpm-store
 
 # IDEs and editors
 /.idea
@@ -26,6 +28,7 @@
 
 # misc
 /.angular/cache
+/.nx/cache
 /.sass-cache
 /connect.lock
 /coverage
@@ -34,6 +37,7 @@ npm-debug.log
 yarn-error.log
 testem.log
 /typings
+v8-compile-cache-0
 
 # System Files
 .DS_Store

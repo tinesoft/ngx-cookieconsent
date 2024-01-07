@@ -25,4 +25,4 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npm ci
-          npx nx deploy ngx-cookieconsent-demo
+          npx nx deploy demo
