@@ -45,12 +45,9 @@ npm install --save ngx-cookieconsent
 yarn add ngx-cookieconsent
 ```
 
----
-##### Angular-CLI
-
 >**Note**: If you are using `Angular CLI` or `Nx CLI` to build your app, make sure that `cookieconsent` is properly listed as a [global library](https://github.com/angular/angular-cli/wiki/stories-global-scripts), and as [global style](https://github.com/angular/angular-cli/wiki/stories-global-styles).
 
-To do so, edit your `angular.json` as such:
+To do so, edit your `angular.json` (or `project.json` for Nx CLI based apps) as such:
 ```
       "scripts": [
         "node_modules/cookieconsent/build/cookieconsent.min.js"
@@ -62,47 +59,12 @@ To do so, edit your `angular.json` as such:
 
 ```
 
-##### SystemJS
+## Configuration
 
->**Note**:If you are using `SystemJS`, you should adjust your configuration to point to the UMD bundle.
-In your systemjs config file, `map` needs to tell the System loader where to look for `ngx-cookieconsent`:
-```js
-map: {
-  'ngx-cookieconsent': 'node_modules/ngx-cookieconsent/bundles/ngx-cookieconsent.umd.js',
-}
-```
-In your systemjs config file, `meta` needs to tell the System loader how to load `cookieconsent`:
-```js
-    meta: {
-    './node_modules/cookieconsent/build/cookieconsent.min.js': {
-            format: 'amd'
-        }
-    }
-```
-
-In your index.html file, add script and link tags to load  `cookieconsent` globally:
-
-```html
-    <!-- 1. Configure SystemJS -->
-    <script src="system.config.js"></script>
-    <!-- 2. Add cookieconsent dependency-->
-    <link rel="stylesheet" type="text/css" href="node_modules/cookieconsent/build/cookieconsent.min.css"/>
-    <script src="node_modules/cookieconsent/build/cookieconsent.min.js"></script>
-```
-
----
-
-Once installed you need to import the main module:
+Prepare the config:
 
 ```ts
-import {NgcCookieConsentModule} from 'ngx-cookieconsent';
-```
-
-The only remaining part is to list the imported module in your application module. The exact method will be slightly
-different for the root (top-level) module for which you should end up with the code similar to (notice `NgcCookieConsentModule.forRoot()`):
-
-```ts
-import {NgcCookieConsentModule, NgcCookieConsentConfig} from 'ngx-cookieconsent';
+import {NgcCookieConsentConfig} from 'ngx-cookieconsent';
 
 const cookieConfig:NgcCookieConsentConfig = {
   cookie: {
@@ -120,6 +82,33 @@ const cookieConfig:NgcCookieConsentConfig = {
   type: 'opt-out'
 };
 
+```
+
+#### For Angular Standalone API-based apps
+
+If you are using [Angular Standalone](https://angular.io/guide/standalone-components) API to bootstrap your application, you can configure the library by leveraging the new `provideNgcCookieConsent(config)` helper (added since `v5.x.x`), as such:
+
+```ts
+import {provideNgcCookieConsent} from 'ngx-cookieconsent';
+
+//...
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideNgcCookieConsent(cookieConfig),
+    // ...
+  ]
+});
+```
+
+#### For Angular (ng)Module-based apps
+
+For traditional ngModule-based angular application, you need to import the library module in your application module, as such:
+
+```ts
+import {NgcCookieConsentModule} from 'ngx-cookieconsent';
+
+//...
 
 @NgModule({
   declarations: [AppComponent, ...],
