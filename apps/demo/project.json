@@ -94,7 +94,7 @@
       }
     },
     "predeploy": {
-      "builder": "nx:run-commands",
+      "executor": "nx:run-commands",
       "options": {
         "commands": [
           "npx nx build demo --base-href /ngx-cookieconsent/ --deploy-url /ngx-cookieconsent/",
@@ -104,10 +104,10 @@
       }
     },
     "deploy": {
-      "builder": "@nx-dotnet/nx-ghpages:deploy",
+      "executor": "@nx-dotnet/nx-ghpages:deploy",
       "options": {
         "remote": "https://github.com/tinesoft/ngx-cookieconsent.git",
-        "directory": "dist/demo/browser"
+        "directory": "dist/apps/demo"
       }
     }
   },
