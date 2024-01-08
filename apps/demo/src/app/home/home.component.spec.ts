@@ -1,13 +1,20 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { HomeComponent } from './home.component';
-import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsent';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
+import { NgcCookieConsentConfig, provideNgcCookieConsent } from 'ngx-cookieconsent';
+import { HomeComponent } from './home.component';
 
-const cookieConfig:NgcCookieConsentConfig = {
+const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
     domain: 'localhost'
   }
+};
+
+const mockTranslateService = {
+  use: () => { },
+  addLangs: () => { },
+  setDefaultLang: () => { },
 };
 
 describe('HomeComponent', () => {
@@ -16,9 +23,10 @@ describe('HomeComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [
-        NgcCookieConsentModule.forRoot(cookieConfig)],
-      declarations: [HomeComponent],
+      providers: [
+        provideNgcCookieConsent(cookieConfig),
+        { provide: TranslateService, useValue: mockTranslateService },
+      ],
       schemas: [NO_ERRORS_SCHEMA]
     })
       .compileComponents()

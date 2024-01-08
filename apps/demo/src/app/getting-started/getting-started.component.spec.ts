@@ -1,18 +1,18 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule} from '@angular/common/http/testing';
-import { GettingStartedComponent } from './getting-started.component';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { GettingStartedComponent } from './getting-started.component';
+import { appConfig } from '../app.config';
 
 describe('GettingStartedComponent', () => {
   let component: GettingStartedComponent;
   let fixture: ComponentFixture<GettingStartedComponent>;
 
   beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule],
-      declarations: [GettingStartedComponent],
+    TestBed.configureTestingModule(Object.assign({}, appConfig, {
       schemas: [NO_ERRORS_SCHEMA]
-    })
+    }))
       .compileComponents()
       .then(() => {
         fixture = TestBed.createComponent(GettingStartedComponent);

@@ -1,10 +1,8 @@
-import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { TranslateService } from '@ngx-translate/core';
-import { NgcCookieConsentModule } from 'ngx-cookieconsent';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { PlaygroundComponent } from './playground.component';
-import { MockModule, MockProvider} from 'ng-mocks';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { appConfig } from '../../app.config';
+import { PlaygroundComponent } from './playground.component';
 
 
 describe('PlaygroundComponent', () => {
@@ -12,12 +10,9 @@ describe('PlaygroundComponent', () => {
   let fixture: ComponentFixture<PlaygroundComponent>;
 
   beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [MockModule(NgcCookieConsentModule.forRoot({}))],
-      providers: [MockProvider(TranslateService)],
-      declarations: [ PlaygroundComponent ],
+    TestBed.configureTestingModule(Object.assign({}, appConfig, {
       schemas: [NO_ERRORS_SCHEMA]
-    })
+    }))
     .compileComponents();
   }));
 

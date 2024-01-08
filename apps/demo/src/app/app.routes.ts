@@ -1,4 +1,5 @@
 import { Route } from '@angular/router';
+import { HomeComponent } from './home/home.component';
 
 export const appRoutes: Route[] = [
     {
@@ -6,11 +7,12 @@ export const appRoutes: Route[] = [
         redirectTo: 'home',
         pathMatch: 'full',
       },
+      { path: 'home', component: HomeComponent },
       {
         path: 'getting-started',
-        loadChildren: () =>
-          import('./getting-started/getting-started.module').then(
-            (m) => m.GettingStartedModule
+        loadComponent: () =>
+          import('./getting-started/getting-started.component').then(
+            (m) => m.GettingStartedComponent
           ),
       },
 ];

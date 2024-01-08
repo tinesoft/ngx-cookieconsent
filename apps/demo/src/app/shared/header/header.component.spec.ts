@@ -1,6 +1,6 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { DebugElement, NO_ERRORS_SCHEMA } from '@angular/core';
 
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -15,24 +15,18 @@ describe('HeaderComponent', () => {
   let links: RouterLinkStubDirective[];
 
   beforeEach(waitForAsync(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        NgbCollapseModule
-      ],
-      declarations: [
-        HeaderComponent,
-        RouterLinkStubDirective,
-        RouterLinkActiveStubDirective
-      ]
-    })
-      .compileComponents()
-      .then(() => {
-        fixture = TestBed.createComponent(HeaderComponent);
-        component = fixture.componentInstance;
+    TestBed
+      .overrideComponent(HeaderComponent, {
+        set: {
+          imports: [RouterLinkStubDirective,
+            RouterLinkActiveStubDirective, NgbCollapseModule]
+        },
       });
   }));
 
   beforeEach(() => {
+    fixture = TestBed.createComponent(HeaderComponent);
+    component = fixture.componentInstance;
     // trigger initial data binding
     fixture.detectChanges();
 

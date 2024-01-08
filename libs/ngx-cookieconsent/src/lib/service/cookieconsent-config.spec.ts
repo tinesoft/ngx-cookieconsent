@@ -82,7 +82,7 @@ describe('cookieconsent-config', () => {
         expect(config.elements.deny).toEqual( '<a aria-label="deny cookies" tabindex="0" class="cc-btn cc-deny">{{deny}}</a>');
         expect(config.elements.link).toEqual( '<a aria-label="learn more about cookies" tabindex="0" class="cc-link" href="{{href}}" target="_blank" rel="noopener">{{link}}</a>');
         expect(config.elements.close).toEqual( '<span aria-label="dismiss cookie message" tabindex="0" class="cc-close">{{close}}</span>');
-        expect(config.elements.compliance).toBeUndefined();
+        expect(config.elements['compliance']).toBeUndefined();
     });
 
     it('should have sensible "law" default values', () => {

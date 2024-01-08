@@ -1,12 +1,15 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Title }     from '@angular/platform-browser';
+import { MarkdownModule } from 'ngx-markdown';
 
 
 @Component({
-  selector: 'ngc-demo-getting-started',
-  templateUrl: './getting-started.component.html',
-  styleUrls: ['./getting-started.component.scss']
+    selector: 'ngc-demo-getting-started',
+    templateUrl: './getting-started.component.html',
+    styleUrls: ['./getting-started.component.scss'],
+    standalone: true,
+    imports: [MarkdownModule]
 })
 export class GettingStartedComponent implements OnInit {
 

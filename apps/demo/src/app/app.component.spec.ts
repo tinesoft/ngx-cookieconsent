@@ -1,41 +1,39 @@
 /* tslint:disable:no-unused-variable */
 
-import { TestBed, waitForAsync } from '@angular/core/testing';
 import { APP_BASE_HREF } from '@angular/common';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 
-import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { GettingStartedComponent } from './getting-started/getting-started.component';
-import { AppSharedModule } from './shared/shared.module';
-import { NgcCookieConsentModule, NgcCookieConsentConfig } from 'ngx-cookieconsent';
+import { provideRouter } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
-import { appRoutes } from './app.routes';
-import { RouterModule } from '@angular/router';
+import { NgcCookieConsentConfig, provideNgcCookieConsent } from 'ngx-cookieconsent';
+import { AppComponent } from './app.component';
 
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
     domain: 'localhost'
   }
 };
+const mockTranslateService = {
+  use: () => { },
+  addLangs: () => { },
+  setDefaultLang: () => { },
+};
+
 describe('App: ngx-cookieconsent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [
-        AppSharedModule,
-        RouterModule.forRoot(appRoutes),
-        NgcCookieConsentModule.forRoot(cookieConfig)],
-      declarations: [
-        AppComponent,
-        GettingStartedComponent,
-        HomeComponent],
+      imports: [],
       providers: [
-        { provide: TranslateService, useValue: class {}},
+        provideRouter([]),
+        provideNgcCookieConsent(cookieConfig),
+        { provide: TranslateService, useValue: mockTranslateService },
         { provide: APP_BASE_HREF, useValue: '/' }]
     });
   });
 
   it('should create the app', waitForAsync(() => {
     const fixture = TestBed.createComponent(AppComponent);
+    fixture.detectChanges();
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
