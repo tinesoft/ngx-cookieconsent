@@ -18,10 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v3
-      - run: | # we need to fetch the develop branch or else `affected:test` (run by husky after @semantic-release/git) will not work
-          git fetch --depth=1
-          git checkout develop
+        uses: actions/checkout@v4
       - name: Use Node.js 20.x
         uses: actions/setup-node@v3
         with:
@@ -32,4 +29,6 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npm ci
-          npm run release -- --verbose
+          git status
+          npx nx report
+          npx nx run-many -t release

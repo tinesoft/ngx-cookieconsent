@@ -106,7 +106,7 @@
     "deploy": {
       "executor": "@nx-dotnet/nx-ghpages:deploy",
       "options": {
-        "remote": "https://github.com/tinesoft/ngx-cookieconsent.github.io.git",
+        "remote": "git@github.com:tinesoft/ngx-cookieconsent.git",
         "directory": "dist/apps/demo"
       }
     }

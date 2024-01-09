@@ -33,18 +33,9 @@
       "outputs": ["{options.outputFile}"]
     },
     "compodoc": {
-      "executor": "@twittwer/compodoc:compodoc",
+      "executor": "nx:run-commands",
       "options": {
-        "tsConfig": "libs/ngx-cookieconsent/tsconfig.lib.json",
-        "outputPath": "dist/apps/demo/doc"
-      },
-      "configurations": {
-        "serve": { 
-          "watch": true 
-        },
-        "json": {
-          "exportFormat": "json"
-        }
+        "command": "npx compodoc --tsconfig libs/ngx-cookieconsent/tsconfig.lib.json --output dist/apps/demo/doc"
       }
     },
     "release": {

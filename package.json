@@ -7,7 +7,7 @@
     "build": "nx run-many -t build --parallel 3",
     "test": "nx run-many -t test --parallel 3",
     "lint": "nx run-many -t lint --parallel 3",
-    "release": "nx run-many --target release",
+    "release": "nx run-many -t release --all",
     "graph": "nx graph",
     "prepare": "husky install"
   },
@@ -64,7 +64,6 @@
     "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/exec": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
-    "@twittwer/compodoc": "^1.10.0",
     "@types/jest": "^29.5.11",
     "@types/node": "18.16.9",
     "@typescript-eslint/eslint-plugin": "6.18.0",
