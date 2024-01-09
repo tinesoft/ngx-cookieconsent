@@ -19,7 +19,7 @@ export class NgcCookieConsentConfig {
   /**
    * If false, this prevents the popup from showing (useful for giving to control to another piece of code)
    */
-  enabled ?= true;
+  enabled? = true;
   /**
    * Optional (expecting a HTML element) if passed, the popup is appended to this element. default is `document.body`
    */
@@ -160,6 +160,11 @@ export class NgcCookieConsentConfig {
   autoAttach?: boolean;
 
   /**
+   * Set value if floating layout should be forced for mobile devices
+   */
+  mobileForceFloat?: boolean;
+
+  /**
    * Simple whitelist for pages. specify page by:
    * - using a string : '/index.html'           (matches '/index.html' exactly) OR
    * - using RegExp   : /\/page_[\d]+\.html/    (matched '/page_1.html' and '/page_2.html' etc)
@@ -204,7 +209,7 @@ export class NgcCookieConsentConfig {
   ignoreClicksFrom?: string[];
 
   // these callback hooks are called at certain points in the program execution
-  
+
   /**
    * This is called when the popup is opened. It can be used to trigger an animation, or to attach extra handlers, etc.
    */
@@ -229,7 +234,6 @@ export class NgcCookieConsentConfig {
    * This is called when the user clicks the `revoke` button. This means that their current choice has been invalidated.
    */
   onRevokeChoice?: () => void;
-  
-  onNoCookieLaw?: (countryCode: string, country: string) => void;
 
+  onNoCookieLaw?: (countryCode: string, country: string) => void;
 }
