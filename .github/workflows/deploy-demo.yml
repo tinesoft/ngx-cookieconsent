@@ -15,6 +15,9 @@ jobs:
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v3
+      - run: |
+          git config --global user.name "${GITHUB_ACTOR}"
+          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
       - name: Use Node.js 20.x
         uses: actions/setup-node@v3
         with:
@@ -25,4 +28,4 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npm ci
-          npx nx deploy demo
+          npx nx deploy demo --verbose
