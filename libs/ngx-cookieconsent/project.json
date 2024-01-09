@@ -36,9 +36,12 @@
       "executor": "@twittwer/compodoc:compodoc",
       "options": {
         "tsConfig": "libs/ngx-cookieconsent/tsconfig.lib.json",
-        "outputPath": "dist/compodoc/ngx-cookieconsent"
+        "outputPath": "dist/apps/demo/doc"
       },
       "configurations": {
+        "serve": { 
+          "watch": true 
+        },
         "json": {
           "exportFormat": "json"
         }
