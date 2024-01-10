@@ -372,6 +372,7 @@ Every Nx plugin relies on the underlying Nx Workspace/DevKit it runs on. This ta
 
 | Library Version | Angular version
 | -------------- | --------------------
+| `>=v6.0.0`     | `>=v16.x.x`
 | `>=v5.0.0`     | `>=v15.x.x`
 | `>=v4.0.1`     | `>=v14.x.x`
 | `v3.0.1`       | `>=v12.x.x`
