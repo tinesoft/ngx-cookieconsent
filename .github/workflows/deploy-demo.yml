@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - master
+  # Trigger manually 
+  workflow_dispatch:
 
 env:
   CI: true

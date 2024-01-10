@@ -29,6 +29,4 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: |
           npm ci
-          git status
-          npx nx report
           npx nx run-many -t release
