@@ -1,3 +1,17 @@
+# [5.0.0](https://github.com/tinesoft/ngx-cookieconsent/compare/v4.0.2...v5.0.0) (2024-01-10)
+
+### Features
+
+- **core:** add `mobileForceFloat` option in the config ([38c0346](https://github.com/tinesoft/ngx-cookieconsent/commit/38c03466781913dea59ec03e775e83e47347c664)), closes [#139](https://github.com/tinesoft/ngx-cookieconsent/issues/139)
+- update to Angular `v15` and add standalone api support via `provideNgcCookieConsent()` ([e34b18a](https://github.com/tinesoft/ngx-cookieconsent/commit/e34b18aa1f5ddbd78c8ef654606a1ae102364f73)), closes [#132](https://github.com/tinesoft/ngx-cookieconsent/issues/132)
+
+### BREAKING CHANGES
+
+- Angular `v15` is now the minimal version to use the library
+
+If you're using new Angular Standalone API, you can now leverage `provideNgcCookieConsent(config)`
+(instead of `NgcCookieConsentModule.forRoot(config)`) to configure your (ng)module-less application
+
 ## [4.0.2](https://github.com/tinesoft/ngx-cookieconsent/compare/v4.0.1...v4.0.2) (2023-03-06)
 
 ### Bug Fixes
