@@ -1,3 +1,13 @@
+# [6.0.0](https://github.com/tinesoft/ngx-cookieconsent/compare/v5.0.0...v6.0.0) (2024-01-10)
+
+### Features
+
+- update to Angular `v16+` ([6031528](https://github.com/tinesoft/ngx-cookieconsent/commit/60315282f353e1293ec434e9b1d64e55ab1af914)), closes [#134](https://github.com/tinesoft/ngx-cookieconsent/issues/134)
+
+### BREAKING CHANGES
+
+- Angular ` v16+` is now the minimal version to use the library.
+
 # [5.0.0](https://github.com/tinesoft/ngx-cookieconsent/compare/v4.0.2...v5.0.0) (2024-01-10)
 
 ### Features
