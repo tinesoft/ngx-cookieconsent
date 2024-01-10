@@ -4,9 +4,7 @@
 [![npm version](https://badge.fury.io/js/ngx-cookieconsent.svg)](https://badge.fury.io/js/ngx-cookieconsent)
 [![Build Status](https://travis-ci.org/tinesoft/ngx-cookieconsent.svg?branch=master)](https://travis-ci.org/tinesoft/ngx-cookieconsent)
 [![Coverage Status](https://coveralls.io/repos/github/tinesoft/ngx-cookieconsent/badge.svg?branch=master)](https://coveralls.io/github/tinesoft/ngx-cookieconsent?branch=master)
-[![dependency Status](https://david-dm.org/tinesoft/ngx-cookieconsent/status.svg)](https://david-dm.org/tinesoft/ngx-cookieconsent)
-[![devDependency Status](https://david-dm.org/tinesoft/ngx-cookieconsent/dev-status.svg?branch=master)](https://david-dm.org/tinesoft/ngx-cookieconsent#info=devDependencies)
-[![Greenkeeper Badge](https://badges.greenkeeper.io/tinesoft/ngx-cookieconsent.svg)](https://greenkeeper.io/)
+[![Known Vulnerabilities](https://snyk.io/test/github/tinesoft/ngx-cookieconsent/master/badge.svg)](https://snyk.io/test/github/tinesoft/ngx-cookieconsent)
 
 > [Cookie Consent](https://cookieconsent.insites.com/) module for Angular
 
