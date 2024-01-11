@@ -19,7 +19,7 @@ jobs:
       NX_RUN_GROUP: ${{ github.run_id }}
     steps:
       - name: Checkout Repo
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
       - name: Use Node.js ${{ matrix.node-version }}
@@ -42,6 +42,6 @@ jobs:
             ${{ matrix.os }}-node-${{ matrix.node-version }}-${{ env.cache-name }}-
 
       - run: npm ci
-      - run: npm run affected:test -- --base=origin/develop --parallel=5
+      - run: npx nx affected -t test --base=origin/develop --parallel
           
           
