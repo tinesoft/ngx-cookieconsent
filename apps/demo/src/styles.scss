@@ -1,10 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import '_variables';
-@import 'variables';
-@import 'highlight';
+@use 'variables';
+@use 'highlight';
 @import 'node_modules/bootstrap/scss/bootstrap';
-@import 'node_modules/font-awesome/scss/font-awesome';
 @import 'node_modules/cookieconsent/build/cookieconsent.min';
 
 

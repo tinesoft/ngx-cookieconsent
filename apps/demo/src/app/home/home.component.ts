@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { Title }     from '@angular/platform-browser';
 import sdk from '@stackblitz/sdk';
 import { PlaygroundComponent } from './playground/playground.component';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 
 @Component({
     selector: 'ngc-demo-home',
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
     standalone: true,
-    imports: [PlaygroundComponent]
+    imports: [PlaygroundComponent, FaIconComponent]
 })
 export class HomeComponent implements OnInit {
 

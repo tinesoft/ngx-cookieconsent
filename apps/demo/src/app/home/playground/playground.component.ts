@@ -7,14 +7,15 @@ import { ClipboardModule } from 'ngx-clipboard';
 import { ColorPickerModule } from 'ngx-color-picker';
 import { FormsModule } from '@angular/forms';
 import { NgFor, NgClass, JsonPipe } from '@angular/common';
-import { NgbDropdown, NgbDropdownToggle, NgbDropdownMenu, NgbAccordion, NgbPanel, NgbPanelTitle, NgbPanelContent } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdown, NgbDropdownToggle, NgbDropdownMenu, NgbAccordionModule} from '@ng-bootstrap/ng-bootstrap';
+import { FaIconComponent } from '@fortawesome/angular-fontawesome';
 
 @Component({
     selector: 'ngc-demo-playground',
     templateUrl: './playground.component.html',
     styleUrls: ['./playground.component.scss'],
     standalone: true,
-    imports: [NgbDropdown, NgbDropdownToggle, NgbDropdownMenu, NgFor, NgClass, FormsModule, NgbAccordion, NgbPanel, NgbPanelTitle, NgbPanelContent, ColorPickerModule, ClipboardModule, JsonPipe]
+    imports: [NgbDropdown, NgbDropdownToggle, NgbDropdownMenu, NgFor, NgClass, FormsModule,FaIconComponent, NgbAccordionModule, ColorPickerModule, ClipboardModule, JsonPipe]
 })
 export class PlaygroundComponent {
 

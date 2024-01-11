@@ -1,7 +1,7 @@
 
 import { HttpClient, provideHttpClient } from '@angular/common/http';
-import { SecurityContext } from '@angular/core';
-import { ApplicationConfig } from '@angular/platform-browser';
+import { ENVIRONMENT_INITIALIZER, SecurityContext } from '@angular/core';
+import { ApplicationConfig } from '@angular/core';
 
 import { NgcCookieConsentConfig, provideNgcCookieConsent } from 'ngx-cookieconsent';
 
@@ -10,8 +10,13 @@ import { environment } from '../environments/environment';
 import { provideRouter, withEnabledBlockingInitialNavigation } from '@angular/router';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import { MarkdownModule, MarkedOptions } from 'ngx-markdown';
+import { MARKED_OPTIONS, provideMarkdown } from 'ngx-markdown';
 import { appRoutes } from './app.routes';
+import { FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { IconDefinition, faBolt, faBook, faCheck, faClipboard, faFileText, faGear, faLanguage, faImage, faInfo, faLink, faMapMarker, faUndo, faVcard } from '@fortawesome/free-solid-svg-icons';
+import { faGithub } from '@fortawesome/free-brands-svg-icons';
+
+const iconsList: IconDefinition[] = [faUndo, faMapMarker, faLanguage, faLink, faGear, faFileText, faVcard, faImage, faCheck, faClipboard, faInfo, faBook, faBolt, faGithub];
 
 const cookieConfig: NgcCookieConsentConfig = {
   cookie: {
@@ -46,10 +51,10 @@ export const appConfig: ApplicationConfig = {
       }
     }).providers,
     provideNgcCookieConsent(cookieConfig),
-    MarkdownModule.forRoot(
+    provideMarkdown(
       {
         markedOptions: {
-          provide: MarkedOptions,
+          provide: MARKED_OPTIONS,
           useValue: {
             gfm: true,
             breaks: false,
@@ -60,6 +65,16 @@ export const appConfig: ApplicationConfig = {
         },
         sanitize: SecurityContext.NONE
       }
-    ).providers,
+    ),
+    {
+      provide: ENVIRONMENT_INITIALIZER,
+      useFactory: (iconLibrary: FaIconLibrary) => async() => {
+        // Add any icons needed here:
+        iconLibrary.addIcons(...iconsList);
+      },
+      // When using a factory provider you need to explicitly specify its dependencies.
+      deps: [FaIconLibrary],
+      multi: true,
+    },
   ]
 }
