@@ -1,0 +1,1875 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>ngx-cookieconsent documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="../" class="navbar-brand">ngx-cookieconsent documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Injectables</li>
+  <li class="breadcrumb-item" >NgcCookieConsentConfig</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" 
+                class="nav-link"
+                class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" 
+                class="nav-link"
+                
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts</code>
+        </p>
+
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>Cookie Consent configuration object.</p>
+
+            </p>
+
+
+
+            <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#animateRevokable" >animateRevokable</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#autoAttach" >autoAttach</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#autoOpen" >autoOpen</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#blacklistPage" >blacklistPage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#compliance" >compliance</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#container" >container</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#content" >content</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#cookie" >cookie</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#dismissOnScroll" >dismissOnScroll</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#dismissOnTimeout" >dismissOnTimeout</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#dismissOnWindowClick" >dismissOnWindowClick</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#elements" >elements</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#enabled" >enabled</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#ignoreClicksFrom" >ignoreClicksFrom</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#law" >law</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#layout" >layout</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#layouts" >layouts</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#location" >location</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#mobileForceFloat" >mobileForceFloat</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#onInitialise" >onInitialise</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#onNoCookieLaw" >onNoCookieLaw</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#onPopupClose" >onPopupClose</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#onPopupOpen" >onPopupOpen</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#onRevokeChoice" >onRevokeChoice</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#onStatusChange" >onStatusChange</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#overrideHTML" >overrideHTML</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#palette" >palette</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#position" >position</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#revokable" >revokable</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#revokeBtn" >revokeBtn</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#showLink" >showLink</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#static" >static</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#theme" >theme</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#type" >type</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#whitelistPage" >whitelistPage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Optional</span>
+                                <a href="#window" >window</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+            <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="animateRevokable"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>animateRevokable</b></span>
+                        <a href="#animateRevokable"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:128</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>If true, the revokable button will tranlate in and out</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="autoAttach"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>autoAttach</b></span>
+                        <a href="#autoAttach"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="160" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:160</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>By default the created HTML is automatically appended to the container (which defaults to <body>). You can prevent this behaviour
+by setting this to false, but if you do, you must attach the <code>element</code> yourself, which is a public property of the popup instance:</p>
+<p>var instance = cookieconsent.factory(options);
+document.body.appendChild(instance.element);</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="autoOpen"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>autoOpen</b></span>
+                        <a href="#autoOpen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="150" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:150</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The application automatically decide whether the popup should open.
+Set this to false to prevent this from happening and to allow you to control the behaviour yourself</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="blacklistPage"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>blacklistPage</b></span>
+                        <a href="#blacklistPage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>(string | RegExp)[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="180" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:180</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Simple blacklist for pages. specify page by:</p>
+<ul>
+<li>using a string : &#39;/index.html&#39;           (matches &#39;/index.html&#39; exactly) OR</li>
+<li>using RegExp   : //page_[\d]+.html/    (matched &#39;/page_1.html&#39; and &#39;/page_2.html&#39; etc)</li>
+</ul>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="compliance"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>compliance</b></span>
+                        <a href="#compliance"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/NgcCompliance.html" target="_self" >NgcCompliance</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:62</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Define types of &#39;compliance&#39; here. &#39;{{value}}&#39; strings in here are linked to <code>elements</code></p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="container"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>container</b></span>
+                        <a href="#container"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>HTMLElement</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:26</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Optional (expecting a HTML element) if passed, the popup is appended to this element. default is <code>document.body</code></p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="content"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>content</b></span>
+                        <a href="#content"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/NgcContentOptions.html" target="_self" >NgcContentOptions</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:36</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Each item defines the inner text for the element that it references</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cookie"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>cookie</b></span>
+                        <a href="#cookie"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/NgcCookieOptions.html" target="_self" >NgcCookieOptions</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:31</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Defaults cookie options - it is RECOMMENDED to set these values to correspond with your server</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dismissOnScroll"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>dismissOnScroll</b></span>
+                        <a href="#dismissOnScroll"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>boolean | number</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:139</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Set value as scroll range to enable</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dismissOnTimeout"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>dismissOnTimeout</b></span>
+                        <a href="#dismissOnTimeout"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>boolean | number</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:144</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Set value as time in milliseconds to autodismiss after set time</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dismissOnWindowClick"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>dismissOnWindowClick</b></span>
+                        <a href="#dismissOnWindowClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="203" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:203</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Set value as click anything on the page, excluding the <code>ignoreClicksFrom</code> below (if we click on the revoke button etc)</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="elements"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>elements</b></span>
+                        <a href="#elements"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/NgcHTMLElements.html" target="_self" >NgcHTMLElements</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:44</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>This is the HTML for the elements above. The string {{header}} will be replaced with the equivalent text below.
+You can remove &#39;{{header}}&#39; and write the content directly inside the HTML if you want.</p>
+<ul>
+<li>ARIA rules suggest to ensure controls are tabbable (so the browser can find the first control),
+ and to set the focus to the first interactive control (<a href="http://w3c.github.io/aria-in-html/">http://w3c.github.io/aria-in-html/</a>)</li>
+</ul>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="enabled"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>enabled</b></span>
+                        <a href="#enabled"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>true</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:22</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>If false, this prevents the popup from showing (useful for giving to control to another piece of code)</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ignoreClicksFrom"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>ignoreClicksFrom</b></span>
+                        <a href="#ignoreClicksFrom"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="209" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:209</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>If <code>dismissOnWindowClick</code> is true, we can click on &#39;revoke&#39; and we&#39;ll still dismiss the banner, so we need exceptions.
+Should be an array of class names (not CSS selectors).</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="law"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>law</b></span>
+                        <a href="#law"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/NgcLawOptions.html" target="_self" >NgcLawOptions</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="193" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:193</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Law Options</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="layout"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>layout</b></span>
+                        <a href="#layout"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#NgcCookieLayout" target="_self" >NgcCookieLayout</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:78</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Default layout (see above)</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="layouts"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>layouts</b></span>
+                        <a href="#layouts"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/NgcLayouts.html" target="_self" >NgcLayouts</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:73</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>define layout layouts here</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="location"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>location</b></span>
+                        <a href="#location"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/NgcLocationOptions.html" target="_self" >boolean | NgcLocationOptions</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="198" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:198</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Location Options</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="mobileForceFloat"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>mobileForceFloat</b></span>
+                        <a href="#mobileForceFloat"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="165" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:165</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Set value if floating layout should be forced for mobile devices</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onInitialise"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>onInitialise</b></span>
+                        <a href="#onInitialise"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="226" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:226</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>This is called on start up, with the current chosen compliance. It can be used to tell you if the user has already consented or not as soon as you initialise the tool.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onNoCookieLaw"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>onNoCookieLaw</b></span>
+                        <a href="#onNoCookieLaw"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="238" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:238</a></div>
+                        </td>
+                    </tr>
+
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onPopupClose"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>onPopupClose</b></span>
+                        <a href="#onPopupClose"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="221" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:221</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>This is called when the popup is closed. It can be used to clean up commands from onPopupOpen.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onPopupOpen"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>onPopupOpen</b></span>
+                        <a href="#onPopupOpen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="216" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:216</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>This is called when the popup is opened. It can be used to trigger an animation, or to attach extra handlers, etc.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onRevokeChoice"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>onRevokeChoice</b></span>
+                        <a href="#onRevokeChoice"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="236" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:236</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>This is called when the user clicks the <code>revoke</code> button. This means that their current choice has been invalidated.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onStatusChange"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>onStatusChange</b></span>
+                        <a href="#onStatusChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/function" target="_blank" >function</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="231" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:231</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>This is called any time the status is changed. This can be used to react to changes that are made to the compliance level. You can use the popup instance functions from within these callbacks too. I.E. <code>this.hasAnswered()</code> and <code>this.hasConsented()</code>.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="overrideHTML"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>overrideHTML</b></span>
+                        <a href="#overrideHTML"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="188" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:188</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>If this is defined, then it is used as the inner html instead of layout. This allows for ultimate customisation.
+Be sure to use the classes <code>cc-btn</code> and <code>cc-allow</code>, <code>cc-deny</code> or <code>cc-dismiss</code>. They enable the app to register click
+handlers. You can use other pre-existing classes too. See <code>src/styles</code> folder.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="palette"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>palette</b></span>
+                        <a href="#palette"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/NgcPaletteOptions.html" target="_self" >NgcPaletteOptions</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:118</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>If you want custom colours, pass them in here. this object should look like this.
+ideally, any custom colours/themes should be created in a separate style sheet, as this is more efficient.</p>
+<p>{
+    popup: {background: &#39;#000000&#39;, text: &#39;#fff&#39;, link: &#39;#fff&#39;},//
+    button: {background: &#39;transparent&#39;, border: &#39;#f8e71c&#39;, text: &#39;#f8e71c&#39;},//
+    highlight: {background: &#39;#f8e71c&#39;, border: &#39;#f8e71c&#39;, text: &#39;#000000&#39;},//
+}</p>
+<p><code>highlight</code> is optional and extends <code>button</code>. if it exists, it will apply to the first button
+only background needs to be defined for every element. if not set, other colors can be calculated from it</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="position"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>position</b></span>
+                        <a href="#position"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#NgcCookiePosition" target="_self" >NgcCookiePosition</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:87</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>This refers to the popup windows position. we currently support:</p>
+<ul>
+<li>banner positions: top, bottom</li>
+<li>floating positions: top-left, top-right, bottom-left, bottom-right</li>
+</ul>
+<p>adds a class <code>cc-floating</code> or <code>cc-banner</code> which helps when styling</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="revokable"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>revokable</b></span>
+                        <a href="#revokable"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:124</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Some countries REQUIRE that a user can change their mind. You can configure this yourself.
+Most of the time this should be false, but the <code>cookieconsent.law</code> can change this to <code>true</code> if it detects that it should</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="revokeBtn"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>revokeBtn</b></span>
+                        <a href="#revokeBtn"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:57</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>This is the html for the revoke button. This only shows up after the user has selected their level of consent
+It can be enabled of disabled using the <code>revokable</code> option</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="showLink"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>showLink</b></span>
+                        <a href="#showLink"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:134</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Used to disable link on existing layouts
+replaces element messagelink with message and removes content of link</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="static"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>static</b></span>
+                        <a href="#static"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:103</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The popup is <code>fixed</code> by default, but if you want it to be static (inline with the page content), set this to false
+Note: by default, we animate the height of the popup from 0 to full size</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="theme"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>theme</b></span>
+                        <a href="#theme"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#NgcCookieTheme" target="_self" >NgcCookieTheme</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:97</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Available styles</p>
+<ul>
+<li>block (default, no extra classes)</li>
+<li>edgeless</li>
+<li>classic
+Use your own style name and use <code>.cc-theme-STYLENAME</code> class in CSS to edit.
+Note: style &#39;wire&#39; is used for the configurator, but has no CSS styles of its own, only palette is used.</li>
+</ul>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="type"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>type</b></span>
+                        <a href="#type"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#NgcCookieType" target="_self" >NgcCookieType</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:68</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Select your type of popup here
+refers to <code>compliance</code> (in other words, the buttons that are displayed)</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="whitelistPage"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>whitelistPage</b></span>
+                        <a href="#whitelistPage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>(string | RegExp)[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="173" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:173</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Simple whitelist for pages. specify page by:</p>
+<ul>
+<li>using a string : &#39;/index.html&#39;           (matches &#39;/index.html&#39; exactly) OR</li>
+<li>using RegExp   : //page_[\d]+.html/    (matched &#39;/page_1.html&#39; and &#39;/page_2.html&#39; etc)</li>
+</ul>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="window"></a>
+                    <span class="name">
+                            <span class="modifier">Optional</span>
+                        <span ><b>window</b></span>
+                        <a href="#window"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">libs/ngx-cookieconsent/src/lib/service/cookieconsent-config.ts:51</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The placeholders {{classes}} and {{children}} both get replaced during initialisation:</p>
+<ul>
+<li>{{classes}} is where additional classes get added</li>
+<li>{{children}} is where the HTML children are placed</li>
+</ul>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+
+import { NgcHTMLElements } from &#x27;../model/html-elements&#x27;;
+import { NgcLocationOptions } from &#x27;../model/location-options&#x27;;
+import { NgcLawOptions } from &#x27;../model/law-options&#x27;;
+import { NgcContentOptions } from &#x27;../model/content-options&#x27;;
+import { NgcCookieOptions } from &#x27;../model/cookie-options&#x27;;
+import { NgcPaletteOptions } from &#x27;../model/palette-options&#x27;;
+import { NgcCompliance, NgcLayouts } from &#x27;../model/common-interfaces&#x27;;
+import { NgcCookieType, NgcCookieLayout, NgcCookiePosition, NgcCookieTheme } from &#x27;../model/common-types&#x27;;
+
+
+/**
+ * Cookie Consent configuration object.
+ */
+@Injectable()
+export class NgcCookieConsentConfig {
+
+  /**
+   * If false, this prevents the popup from showing (useful for giving to control to another piece of code)
+   */
+  enabled? &#x3D; true;
+  /**
+   * Optional (expecting a HTML element) if passed, the popup is appended to this element. default is &#x60;document.body&#x60;
+   */
+  container?: HTMLElement;
+
+  /**
+   * Defaults cookie options - it is RECOMMENDED to set these values to correspond with your server
+   */
+  cookie?: NgcCookieOptions;
+
+  /**
+   * Each item defines the inner text for the element that it references
+   */
+  content?: NgcContentOptions;
+
+  /**
+   * This is the HTML for the elements above. The string {{header}} will be replaced with the equivalent text below.
+   * You can remove &#x27;{{header}}&#x27; and write the content directly inside the HTML if you want.
+   * - ARIA rules suggest to ensure controls are tabbable (so the browser can find the first control),
+   *    and to set the focus to the first interactive control (http://w3c.github.io/aria-in-html/)
+   */
+  elements?: NgcHTMLElements;
+
+  /**
+   * The placeholders {{classes}} and {{children}} both get replaced during initialisation:
+   * - {{classes}} is where additional classes get added
+   * - {{children}} is where the HTML children are placed
+   */
+  window?: string;
+
+  /**
+   * This is the html for the revoke button. This only shows up after the user has selected their level of consent
+   * It can be enabled of disabled using the &#x60;revokable&#x60; option
+   */
+  revokeBtn?: string;
+
+  /**
+   * Define types of &#x27;compliance&#x27; here. &#x27;{{value}}&#x27; strings in here are linked to &#x60;elements&#x60;
+   */
+  compliance?: NgcCompliance;
+
+  /**
+   * Select your type of popup here
+   * refers to &#x60;compliance&#x60; (in other words, the buttons that are displayed)
+   */
+  type?: NgcCookieType;
+
+  /**
+   * define layout layouts here
+   */
+  layouts?: NgcLayouts;
+
+  /**
+   * Default layout (see above)
+   */
+  layout?: NgcCookieLayout;
+
+  /**
+   * This refers to the popup windows position. we currently support:
+   * - banner positions: top, bottom
+   * - floating positions: top-left, top-right, bottom-left, bottom-right
+  *
+   * adds a class &#x60;cc-floating&#x60; or &#x60;cc-banner&#x60; which helps when styling
+   */
+  position?: NgcCookiePosition;
+
+  /**
+   * Available styles
+   * - block (default, no extra classes)
+   * - edgeless
+   * - classic
+   * Use your own style name and use &#x60;.cc-theme-STYLENAME&#x60; class in CSS to edit.
+   * Note: style &#x27;wire&#x27; is used for the configurator, but has no CSS styles of its own, only palette is used.
+   */
+  theme?: NgcCookieTheme;
+
+  /**
+   * The popup is &#x60;fixed&#x60; by default, but if you want it to be static (inline with the page content), set this to false
+   * Note: by default, we animate the height of the popup from 0 to full size
+   */
+  static?: boolean;
+
+  /**
+   * If you want custom colours, pass them in here. this object should look like this.
+   * ideally, any custom colours/themes should be created in a separate style sheet, as this is more efficient.
+   *
+   * {
+   *     popup: {background: &#x27;#000000&#x27;, text: &#x27;#fff&#x27;, link: &#x27;#fff&#x27;},//
+   *     button: {background: &#x27;transparent&#x27;, border: &#x27;#f8e71c&#x27;, text: &#x27;#f8e71c&#x27;},//
+   *     highlight: {background: &#x27;#f8e71c&#x27;, border: &#x27;#f8e71c&#x27;, text: &#x27;#000000&#x27;},//
+   * }
+   *
+   * &#x60;highlight&#x60; is optional and extends &#x60;button&#x60;. if it exists, it will apply to the first button
+   * only background needs to be defined for every element. if not set, other colors can be calculated from it
+   */
+  palette?: NgcPaletteOptions;
+
+  /**
+   * Some countries REQUIRE that a user can change their mind. You can configure this yourself.
+   * Most of the time this should be false, but the &#x60;cookieconsent.law&#x60; can change this to &#x60;true&#x60; if it detects that it should
+   */
+  revokable?: boolean;
+  /**
+   * If true, the revokable button will tranlate in and out
+   */
+  animateRevokable?: boolean;
+
+  /**
+   * Used to disable link on existing layouts
+   * replaces element messagelink with message and removes content of link
+   */
+  showLink?: boolean;
+
+  /**
+   * Set value as scroll range to enable
+   */
+  dismissOnScroll?: boolean | number;
+
+  /**
+   * Set value as time in milliseconds to autodismiss after set time
+   */
+  dismissOnTimeout?: boolean | number;
+
+  /**
+   * The application automatically decide whether the popup should open.
+   * Set this to false to prevent this from happening and to allow you to control the behaviour yourself
+   */
+  autoOpen?: boolean;
+
+  /**
+   * By default the created HTML is automatically appended to the container (which defaults to &lt;body&gt;). You can prevent this behaviour
+   * by setting this to false, but if you do, you must attach the &#x60;element&#x60; yourself, which is a public property of the popup instance:
+   *
+   * var instance &#x3D; cookieconsent.factory(options);
+   * document.body.appendChild(instance.element);
+   *
+    */
+  autoAttach?: boolean;
+
+  /**
+   * Set value if floating layout should be forced for mobile devices
+   */
+  mobileForceFloat?: boolean;
+
+  /**
+   * Simple whitelist for pages. specify page by:
+   * - using a string : &#x27;/index.html&#x27;           (matches &#x27;/index.html&#x27; exactly) OR
+   * - using RegExp   : /\/page_[\d]+\.html/    (matched &#x27;/page_1.html&#x27; and &#x27;/page_2.html&#x27; etc)
+   *
+   */
+  whitelistPage?: (string | RegExp)[] &#x3D; [];
+  /**
+   * Simple blacklist for pages. specify page by:
+   * - using a string : &#x27;/index.html&#x27;           (matches &#x27;/index.html&#x27; exactly) OR
+   * - using RegExp   : /\/page_[\d]+\.html/    (matched &#x27;/page_1.html&#x27; and &#x27;/page_2.html&#x27; etc)
+   *
+   */
+  blacklistPage?: (string | RegExp)[] &#x3D; [];
+
+  /**
+   * If this is defined, then it is used as the inner html instead of layout. This allows for ultimate customisation.
+   * Be sure to use the classes &#x60;cc-btn&#x60; and &#x60;cc-allow&#x60;, &#x60;cc-deny&#x60; or &#x60;cc-dismiss&#x60;. They enable the app to register click
+   * handlers. You can use other pre-existing classes too. See &#x60;src/styles&#x60; folder.
+   *
+   */
+  overrideHTML?: string;
+
+  /**
+   * Law Options
+   */
+  law?: NgcLawOptions;
+
+  /**
+   * Location Options
+   */
+  location?: boolean | NgcLocationOptions;
+
+  /**
+   * Set value as click anything on the page, excluding the &#x60;ignoreClicksFrom&#x60; below (if we click on the revoke button etc)
+   */
+  dismissOnWindowClick?: boolean;
+
+  /**
+   * If &#x60;dismissOnWindowClick&#x60; is true, we can click on &#x27;revoke&#x27; and we&#x27;ll still dismiss the banner, so we need exceptions.
+   * Should be an array of class names (not CSS selectors).
+   */
+  ignoreClicksFrom?: string[];
+
+  // these callback hooks are called at certain points in the program execution
+
+  /**
+   * This is called when the popup is opened. It can be used to trigger an animation, or to attach extra handlers, etc.
+   */
+  onPopupOpen?: () &#x3D;&gt; void;
+
+  /**
+   * This is called when the popup is closed. It can be used to clean up commands from onPopupOpen.
+   */
+  onPopupClose?: () &#x3D;&gt; void;
+
+  /**
+   * This is called on start up, with the current chosen compliance. It can be used to tell you if the user has already consented or not as soon as you initialise the tool.
+   */
+  onInitialise?: (status: &#x27;allow&#x27; | &#x27;deny&#x27; | &#x27;dismiss&#x27;) &#x3D;&gt; void;
+
+  /**
+   * This is called any time the status is changed. This can be used to react to changes that are made to the compliance level. You can use the popup instance functions from within these callbacks too. I.E. &#x60;this.hasAnswered()&#x60; and &#x60;this.hasConsented()&#x60;.
+   */
+  onStatusChange?: (status: &#x27;allow&#x27; | &#x27;deny&#x27; | &#x27;dismiss&#x27;, chosenBefore: boolean) &#x3D;&gt; void;
+
+  /**
+   * This is called when the user clicks the &#x60;revoke&#x60; button. This means that their current choice has been invalidated.
+   */
+  onRevokeChoice?: () &#x3D;&gt; void;
+
+  onNoCookieLaw?: (countryCode: string, country: string) &#x3D;&gt; void;
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'NgcCookieConsentConfig.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,517 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>ngx-cookieconsent documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	   <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="./" class="navbar-brand">ngx-cookieconsent documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content getting-started">
+                   <div class="content-data">
+
+<h1>ngx-cookieconsent</h1>
+<p><a href="https://badge.fury.io/js/ngx-cookieconsent"><img src="https://badge.fury.io/js/ngx-cookieconsent.svg" alt="npm version" class="img-responsive"></a>
+<a href="https://travis-ci.org/tinesoft/ngx-cookieconsent"><img src="https://travis-ci.org/tinesoft/ngx-cookieconsent.svg?branch=master" alt="Build Status" class="img-responsive"></a>
+<a href="https://coveralls.io/github/tinesoft/ngx-cookieconsent?branch=master"><img src="https://coveralls.io/repos/github/tinesoft/ngx-cookieconsent/badge.svg?branch=master" alt="Coverage Status" class="img-responsive"></a>
+<a href="https://snyk.io/test/github/tinesoft/ngx-cookieconsent"><img src="https://snyk.io/test/github/tinesoft/ngx-cookieconsent/master/badge.svg" alt="Known Vulnerabilities" class="img-responsive"></a></p>
+<blockquote>
+<p><a href="https://cookieconsent.insites.com/">Cookie Consent</a> module for Angular</p>
+</blockquote>
+<p align="center">
+  <img height="256px" width="256px" style="text-align: center;" src="https://raw.githubusercontent.com/tinesoft/ngx-cookieconsent/master/apps/demo/src/assets/logo.svg">
+</p>
+
+<h2>Demo</h2>
+<p>View the module in action at <a href="https://tinesoft.github.io/ngx-cookieconsent">https://tinesoft.github.io/ngx-cookieconsent</a></p>
+<h2>Dependencies</h2>
+<ul>
+<li><a href="https://angular.io">Angular</a> (see  <a href="#compatibility-with-angular">Compatibility Matrix </a> below)</li>
+<li><a href="https://cookieconsent.insites.com/">Cookie Consent</a> (<em>requires</em> Cookie Consent 3 or higher, tested with 3.1.0)</li>
+</ul>
+<h2>Installation</h2>
+<p>Install <code>Cookie Consent</code> dependency:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-shell">npm install --save cookieconsent
+
+// or 
+
+yarn add cookieconsent</code></pre></div><p>Now install <code>ngx-cookieconsent</code> via:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-shell">npm install --save ngx-cookieconsent
+
+// or
+
+yarn add ngx-cookieconsent</code></pre></div><blockquote>
+<p><strong>Note</strong>: If you are using <code>Angular CLI</code> or <code>Nx CLI</code> to build your app, make sure that <code>cookieconsent</code> is properly listed as a <a href="https://github.com/angular/angular-cli/wiki/stories-global-scripts">global library</a>, and as <a href="https://github.com/angular/angular-cli/wiki/stories-global-styles">global style</a>.</p>
+</blockquote>
+<p>To do so, edit your <code>angular.json</code> (or <code>project.json</code> for Nx CLI based apps) as such:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-none">      &quot;scripts&quot;: [
+        &quot;node_modules/cookieconsent/build/cookieconsent.min.js&quot;
+      ],
+
+      &quot;styles&quot;: [
+        &quot;node_modules/cookieconsent/build/cookieconsent.min.css&quot;
+      ],
+</code></pre></div><h2>Configuration</h2>
+<p>Prepare the config:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-ts">import {NgcCookieConsentConfig} from &#39;ngx-cookieconsent&#39;;
+
+const cookieConfig:NgcCookieConsentConfig = {
+  cookie: {
+    domain: &#39;localhost&#39; // or &#39;your.domain.com&#39; // it is mandatory to set a domain, for cookies to work properly (see https://goo.gl/S2Hy2A)
+  },
+  palette: {
+    popup: {
+      background: &#39;#000&#39;
+    },
+    button: {
+      background: &#39;#f1d600&#39;
+    }
+  },
+  theme: &#39;edgeless&#39;,
+  type: &#39;opt-out&#39;
+};
+</code></pre></div><h4>For Angular Standalone API-based apps</h4>
+<p>If you are using <a href="https://angular.io/guide/standalone-components">Angular Standalone</a> API to bootstrap your application, you can configure the library by leveraging the new <code>provideNgcCookieConsent(config)</code> helper (added since <code>v5.x.x</code>), as such:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-ts">import {provideNgcCookieConsent} from &#39;ngx-cookieconsent&#39;;
+
+//...
+
+bootstrapApplication(AppComponent, {
+  providers: [
+    provideNgcCookieConsent(cookieConfig),
+    // ...
+  ]
+});</code></pre></div><h4>For Angular (ng)Module-based apps</h4>
+<p>For traditional ngModule-based angular application, you need to import the library module in your application module, as such:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-ts">import {NgcCookieConsentModule} from &#39;ngx-cookieconsent&#39;;
+
+//...
+
+&#64;NgModule({
+  declarations: [AppComponent, ...],
+  imports: [NgcCookieConsentModule.forRoot(cookieConfig), ...],  
+  bootstrap: [AppComponent]
+})
+export class AppModule {
+}</code></pre></div><p>Other modules in your application can simply import <code>NgcCookieConsentModule</code>:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-ts">import {NgcCookieConsentModule} from &#39;ngx-cookieconsent&#39;;
+
+&#64;NgModule({
+  declarations: [OtherComponent, ...],
+  imports: [NgcCookieConsentModule, ...], 
+})
+export class OtherModule {
+}</code></pre></div><h2>Usage</h2>
+<p>Inject the <code>NgcCookieContentService</code> in your main component (i.e. <code>AppComponent</code>) to show the cookie consent popup after the component is loaded. You don&#39;t need to explicitly call its <code>init()</code> method (done automatically when the service&#39;s constructor gets called upon instantiation By Angular).</p>
+<p>Also, you can use the injected <code>NgcCookieContentService</code> to update the config (using <code>init()</code>), subscribe to events and do stuff like disabling cookies or other.</p>
+<p>Here is how it works:</p>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-ts">import { Component, OnInit, OnDestroy } from &#39;&#64;angular/core&#39;;
+import { NgcCookieConsentService } from &#39;ngx-cookieconsent&#39;;
+import { Subscription }   from &#39;rxjs&#39;;
+
+&#64;Component({
+  selector: &#39;app-root&#39;,
+  templateUrl: &#39;./app.component.html&#39;,
+  styleUrls: [&#39;./app.component.scss&#39;]
+})
+export class AppComponent implements OnInit, OnDestroy {
+
+  //keep refs to subscriptions to be able to unsubscribe later
+  private popupOpenSubscription!: Subscription;
+  private popupCloseSubscription!: Subscription;
+  private initializingSubscription!: Subscription;
+  private initializedSubscription!: Subscription;
+  private initializationErrorSubscription!: Subscription;
+  private statusChangeSubscription!: Subscription;
+  private revokeChoiceSubscription!: Subscription;
+  private noCookieLawSubscription!: Subscription;
+
+  constructor(private ccService: NgcCookieConsentService){}
+
+  ngOnInit() {
+    // subscribe to cookieconsent observables to react to main events
+    this.popupOpenSubscription = this.ccService.popupOpen$.subscribe(
+      () =&gt; {
+        // you can use this.ccService.getConfig() to do stuff...
+      });
+
+    this.popupCloseSubscription = this.ccService.popupClose$.subscribe(
+      () =&gt; {
+        // you can use this.ccService.getConfig() to do stuff...
+      });
+
+    this.initializingSubscription = this.ccService.initializing$.subscribe(
+      (event: NgcInitializingEvent) =&gt; {
+        // the cookieconsent is initilializing... Not yet safe to call methods like `NgcCookieConsentService.hasAnswered()`
+        console.log(`initializing: ${JSON.stringify(event)}`);
+      });
+    
+    this.initializedSubscription = this.ccService.initialized$.subscribe(
+      () =&gt; {
+        // the cookieconsent has been successfully initialized.
+        // It&#39;s now safe to use methods on NgcCookieConsentService that require it, like `hasAnswered()` for eg...
+        console.log(`initialized: ${JSON.stringify(event)}`);
+      });
+
+    this.initializationErrorSubscription = this.ccService.initializationError$.subscribe(
+      (event: NgcInitializationErrorEvent) =&gt; {
+        // the cookieconsent has failed to initialize... 
+        console.log(`initializationError: ${JSON.stringify(event.error?.message)}`);
+      });
+
+    this.statusChangeSubscription = this.ccService.statusChange$.subscribe(
+      (event: NgcStatusChangeEvent) =&gt; {
+        // you can use this.ccService.getConfig() to do stuff...
+      });
+
+    this.revokeChoiceSubscription = this.ccService.revokeChoice$.subscribe(
+      () =&gt; {
+        // you can use this.ccService.getConfig() to do stuff...
+      });
+
+      this.noCookieLawSubscription = this.ccService.noCookieLaw$.subscribe(
+      (event: NgcNoCookieLawEvent) =&gt; {
+        // you can use this.ccService.getConfig() to do stuff...
+      });
+  }
+
+  ngOnDestroy() {
+    // unsubscribe to cookieconsent observables to prevent memory leaks
+    this.popupOpenSubscription.unsubscribe();
+    this.popupCloseSubscription.unsubscribe();
+    this.initializingSubscription.unsubscribe();
+    this.initializedSubscription.unsubscribe();
+    this.initializationErrorSubscription.unsubscribe();
+    this.statusChangeSubscription.unsubscribe();
+    this.revokeChoiceSubscription.unsubscribe();
+    this.noCookieLawSubscription.unsubscribe();
+  }
+}
+</code></pre></div><p>See <a href="https://cookieconsent.insites.com/documentation/about-cookie-consent/">Cookie Consent Documentation</a> to see more about how to customize the UI or interact with user interactions.</p>
+<h2>I18n Support</h2>
+<p>Messages displayed in the Cookie Consent Bar can easily be translated, using libraries like <a href="https://github.com/ngx-translate/core">ngx-translate</a>.
+Basically this involved the following steps (using ngx-translate + Anglar CLI):</p>
+<ul>
+<li><p><a href="https://github.com/ngx-translate/core#installation">Install</a> and <a href="https://github.com/ngx-translate/core#usage">configure</a> <code>ngx-translate</code></p>
+</li>
+<li><p>Provide the translation JSON files in <code>src/assets/</code>, for e.g: <code>en.json</code>, <code>fr.json</code>, ...</p>
+</li>
+</ul>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-JSON">{
+    &quot;cookie&quot;: {
+        &quot;header&quot;: &quot;Cookies used on the website!&quot;,
+        &quot;message&quot;: &quot;This website uses cookies to ensure you get the best experience on our website.&quot;,
+        &quot;dismiss&quot;: &quot;Got it!&quot;,
+        &quot;allow&quot;: &quot;Allow cookies&quot;,
+        &quot;deny&quot;: &quot;Decline&quot;,
+        &quot;link&quot;: &quot;Learn more&quot;,
+        &quot;policy&quot;: &quot;Cookie Policy&quot;
+    }
+}</code></pre></div><blockquote>
+<p><strong>Note:</strong> see <a href="https://github.com/tinesoft/ngx-cookieconsent/blob/master/src/model/content-options.ts">content-options.ts</a> for complete list of messages that can be translated.</p>
+</blockquote>
+<ul>
+<li>Configure your main component <code>AppComponent</code></li>
+</ul>
+<b>Example :</b><div><pre class="line-numbers"><code class="language-ts">import { Component, OnInit } from &#39;&#64;angular/core&#39;;
+import { TranslateService } from &#39;&#64;ngx-translate/core&#39;;
+
+&#64;Component({
+  selector: &#39;app-root&#39;,
+  templateUrl: &#39;./app.component.html&#39;,
+  styleUrls: [&#39;./app.component.scss&#39;]
+})
+export class AppComponent {
+
+  constructor(private ccService: NgcCookieConsentService, private translateService:TranslateService) {
+  }
+
+  ngOnInit() {
+    // Support for translated cookies messages
+    this.translateService.addLangs([&#39;en&#39;, &#39;fr&#39;]);
+    this.translateService.setDefaultLang(&#39;en&#39;);
+
+    const browserLang = this.translateService.getBrowserLang();
+    this.translateService.use(browserLang.match(/en|fr/) ? browserLang : &#39;en&#39;);
+
+    this.translateService//
+      .get([&#39;cookie.header&#39;, &#39;cookie.message&#39;, &#39;cookie.dismiss&#39;, &#39;cookie.allow&#39;, &#39;cookie.deny&#39;, &#39;cookie.link&#39;, &#39;cookie.policy&#39;])
+      .subscribe(data =&gt; {
+
+        this.ccService.getConfig().content = this.ccService.getConfig().content || {} ;
+        // Override default messages with the translated ones
+        this.ccService.getConfig().content.header = data[&#39;cookie.header&#39;];
+        this.ccService.getConfig().content.message = data[&#39;cookie.message&#39;];
+        this.ccService.getConfig().content.dismiss = data[&#39;cookie.dismiss&#39;];
+        this.ccService.getConfig().content.allow = data[&#39;cookie.allow&#39;];
+        this.ccService.getConfig().content.deny = data[&#39;cookie.deny&#39;];
+        this.ccService.getConfig().content.link = data[&#39;cookie.link&#39;];
+        this.ccService.getConfig().content.policy = data[&#39;cookie.policy&#39;];
+
+        this.ccService.destroy(); // remove previous cookie bar (with default messages)
+        this.ccService.init(this.ccService.getConfig()); // update config with translated messages
+      });
+  }
+}</code></pre></div><h2>Custom Layout Support</h2>
+<p>Cookie Consent supports <a href="https://cookieconsent.insites.com/documentation/javascript-api/#layout_options">custom layouts</a>, and so does <code>ngx-cookieconsent</code>.
+So if your are not happy with the default appearance of the cookie bar, you can totally customize it to better suit your needs. This involves overriding a few options:</p>
+<ul>
+<li><a href="https://github.com/tinesoft/ngx-cookieconsent/blob/master/src/service/cookieconsent-config.ts#L78">NgcCookieConsentConfig.layout</a>: to define the name of your custom layout to use. For e.g <code>my-custom-layout</code></li>
+<li><a href="https://github.com/tinesoft/ngx-cookieconsent/blob/master/src/service/cookieconsent-config.ts#L73">NgcCookieConsentConfig.layouts</a>: to define your custom layout HTML. Elements between <code>{{</code> and <code>}}</code> will be replaced by their content (see in <code>[NgcCookieConsentConfig.content</code> below)</li>
+<li><a href="https://github.com/tinesoft/ngx-cookieconsent/blob/master/src/model/cookieconsent-config.ts#L44">NgcCookieConsentConfig.elements</a> : html elements referenced in the custom layout (between <code>{{</code> and <code>}}</code>)</li>
+<li><a href="https://github.com/tinesoft/ngx-cookieconsent/blob/master/src/model/cookieconsent-config.ts#L36">NgcCookieConsentConfig.content</a> : content of elements referenced in the custom elements above (between <code>{{</code> and <code>}}</code>)</li>
+</ul>
+<p>Here is a example of a <strong>custom layout</strong>, that is inspired from the default &#39;basic&#39; layout , but simply changes the message and links that are displayed in the bar.</p>
+<p align="center">
+  <img style="text-align: center;" src="https://cdn.rawgit.com/tinesoft/ngx-cookieconsent/master/demo/src/assets/custom-cookie-bar.png">
+</p>
+
+<b>Example :</b><div><pre class="line-numbers"><code class="language-ts">import {NgcCookieConsentModule, NgcCookieConsentConfig} from &#39;ngx-cookieconsent&#39;;
+
+const cookieConfig:NgcCookieConsentConfig = {
+  cookie: {
+    domain: &#39;localhost&#39;// it is recommended to set your domain, for cookies to work properly
+  },
+  palette: {
+    popup: {
+      background: &#39;#000&#39;
+    },
+    button: {
+      background: &#39;#f1d600&#39;
+    }
+  },
+  theme: &#39;edgeless&#39;,
+  type: &#39;opt-out&#39;,
+  layout: &#39;my-custom-layout&#39;,
+  layouts: {
+    &quot;my-custom-layout&quot;: &#39;{{messagelink}}{{compliance}}&#39;
+  },
+  elements:{
+    messagelink: `
+    &lt;span id=&quot;cookieconsent:desc&quot; class=&quot;cc-message&quot;&gt;{{message}} 
+      &lt;a aria-label=&quot;learn more about cookies&quot; tabindex=&quot;0&quot; class=&quot;cc-link&quot; href=&quot;{{cookiePolicyHref}}&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;{{cookiePolicyLink}}&lt;/a&gt;, 
+      &lt;a aria-label=&quot;learn more about our privacy policy&quot; tabindex=&quot;1&quot; class=&quot;cc-link&quot; href=&quot;{{privacyPolicyHref}}&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;{{privacyPolicyLink}}&lt;/a&gt; and our 
+      &lt;a aria-label=&quot;learn more about our terms of service&quot; tabindex=&quot;2&quot; class=&quot;cc-link&quot; href=&quot;{{tosHref}}&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;{{tosLink}}&lt;/a&gt;
+    &lt;/span&gt;
+    `,
+  },
+  content:{
+    message: &#39;By using our site, you acknowledge that you have read and understand our &#39;,
+    
+    cookiePolicyLink: &#39;Cookie Policy&#39;,
+    cookiePolicyHref: &#39;https://cookie.com&#39;,
+
+    privacyPolicyLink: &#39;Privacy Policy&#39;,
+    privacyPolicyHref: &#39;https://privacy.com&#39;,
+
+    tosLink: &#39;Terms of Service&#39;,
+    tosHref: &#39;https://tos.com&#39;,
+  }
+};
+
+
+&#64;NgModule({
+  declarations: [AppComponent, ...],
+  imports: [NgcCookieConsentModule.forRoot(cookieConfig), ...],  
+  bootstrap: [AppComponent]
+})
+export class AppModule {
+}</code></pre></div><h2>Compatibility with Angular</h2>
+<p>Every Nx plugin relies on the underlying Nx Workspace/DevKit it runs on. This table provides the compatibility matrix between major versions of Nx workspace and this plugin.</p>
+<table class="table table-bordered compodoc-table">
+<thead>
+<tr>
+<th>Library Version</th>
+<th>Angular version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>&gt;=v6.0.0</code></td>
+<td><code>&gt;=v16.x.x</code></td>
+</tr>
+<tr>
+<td><code>&gt;=v5.0.0</code></td>
+<td><code>&gt;=v15.x.x</code></td>
+</tr>
+<tr>
+<td><code>&gt;=v4.0.1</code></td>
+<td><code>&gt;=v14.x.x</code></td>
+</tr>
+<tr>
+<td><code>v3.0.1</code></td>
+<td><code>&gt;=v12.x.x</code></td>
+</tr>
+<tr>
+<td><code>&gt;=v2.2.3</code></td>
+<td><code>&gt;=v6.x.x</code></td>
+</tr>
+<tr>
+<td><code>v1.1.0</code></td>
+<td><code>&lt;v6.x.x</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Credits</h2>
+<p><code>ngx-cookieconsent</code> is built upon <a href="https://www.osano.com/cookieconsent/">Cookie Consent</a>, by <a href="https://osano.com">Osano</a></p>
+<h2>License</h2>
+<p>Copyright (c) 2018-present Tine Kondo. Licensed under the MIT License (MIT)</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
+            var COMPODOC_CURRENT_PAGE_URL = 'index.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+
+       <script src="./js/menu-wc.js" defer></script>
+       <script nomodule src="./js/menu-wc_es5.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+       <script src="./js/libs/zepto.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

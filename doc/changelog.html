@@ -1,0 +1,243 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>ngx-cookieconsent documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	   <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avaoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+
+               if ($darkModeToggles.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
+            <a href="./" class="navbar-brand">ngx-cookieconsent documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content getting-started">
+                   <div class="content-data">
+
+<h2><a href="https://github.com/tinesoft/ngx-cookieconsent/compare/v2.2.2...v2.2.3">2.2.3</a> (2019-06-14)</h2>
+<h3>Features</h3>
+<ul>
+<li><strong>location:</strong> allow activating location services in config and improve typings for <code>NgcLawOptions</code>, <code>NgcLocationOptions</code> (<a href="https://github.com/tinesoft/ngx-cookieconsent/commit/306fe18">306fe18</a>), closes <a href="https://github.com/tinesoft/ngx-cookieconsent/issues/57">#57</a></li>
+</ul>
+<h2><a href="https://github.com/tinesoft/ngx-cookieconsent/compare/v2.2.1...v2.2.2">2.2.2</a> (2019-05-28)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>NgcCookieOptions:</strong> add missing export (<a href="https://github.com/tinesoft/ngx-cookieconsent/commit/971b65e">971b65e</a>), closes <a href="https://github.com/tinesoft/ngx-cookieconsent/issues/53">#53</a></li>
+<li><strong>sponsorship:</strong> fix github sponsorship of yours truly (<a href="https://github.com/tinesoft/ngx-cookieconsent/commit/d3a7b3d">d3a7b3d</a>)</li>
+</ul>
+<h2><a href="https://github.com/tinesoft/ngx-cookieconsent/compare/v2.2.0...v2.2.1">2.2.1</a> (2019-05-14)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>typings:</strong> correct <code> ERROR TS2411</code> when compiling with <code>strict</code> mode on (<a href="https://github.com/tinesoft/ngx-cookieconsent/commit/4fb02eb">4fb02eb</a>), closes <a href="https://github.com/tinesoft/ngx-cookieconsent/issues/49">#49</a></li>
+</ul>
+<h1><a href="https://github.com/tinesoft/ngx-cookieconsent/compare/v2.1.1...v2.2.0">2.2.0</a> (2019-03-28)</h1>
+<h3>Features</h3>
+<ul>
+<li><strong>customLayout:</strong> allow customizing the cookie bar layout and content (<a href="https://github.com/tinesoft/ngx-cookieconsent/commit/4b32ce0">4b32ce0</a>)</li>
+</ul>
+<h2><a href="https://github.com/tinesoft/ngx-cookieconsent/compare/v2.1.0...v2.1.1">2.1.1</a> (2019-02-06)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>typings:</strong> fix lint isssue due to bad typings in NgcCookieConsentStatus (<a href="https://github.com/tinesoft/ngx-cookieconsent/commit/27ebb55">27ebb55</a>), closes <a href="https://github.com/tinesoft/ngx-cookieconsent/issues/11">#11</a></li>
+</ul>
+<h1><a href="https://github.com/tinesoft/ngx-cookieconsent/compare/v2.0.0...v2.1.0">2.1.0</a> (2018-10-25)</h1>
+<h3>Features</h3>
+<ul>
+<li><strong>core:</strong> update to <code>cookieconsent v3.1.0</code> and its features (<a href="https://github.com/tinesoft/ngx-cookieconsent/commit/d674b93">d674b93</a>)</li>
+<li><strong>options:</strong> add <code>policy</code> and <code>target</code> options to <code>NgcContentOptions</code> (<a href="https://github.com/tinesoft/ngx-cookieconsent/commit/a0849f2">a0849f2</a>), closes <a href="https://github.com/tinesoft/ngx-cookieconsent/issues/23">#23</a></li>
+</ul>
+<h1><a href="https://github.com/tinesoft/ngx-cookieconsent/compare/v1.1.1...v2.0.0">2.0.0</a> (2018-07-19)</h1>
+<h3>Features</h3>
+<ul>
+<li><strong>ng6:</strong> add support for angular 6 (<a href="https://github.com/tinesoft/ngx-cookieconsent/commit/2ab9341">2ab9341</a>), closes <a href="https://github.com/tinesoft/ngx-cookieconsent/issues/17">#17</a> <a href="https://github.com/tinesoft/ngx-cookieconsent/issues/18">#18</a></li>
+<li><strong>onNoCookieLaw:</strong> add support for <code>onNoCookieLaw</code> callback (<a href="https://github.com/tinesoft/ngx-cookieconsent/commit/2d960c8">2d960c8</a>)</li>
+</ul>
+<h3>BREAKING CHANGES</h3>
+<ul>
+<li><strong>ng6:</strong> - Minimum version of Angular is now v6+</li>
+</ul>
+<ul>
+<li>Minimum version of Node is v8+</li>
+</ul>
+<h2><a href="https://github.com/tinesoft/ngx-cookieconsent/compare/v1.1.0...v1.1.1">1.1.1</a> (2018-07-18)</h2>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>initialize$:</strong> callback was never called due to typo (<code>onInitialise</code>) (<a href="https://github.com/tinesoft/ngx-cookieconsent/commit/6cd260f">6cd260f</a>), closes <a href="https://github.com/tinesoft/ngx-cookieconsent/issues/19">#19</a></li>
+</ul>
+<h1><a href="https://github.com/tinesoft/ngx-cookieconsent/compare/v1.0.1...v1.1.0">1.1.0</a> (2018-07-03)</h1>
+<h3>Bug Fixes</h3>
+<ul>
+<li><strong>demo:</strong> fix wrong assets url on deployed demo app (<a href="https://github.com/tinesoft/ngx-cookieconsent/commit/fedcbd9">fedcbd9</a>)</li>
+</ul>
+<h3>Features</h3>
+<ul>
+<li><strong>close:</strong> add <code>close</code> method to allow fully closing the &#39;Coookie Policy&#39; bar (<a href="https://github.com/tinesoft/ngx-cookieconsent/commit/02ada28">02ada28</a>), closes <a href="https://github.com/tinesoft/ngx-cookieconsent/issues/15">#15</a></li>
+<li><strong>demo:</strong> add support for translated cookie consent messages + update docs (<a href="https://github.com/tinesoft/ngx-cookieconsent/commit/e1bf9bf">e1bf9bf</a>), closes <a href="https://github.com/tinesoft/ngx-cookieconsent/issues/14">#14</a></li>
+</ul>
+<h2><a href="https://github.com/tinesoft/ngx-cookieconsent/compare/v1.0.0...v1.0.1">1.0.1</a> (2017-11-22)</h2>
+<h3>Features</h3>
+<ul>
+<li><strong>core:</strong> make <code>cookie.domain</code>option mandatory in configuration service and update doc (<a href="https://github.com/tinesoft/ngx-cookieconsent/commit/9835145">9835145</a>)</li>
+<li><strong>demo:</strong> update demo app to Angular CLI <code>1.4.7</code> (<a href="https://github.com/tinesoft/ngx-cookieconsent/commit/37371b6">37371b6</a>)</li>
+<li><strong>packaging:</strong> relax <code>peerDependencies</code> versions (<a href="https://github.com/tinesoft/ngx-cookieconsent/commit/02496e8">02496e8</a>), closes <a href="https://github.com/tinesoft/ngx-cookieconsent/issues/8">#8</a></li>
+</ul>
+<h1><a href="https://github.com/tinesoft/ngx-cookieconsent/compare/5f8a340...v1.0.0">1.0.0</a> (2017-09-07)</h1>
+<h3>Features</h3>
+<ul>
+<li><strong>all:</strong> initial commit (<a href="https://github.com/tinesoft/ngx-cookieconsent/commit/5f8a340">5f8a340</a>)</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
+            var COMPODOC_CURRENT_PAGE_URL = 'changelog.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+
+       <script src="./js/menu-wc.js" defer></script>
+       <script nomodule src="./js/menu-wc_es5.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+       <script src="./js/libs/zepto.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
