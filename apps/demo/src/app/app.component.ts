@@ -1,22 +1,20 @@
-import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
-import { Router, NavigationEnd, Event, RouterOutlet } from '@angular/router';
-import { isPlatformBrowser } from '@angular/common';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
 
 import { NgcCookieConsentService, NgcInitializingEvent, NgcInitializationErrorEvent, NgcStatusChangeEvent, NgcNoCookieLawEvent } from 'ngx-cookieconsent';
 
-import { filter } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
 import { HeaderComponent } from "./shared/header/header.component";
 import { FooterComponent } from "./shared/footer/footer.component";
 @Component({
-    selector: 'ngc-demo-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
-    standalone: true,
-    imports: [RouterOutlet, HeaderComponent, FooterComponent]
+  selector: 'ngc-demo-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.scss'],
+  standalone: true,
+  imports: [RouterOutlet, HeaderComponent, FooterComponent]
 })
-export class AppComponent implements OnInit, OnDestroy{
+export class AppComponent implements OnInit, OnDestroy {
 
   //keep refs to subscriptions to be able to unsubscribe later
   private popupOpenSubscription!: Subscription;
@@ -28,14 +26,8 @@ export class AppComponent implements OnInit, OnDestroy{
   private revokeChoiceSubscription!: Subscription;
   private noCookieLawSubscription!: Subscription;
 
-  constructor(private ccService: NgcCookieConsentService, private translateService:TranslateService, private router: Router, @Inject(PLATFORM_ID) private platformId: Object) {
-    this.router.events.pipe(
-      filter((event:Event) => event instanceof NavigationEnd)
-    ).subscribe(event => {
-      if (isPlatformBrowser(this.platformId)) {
-        window.scroll(0, 0);
-      }
-    });
+  constructor(private ccService: NgcCookieConsentService, private translateService: TranslateService) {
+
   }
 
   ngOnInit() {
@@ -57,7 +49,7 @@ export class AppComponent implements OnInit, OnDestroy{
         // the cookieconsent is initilializing... Not yet safe to call methods like `NgcCookieConsentService.hasAnswered()`
         console.log(`initializing: ${JSON.stringify(event)}`);
       });
-    
+
     this.initializedSubscription = this.ccService.initialized$.subscribe(
       () => {
         // the cookieconsent has been successfully initialized.

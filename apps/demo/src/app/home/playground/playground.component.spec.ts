@@ -4,14 +4,13 @@ import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { appConfig } from '../../app.config';
 import { PlaygroundComponent } from './playground.component';
 
-
 describe('PlaygroundComponent', () => {
   let component: PlaygroundComponent;
   let fixture: ComponentFixture<PlaygroundComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule(Object.assign({}, appConfig, {
-      schemas: [NO_ERRORS_SCHEMA]
+      schemas: [NO_ERRORS_SCHEMA],
     }))
     .compileComponents();
   }));

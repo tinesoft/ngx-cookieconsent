@@ -9,7 +9,7 @@
       "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
-        "outputPath": "dist/apps/demo",
+        "outputPath": "dist/apps/demo/browser",
         "index": "apps/demo/src/index.html",
         "main": "apps/demo/src/main.ts",
         "polyfills": ["zone.js"],
@@ -105,10 +105,71 @@
     },
     "deploy": {
       "executor": "@nx-dotnet/nx-ghpages:deploy",
+      "dependsOn": ["predeploy"],
       "options": {
         "remote": "git@github.com:tinesoft/ngx-cookieconsent.git",
-        "directory": "dist/apps/demo"
+        "directory": "dist/apps/demo/browser"
       }
+    },
+    "server": {
+      "dependsOn": ["build"],
+      "executor": "@angular-devkit/build-angular:server",
+      "options": {
+        "outputPath": "dist/apps/demo/server",
+        "main": "apps/demo/server.ts",
+        "tsConfig": "apps/demo/tsconfig.server.json",
+        "inlineStyleLanguage": "scss"
+      },
+      "configurations": {
+        "production": {
+          "outputHashing": "media",
+          "fileReplacements": [
+            {
+              "replace": "apps/demo/src/environments/environment.ts",
+              "with": "apps/demo/src/environments/environment.prod.ts"
+            }
+          ]
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "sourceMap": true,
+          "extractLicenses": false,
+          "vendorChunk": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve-ssr": {
+      "executor": "@angular-devkit/build-angular:ssr-dev-server",
+      "configurations": {
+        "development": {
+          "browserTarget": "demo:build:development",
+          "serverTarget": "demo:server:development"
+        },
+        "production": {
+          "browserTarget": "demo:build:production",
+          "serverTarget": "demo:server:production"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "prerender": {
+      "executor": "@angular-devkit/build-angular:prerender",
+      "options": {
+        "routes": ["/"]
+      },
+      "configurations": {
+        "development": {
+          "browserTarget": "demo:build:development",
+          "serverTarget": "demo:server:development"
+        },
+        "production": {
+          "browserTarget": "demo:build:production",
+          "serverTarget": "demo:server:production"
+        }
+      },
+      "defaultConfiguration": "production"
     }
   },
   "tags": []

@@ -25,9 +25,6 @@
     "release": {
       "dependsOn": ["build", "^release"]
     },
-    "deploy": {
-      "dependsOn": ["predeploy"]
-    },
     "compodoc": {
       "cache": true
     },
@@ -43,6 +40,9 @@
           "codeCoverage": true
         }
       }
+    },
+    "server": {
+      "cache": true
     }
   },
   "namedInputs": {
