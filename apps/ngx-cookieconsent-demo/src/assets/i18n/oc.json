@@ -1,0 +1,11 @@
+{
+    "cookie": {
+        "header": "Cookies sul site !",
+        "message": "Aqueste site web utiliza de cookies per vos assegurar de la melhora experiéncia de navegacion possibla sus nòstre site.",
+        "dismiss": "OK, plan comprés !",
+        "allow": "Autorizar los cookies",
+        "deny": "Refusar",
+        "link": "Mai d'informacions",
+        "policy": "Politica de cookies"
+    }
+}
