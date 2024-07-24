@@ -164,53 +164,54 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     // subscribe to cookieconsent observables to react to main events
-    this.popupOpenSubscription = this.ccService.popupOpen$.subscribe(
+    this.popupOpenSubscription = this.ccService.popupOpen$.pipe(take(1)).subscribe(
       () => {
         // you can use this.ccService.getConfig() to do stuff...
       });
 
-    this.popupCloseSubscription = this.ccService.popupClose$.subscribe(
+    this.popupCloseSubscription = this.ccService.popupClose$.pipe(take(1)).subscribe(
       () => {
         // you can use this.ccService.getConfig() to do stuff...
       });
 
-    this.initializingSubscription = this.ccService.initializing$.subscribe(
+    this.initializingSubscription = this.ccService.initializing$.pipe(take(1)).subscribe(
       (event: NgcInitializingEvent) => {
         // the cookieconsent is initilializing... Not yet safe to call methods like `NgcCookieConsentService.hasAnswered()`
         console.log(`initializing: ${JSON.stringify(event)}`);
       });
     
-    this.initializedSubscription = this.ccService.initialized$.subscribe(
+    this.initializedSubscription = this.ccService.initialized$.pipe(take(1)).subscribe(
       () => {
         // the cookieconsent has been successfully initialized.
         // It's now safe to use methods on NgcCookieConsentService that require it, like `hasAnswered()` for eg...
         console.log(`initialized: ${JSON.stringify(event)}`);
       });
 
-    this.initializationErrorSubscription = this.ccService.initializationError$.subscribe(
+    this.initializationErrorSubscription = this.ccService.initializationError$.pipe(take(1)).subscribe(
       (event: NgcInitializationErrorEvent) => {
         // the cookieconsent has failed to initialize... 
         console.log(`initializationError: ${JSON.stringify(event.error?.message)}`);
       });
 
-    this.statusChangeSubscription = this.ccService.statusChange$.subscribe(
+    this.statusChangeSubscription = this.ccService.statusChange$.pipe(take(1)).subscribe(
       (event: NgcStatusChangeEvent) => {
         // you can use this.ccService.getConfig() to do stuff...
       });
 
-    this.revokeChoiceSubscription = this.ccService.revokeChoice$.subscribe(
+    this.revokeChoiceSubscription = this.ccService.revokeChoice$.pipe(take(1)).subscribe(
       () => {
         // you can use this.ccService.getConfig() to do stuff...
       });
 
-      this.noCookieLawSubscription = this.ccService.noCookieLaw$.subscribe(
+      this.noCookieLawSubscription = this.ccService.noCookieLaw$.pipe(take(1)).subscribe(
       (event: NgcNoCookieLawEvent) => {
         // you can use this.ccService.getConfig() to do stuff...
       });
   }
 
   ngOnDestroy() {
-    // unsubscribe to cookieconsent observables to prevent memory leaks
+    // Although `take(1)` would already prevent memory leaks
+    // unsubscribe to cookieconsent observables if you're using it in another component (Like different cookies base on different page)
     this.popupOpenSubscription.unsubscribe();
     this.popupCloseSubscription.unsubscribe();
     this.initializingSubscription.unsubscribe();
