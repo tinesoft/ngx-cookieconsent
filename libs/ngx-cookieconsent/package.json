@@ -8,5 +8,12 @@
     "cookieconsent": "^3.1.1"
   },
   "dependencies": {},
-  "sideEffects": false
+  "sideEffects": false,
+  "homepage": "https://github.com/tinesoft/ngx-cookieconsent#readme",
+  "bugs": {
+    "url": "https://github.com/tinesoft/ngx-cookieconsent/issues"
+  },
+  "repository": {
+    "url": "https://github.com/tinesoft/ngx-cookieconsent"
+  },
 }
