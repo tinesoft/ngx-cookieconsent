@@ -14,8 +14,7 @@ import { FaIconComponent } from '@fortawesome/angular-fontawesome';
     selector: 'ngc-demo-playground',
     templateUrl: './playground.component.html',
     styleUrls: ['./playground.component.scss'],
-    standalone: true,
-    imports: [NgbDropdown, NgbDropdownToggle, NgbDropdownMenu, NgFor, NgClass, FormsModule,FaIconComponent, NgbAccordionModule, ColorPickerModule, ClipboardModule, JsonPipe]
+    imports: [NgbDropdown, NgbDropdownToggle, NgbDropdownMenu, NgFor, NgClass, FormsModule, FaIconComponent, NgbAccordionModule, ColorPickerModule, ClipboardModule, JsonPipe]
 })
 export class PlaygroundComponent {
 

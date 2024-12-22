@@ -1,5 +1,5 @@
 import { HttpClient, provideHttpClient } from '@angular/common/http';
-import { ENVIRONMENT_INITIALIZER, SecurityContext, ApplicationConfig } from '@angular/core';
+import { SecurityContext, ApplicationConfig, inject, provideEnvironmentInitializer } from '@angular/core';
 
 import {
   NgcCookieConsentConfig,
@@ -100,21 +100,16 @@ export const appConfig: ApplicationConfig = {
           gfm: true,
           breaks: false,
           pedantic: false,
-          smartLists: true,
-          smartypants: false,
         },
       },
       sanitize: SecurityContext.NONE,
     }),
-    {
-      provide: ENVIRONMENT_INITIALIZER,
-      useFactory: (iconLibrary: FaIconLibrary) => async () => {
+    provideEnvironmentInitializer(() => {
+        const initializerFn = ((iconLibrary: FaIconLibrary) => async () => {
         // Add any icons needed here:
         iconLibrary.addIcons(...iconsList);
-      },
-      // When using a factory provider you need to explicitly specify its dependencies.
-      deps: [FaIconLibrary],
-      multi: true,
-    },
+      })(inject(FaIconLibrary));
+        return initializerFn();
+      }),
   ],
 };

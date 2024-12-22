@@ -6,7 +6,6 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
     selector: 'ngc-demo-header',
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss'],
-    standalone: true,
     imports: [RouterLink, NgbCollapse, RouterLinkActive]
 })
 export class HeaderComponent {

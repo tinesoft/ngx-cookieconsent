@@ -8,7 +8,6 @@ import { MarkdownModule } from 'ngx-markdown';
     selector: 'ngc-demo-getting-started',
     templateUrl: './getting-started.component.html',
     styleUrls: ['./getting-started.component.scss'],
-    standalone: true,
     imports: [MarkdownModule]
 })
 export class GettingStartedComponent implements OnInit {

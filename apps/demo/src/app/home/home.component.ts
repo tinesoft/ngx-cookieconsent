@@ -8,7 +8,6 @@ import { FaIconComponent } from '@fortawesome/angular-fontawesome';
     selector: 'ngc-demo-home',
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
-    standalone: true,
     imports: [PlaygroundComponent, FaIconComponent]
 })
 export class HomeComponent implements OnInit {
