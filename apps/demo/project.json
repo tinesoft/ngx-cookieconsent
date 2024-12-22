@@ -104,7 +104,7 @@
       }
     },
     "deploy": {
-      "executor": "@nx-dotnet/nx-ghpages:deploy",
+      "executor": "nx-github-pages:deploy",
       "dependsOn": ["predeploy"],
       "options": {
         "remote": "git@github.com:tinesoft/ngx-cookieconsent.git",

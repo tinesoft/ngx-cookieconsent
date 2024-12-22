@@ -13,7 +13,7 @@ import {
   withEnabledBlockingInitialNavigation,
   withInMemoryScrolling,
 } from '@angular/router';
-import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { provideTranslateService, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { MARKED_OPTIONS, provideMarkdown } from 'ngx-markdown';
 import { appRoutes } from './app.routes';
@@ -71,7 +71,7 @@ const cookieConfig: NgcCookieConsentConfig = {
 };
 
 // AoT requires an exported function for factories
-export function HttpLoaderFactory(httpClient: HttpClient) {
+export function httpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, './assets/i18n/', '.json');
 }
 
@@ -84,13 +84,14 @@ export const appConfig: ApplicationConfig = {
         scrollPositionRestoration: 'top'
       })),
     provideHttpClient(),
-    TranslateModule.forRoot({
+    provideHttpClient(),
+    provideTranslateService({
       loader: {
         provide: TranslateLoader,
-        useFactory: HttpLoaderFactory,
+        useFactory: httpLoaderFactory,
         deps: [HttpClient],
       },
-    }).providers,
+    }),
     provideNgcCookieConsent(cookieConfig),
     provideMarkdown({
       markedOptions: {
