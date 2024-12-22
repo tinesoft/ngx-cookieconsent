@@ -1,3 +1,13 @@
+# [8.0.0](https://github.com/tinesoft/ngx-cookieconsent/compare/v7.0.0...v8.0.0) (2024-12-22)
+
+### Features
+
+- update to Angular v19+ ([7b294af](https://github.com/tinesoft/ngx-cookieconsent/commit/7b294af107e313ba30a806c63cdb501e4885a6dd)), closes [#153](https://github.com/tinesoft/ngx-cookieconsent/issues/153)
+
+### BREAKING CHANGES
+
+- Angular v19+ is now the minimal version to use the library.
+
 # [7.0.0](https://github.com/tinesoft/ngx-cookieconsent/compare/v6.0.0...v7.0.0) (2024-12-22)
 
 ### Features
