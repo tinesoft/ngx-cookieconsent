@@ -1,8 +1,5 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
-  "affected": {
-    "defaultBase": "develop"
-  },
   "defaultProject": "demo",
   "targetDefaults": {
     "build": {
@@ -62,7 +59,7 @@
       "style": "scss",
       "linter": "eslint",
       "unitTestRunner": "jest",
-      "e2eTestRunner": "cypress"
+      "e2eTestRunner": "none"
     },
     "@nx/angular:library": {
       "linter": "eslint",
@@ -72,5 +69,20 @@
       "style": "scss"
     }
   },
-  "nxCloudAccessToken": "MjE0OWQ1M2ItNTFjOC00ZDU4LWIzYzgtOWQzODZjNmFlYjhifHJlYWQtd3JpdGU="
+  "nxCloudAccessToken": "MjE0OWQ1M2ItNTFjOC00ZDU4LWIzYzgtOWQzODZjNmFlYjhifHJlYWQtd3JpdGU=",
+  "plugins": [
+    {
+      "plugin": "@nx/eslint/plugin",
+      "options": {
+        "targetName": "lint"
+      }
+    },
+    {
+      "plugin": "@nx/jest/plugin",
+      "options": {
+        "targetName": "test"
+      }
+    }
+  ],
+  "defaultBase": "develop"
 }
