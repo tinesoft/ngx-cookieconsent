@@ -38,13 +38,6 @@
       "options": {
         "command": "npx compodoc --tsconfig libs/ngx-cookieconsent/tsconfig.lib.json --output dist/apps/demo/browser/doc"
       }
-    },
-    "release": {
-      "executor": "nx:run-commands",
-      "options": {
-        "command": "npx semantic-release",
-        "cwd": "libs/ngx-cookieconsent"
-      }
     }
   }
 }

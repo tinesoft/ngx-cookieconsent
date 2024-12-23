@@ -1,14 +1,30 @@
 {
   "$schema": "./node_modules/nx/schemas/nx-schema.json",
   "defaultProject": "demo",
+  "release": {
+    "projects": ["libs/*"],
+    "projectsRelationship": "independent",
+    "releaseTagPattern": "v{version}",
+    "git": {
+      "commitMessage": "chore(release): 🚀 release packages [skip ci]"
+    },
+    "changelog": {
+      "projectChangelogs": {
+        "createRelease": "github"
+      }
+    },
+    "version": {
+      "preVersionCommand": "npx nx run-many -t build",
+      "conventionalCommits": true,
+      "generatorOptions": {
+        "packageRoot": "dist/libs/{projectName}"
+      }
+    }
+  },
   "targetDefaults": {
     "build": {
       "dependsOn": ["^build"],
       "inputs": ["production", "^production"],
-      "cache": true
-    },
-    "e2e": {
-      "inputs": ["default", "^production"],
       "cache": true
     },
     "lint": {
@@ -18,9 +34,6 @@
         "{workspaceRoot}/.eslintignore"
       ],
       "cache": true
-    },
-    "release": {
-      "dependsOn": ["build", "^release"]
     },
     "compodoc": {
       "cache": true
@@ -40,6 +53,11 @@
     },
     "server": {
       "cache": true
+    },
+    "nx-release-publish": {
+      "options": {
+        "packageRoot": "dist/libs/{projectName}"
+      }
     }
   },
   "namedInputs": {
